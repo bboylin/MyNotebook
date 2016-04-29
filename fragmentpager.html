@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##<center>viewpager+fragment实现tab滑动导航</center>
+我们经常看到一些app左右滑动可以却换不同的界面，比如微信，还有美拍等app的界面就可以通过viewpager+fragment来实现，每次左右滑动都能切换到不同的tab项。
+首先自定义一个FragmentPagerAdapter
+~~~~{java}
+package com.bboylin.sportsmeeting.Adapter;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
+
+/**
+ * Created by lin on 2016/4/3.
+ */
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+    private ArrayList<Fragment> list;
+    public MyFragmentPagerAdapter(FragmentManager fm,ArrayList<Fragment> list) {
+        super(fm);
+        this.list=list;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return list.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return list.size();
+    }
+}
+
+~~~~
+然后在activity里面自定义fragment并加入到fragmentlist里面，创建一个adapter，就可以开始自定义viewpager的滑动效果了。
+~~~~{java}
+package com.bboylin.sportsmeeting.Main;
+
+import android.graphics.Color;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import com.bboylin.sportsmeeting.Adapter.MyFragmentPagerAdapter;
+import com.bboylin.sportsmeeting.Fragments.MedalFragment;
+import com.bboylin.sportsmeeting.Fragments.NewsFragment;
+import com.bboylin.sportsmeeting.Fragments.ResultFragment;
+import com.bboylin.sportsmeeting.Fragments.ScheduleFragment;
+import com.bboylin.sportsmeeting.R;
+
+import java.util.ArrayList;
+
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+
+    private FrameLayout newsFramelayout,scheduleFramelayout,resultFramelayout,medalFramelayout;
+    private Fragment newsFragment,scheduleFragment,resultFragment,medalFragment;
+    private ViewPager viewPager;
+    private ArrayList<Fragment> fragmentArrayList;
+    private TextView mainNewsTextview,mainScheduleTextview,mainResultTextview,mainMedalTextview;
+    private FragmentManager fragmentManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+        initClickEvent();
+        initFragment();
+    }
+
+    public void initFragment() {
+        fragmentArrayList.add(newsFragment);
+        fragmentArrayList.add(scheduleFragment);
+        fragmentArrayList.add(resultFragment);
+        fragmentArrayList.add(medalFragment);
+        fragmentManager=getSupportFragmentManager();
+        viewPager.setAdapter(new MyFragmentPagerAdapter(fragmentManager, fragmentArrayList));
+        viewPager.setCurrentItem(0);//默认打开首页
+        mainNewsTextview.setTextColor(Color.parseColor("#999999"));//默认首页被选中，tab设为灰色
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {//使选中的TAB变灰，其他保持绿色
+                setAllTabGreen();
+                switch (position) {
+                    case 0:
+                        mainNewsTextview.setTextColor(Color.parseColor("#999999"));
+                        break;
+                    case 1:
+                        mainScheduleTextview.setTextColor(Color.parseColor("#999999"));
+                        break;
+                    case 2:
+                        mainResultTextview.setTextColor(Color.parseColor("#999999"));
+                        break;
+                    case 3:
+                        mainMedalTextview.setTextColor(Color.parseColor("#999999"));
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    public void initClickEvent() {
+        newsFramelayout.setOnClickListener(this);
+        scheduleFramelayout.setOnClickListener(this);
+        resultFramelayout.setOnClickListener(this);
+        medalFramelayout.setOnClickListener(this);
+    }
+
+    public void initView() {
+        mainMedalTextview=(TextView)findViewById(R.id.medalTextView);
+        mainResultTextview=(TextView)findViewById(R.id.resultTextView);
+        mainScheduleTextview=(TextView)findViewById(R.id.scheduleTextView);
+        mainNewsTextview=(TextView)findViewById(R.id.newsTextView);
+        newsFramelayout= (FrameLayout) findViewById(R.id.newsFramelayout);
+        scheduleFramelayout= (FrameLayout) findViewById(R.id.scheduleFramelayout);
+        resultFramelayout= (FrameLayout) findViewById(R.id.resultFramelayout);
+        medalFramelayout= (FrameLayout) findViewById(R.id.medalFramelayout);
+        viewPager= (ViewPager) findViewById(R.id.viewpager);
+        fragmentArrayList=new ArrayList<>();
+        newsFragment=new NewsFragment();
+        scheduleFragment=new ScheduleFragment();
+        resultFragment=new ResultFragment();
+        medalFragment=new MedalFragment();
+    }
+
+    @Override
+    public void onClick(View v) {//点击TAB也能和滑动产生一样的效果
+        setAllTabGreen();
+        switch (v.getId()){
+            case R.id.newsFramelayout:
+                viewPager.setCurrentItem(0,false);
+                mainNewsTextview.setTextColor(Color.parseColor("#999999"));
+                break;
+            case R.id.scheduleFramelayout:
+                viewPager.setCurrentItem(1,false);
+                mainScheduleTextview.setTextColor(Color.parseColor("#999999"));
+                break;
+            case R.id.resultFramelayout:
+                viewPager.setCurrentItem(2,false);
+                mainResultTextview.setTextColor(Color.parseColor("#999999"));
+                break;
+            case R.id.medalFramelayout:
+                viewPager.setCurrentItem(3,false);
+                mainMedalTextview.setTextColor(Color.parseColor("#999999"));
+                break;
+        }
+    }
+
+    private void setAllTabGreen() {
+        mainNewsTextview.setTextColor(Color.parseColor("#45C01A"));
+        mainScheduleTextview.setTextColor(Color.parseColor("#45C01A"));
+        mainResultTextview.setTextColor(Color.parseColor("#45C01A"));
+        mainMedalTextview.setTextColor(Color.parseColor("#45C01A"));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_exit) {
+            System.exit(0);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+~~~~
+
+更多博客尽在：[bboylin.com](http://bboylin.com)
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="centerviewpagerfragmenttabcenter"><center>viewpager+fragment实现tab滑动导航</center></h2>
+
+<p>我们经常看到一些app左右滑动可以却换不同的界面，比如微信，还有美拍等app的界面就可以通过viewpager+fragment来实现，每次左右滑动都能切换到不同的tab项。
+首先自定义一个FragmentPagerAdapter</p>
+
+<pre class=" language-java"><code class=" language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Adapter<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>Fragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>FragmentManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>FragmentPagerAdapter<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created by lin on 2016/4/3.
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyFragmentPagerAdapter</span> <span class="token keyword">extends</span> <span class="token class-name">FragmentPagerAdapter</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> ArrayList<span class="token operator">&lt;</span>Fragment&gt; list<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token function">MyFragmentPagerAdapter<span class="token punctuation">(</span></span>FragmentManager fm<span class="token punctuation">,</span>ArrayList<span class="token operator">&lt;</span>Fragment&gt; list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>fm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token operator">=</span>list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    <span class="token keyword">public</span> Fragment <span class="token function">getItem<span class="token punctuation">(</span></span><span class="token keyword">int</span> position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">get<span class="token punctuation">(</span></span>position<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getCount<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">size<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>然后在activity里面自定义fragment并加入到fragmentlist里面，创建一个adapter，就可以开始自定义viewpager的滑动效果了。
+<pre class=" language-java"><code class=" language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Main<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>graphics<span class="token punctuation">.</span>Color<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>Fragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>FragmentManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>view<span class="token punctuation">.</span>ViewPager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v7<span class="token punctuation">.</span>app<span class="token punctuation">.</span>ActionBarActivity<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Bundle<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>Menu<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>MenuItem<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>View<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>FrameLayout<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>TextView<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Adapter<span class="token punctuation">.</span>MyFragmentPagerAdapter<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Fragments<span class="token punctuation">.</span>MedalFragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Fragments<span class="token punctuation">.</span>NewsFragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Fragments<span class="token punctuation">.</span>ResultFragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>Fragments<span class="token punctuation">.</span>ScheduleFragment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>bboylin<span class="token punctuation">.</span>sportsmeeting<span class="token punctuation">.</span>R<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainActivity</span> <span class="token keyword">extends</span> <span class="token class-name">ActionBarActivity</span> <span class="token keyword">implements</span> <span class="token class-name">View<span class="token punctuation">.</span>OnClickListener</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> FrameLayout newsFramelayout<span class="token punctuation">,</span>scheduleFramelayout<span class="token punctuation">,</span>resultFramelayout<span class="token punctuation">,</span>medalFramelayout<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Fragment newsFragment<span class="token punctuation">,</span>scheduleFragment<span class="token punctuation">,</span>resultFragment<span class="token punctuation">,</span>medalFragment<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> ViewPager viewPager<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> ArrayList<span class="token operator">&lt;</span>Fragment&gt; fragmentArrayList<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> TextView mainNewsTextview<span class="token punctuation">,</span>mainScheduleTextview<span class="token punctuation">,</span>mainResultTextview<span class="token punctuation">,</span>mainMedalTextview<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> FragmentManager fragmentManager<span class="token punctuation">;</span>
+
+    @Override
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate<span class="token punctuation">(</span></span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate<span class="token punctuation">(</span></span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setContentView<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>activity_main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">initView<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">initClickEvent<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">initFragment<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initFragment<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        fragmentArrayList<span class="token punctuation">.</span><span class="token function">add<span class="token punctuation">(</span></span>newsFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragmentArrayList<span class="token punctuation">.</span><span class="token function">add<span class="token punctuation">(</span></span>scheduleFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragmentArrayList<span class="token punctuation">.</span><span class="token function">add<span class="token punctuation">(</span></span>resultFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragmentArrayList<span class="token punctuation">.</span><span class="token function">add<span class="token punctuation">(</span></span>medalFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragmentManager<span class="token operator">=</span><span class="token function">getSupportFragmentManager<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        viewPager<span class="token punctuation">.</span><span class="token function">setAdapter<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">MyFragmentPagerAdapter</span><span class="token punctuation">(</span>fragmentManager<span class="token punctuation">,</span> fragmentArrayList<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        viewPager<span class="token punctuation">.</span><span class="token function">setCurrentItem<span class="token punctuation">(</span></span>0<span class="token punctuation">)</span><span class="token comment" spellcheck="true">;//默认打开首页
+</span>        mainNewsTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">;//默认首页被选中，tab设为灰色
+</span>        viewPager<span class="token punctuation">.</span><span class="token function">setOnPageChangeListener<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">ViewPager<span class="token punctuation">.</span>OnPageChangeListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            @Override
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onPageScrolled<span class="token punctuation">(</span></span><span class="token keyword">int</span> position<span class="token punctuation">,</span> <span class="token keyword">float</span> positionOffset<span class="token punctuation">,</span> <span class="token keyword">int</span> positionOffsetPixels<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+
+            @Override
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onPageSelected<span class="token punctuation">(</span></span><span class="token keyword">int</span> position<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">{//使选中的TAB变灰，其他保持绿色
+</span>                <span class="token function">setAllTabGreen<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">switch</span> <span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">case</span><span class="token number"> 0</span><span class="token operator">:</span>
+                        mainNewsTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span><span class="token number"> 1</span><span class="token operator">:</span>
+                        mainScheduleTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span><span class="token number"> 2</span><span class="token operator">:</span>
+                        mainResultTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                    <span class="token keyword">case</span><span class="token number"> 3</span><span class="token operator">:</span>
+                        mainMedalTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+            @Override
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onPageScrollStateChanged<span class="token punctuation">(</span></span><span class="token keyword">int</span> state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initClickEvent<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        newsFramelayout<span class="token punctuation">.</span><span class="token function">setOnClickListener<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        scheduleFramelayout<span class="token punctuation">.</span><span class="token function">setOnClickListener<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        resultFramelayout<span class="token punctuation">.</span><span class="token function">setOnClickListener<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        medalFramelayout<span class="token punctuation">.</span><span class="token function">setOnClickListener<span class="token punctuation">(</span></span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initView<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mainMedalTextview<span class="token operator">=</span><span class="token punctuation">(</span>TextView<span class="token punctuation">)</span><span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>medalTextView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainResultTextview<span class="token operator">=</span><span class="token punctuation">(</span>TextView<span class="token punctuation">)</span><span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>resultTextView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainScheduleTextview<span class="token operator">=</span><span class="token punctuation">(</span>TextView<span class="token punctuation">)</span><span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>scheduleTextView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainNewsTextview<span class="token operator">=</span><span class="token punctuation">(</span>TextView<span class="token punctuation">)</span><span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>newsTextView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        newsFramelayout<span class="token operator">=</span> <span class="token punctuation">(</span>FrameLayout<span class="token punctuation">)</span> <span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>newsFramelayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        scheduleFramelayout<span class="token operator">=</span> <span class="token punctuation">(</span>FrameLayout<span class="token punctuation">)</span> <span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>scheduleFramelayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        resultFramelayout<span class="token operator">=</span> <span class="token punctuation">(</span>FrameLayout<span class="token punctuation">)</span> <span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>resultFramelayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        medalFramelayout<span class="token operator">=</span> <span class="token punctuation">(</span>FrameLayout<span class="token punctuation">)</span> <span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>medalFramelayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        viewPager<span class="token operator">=</span> <span class="token punctuation">(</span>ViewPager<span class="token punctuation">)</span> <span class="token function">findViewById<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>viewpager<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragmentArrayList<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>&gt;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        newsFragment<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">NewsFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        scheduleFragment<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ScheduleFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        resultFragment<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ResultFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        medalFragment<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">MedalFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onClick<span class="token punctuation">(</span></span>View v<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">{//点击TAB也能和滑动产生一样的效果
+</span>        <span class="token function">setAllTabGreen<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">getId<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>newsFramelayout<span class="token operator">:</span>
+                viewPager<span class="token punctuation">.</span><span class="token function">setCurrentItem<span class="token punctuation">(</span></span>0<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                mainNewsTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>scheduleFramelayout<span class="token operator">:</span>
+                viewPager<span class="token punctuation">.</span><span class="token function">setCurrentItem<span class="token punctuation">(</span></span>1<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                mainScheduleTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>resultFramelayout<span class="token operator">:</span>
+                viewPager<span class="token punctuation">.</span><span class="token function">setCurrentItem<span class="token punctuation">(</span></span>2<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                mainResultTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>medalFramelayout<span class="token operator">:</span>
+                viewPager<span class="token punctuation">.</span><span class="token function">setCurrentItem<span class="token punctuation">(</span></span>3<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                mainMedalTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#999999"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setAllTabGreen<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mainNewsTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#45C01A"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainScheduleTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#45C01A"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainResultTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#45C01A"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mainMedalTextview<span class="token punctuation">.</span><span class="token function">setTextColor<span class="token punctuation">(</span></span>Color<span class="token punctuation">.</span><span class="token function">parseColor<span class="token punctuation">(</span></span><span class="token string">"#45C01A"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">onCreateOptionsMenu<span class="token punctuation">(</span></span>Menu menu<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true"> // Inflate the menu; this adds items to the action bar if it is present.
+</span>        <span class="token function">getMenuInflater<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">inflate<span class="token punctuation">(</span></span>R<span class="token punctuation">.</span>menu<span class="token punctuation">.</span>menu_main<span class="token punctuation">,</span> menu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    @Override
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">onOptionsItemSelected<span class="token punctuation">(</span></span>MenuItem item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true"> // Handle action bar item clicks here. The action bar will
+</span>       <span class="token comment" spellcheck="true"> // automatically handle clicks on the Home/Up button, so long
+</span>       <span class="token comment" spellcheck="true"> // as you specify a parent activity in AndroidManifest.xml.
+</span>        <span class="token keyword">int</span> id <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getItemId<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token comment" spellcheck="true"> //noinspection SimplifiableIfStatement
+</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">==</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>action_exit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span><span class="token function">exit<span class="token punctuation">(</span></span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onOptionsItemSelected<span class="token punctuation">(</span></span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+
+<p>更多博客尽在：<a href="http://bboylin.com">bboylin.com</a></p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "fragmentpager.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
