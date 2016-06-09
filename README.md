@@ -1,2 +1,2 @@
 # bboylin.github.io
-my blog on github
+a homepage of myself
