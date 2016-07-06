@@ -78,11 +78,11 @@ fragment在平常开发过程中算是用的比较多的，也是android比较�
 <li>java代码中FragmentTransation
 对象的add()方法
 需要注意的是：FragmentTransation修改fragment后要调用commit()，调用commit()之前可以用addToBackStack（）将事务添加到Back栈，使得按back键能回到前一个fragment状态
-#####fragment的生命周期
+#####fragment的生命周期</br>
 ![Alt text](./1354170699_6619.png)
-与activity的生命周期联系起来
+</br>与activity的生命周期联系起来</br>
 ![Alt text](./1354170682_3824.png)
-（顺便复习下activity的生命周期）
+</br>（顺便复习下activity的生命周期）</br>
 ![Alt text](./2016-06-04_221833.png)
 #####开发中常用的套路：fragment+viewpager实现滑动切换tab
 自定义一个FragmentPagerAdapter ，将所有要用的fragments加入ArrayList，FragmentPagerAdapter设置给viewpager，将fragments和viewpager藕合起来。然后viewpager中实现滑动的最重要的三个方法
