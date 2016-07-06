@@ -77,7 +77,60 @@ fragment在平常开发过程中算是用的比较多的，也是android比较�
 <li>xml中<fragment.../>
 <li>java代码中FragmentTransation
 对象的add()方法
-需要注意的是：FragmentTransation修改fragment后要调用commit()，调用commit()之前可以用addToBackStack（）将事务添加到Back栈，使得按back键能回到前一个fragment状态
+需要注意的是：FragmentTransation修改fragment后要调用commit()，调用commit()之前可以用addToBackStack（）将事务添加到Back栈，使得按back键能回到前一个fragment状态</br>
+为了让fragment与activity交互，可以在Fragment 类中定义一个接口，并在activity中实现。Fragment在他们生命周期的onAttach()方法中获取接口的实现，然后调用接口的方法来与Activity交互。</br>
+<pre><code>public class MyListFragment extends Fragment {
+  // ...
+  // Define the listener of the interface type
+  // listener is the activity itself
+  private OnItemSelectedListener listener;
+
+  // Define the events that the fragment will use to communicate
+  public interface OnItemSelectedListener {
+    public void onRssItemSelected(String link);
+  }
+
+  // Store the listener (activity) that will have events fired once the fragment is attached
+  @Override
+  public void onAttach(Activity activity) {
+    super.onAttach(activity);
+      if (activity instanceof OnItemSelectedListener) {
+        listener = (OnItemSelectedListener) activity;
+      } else {
+        throw new ClassCastException(activity.toString()+ " must implement MyListFragment.OnItemSelectedListener");
+      }
+  }
+
+  // Now we can fire the event when the user selects something in the fragment
+  public void onSomeClick(View v) {
+     listener.onRssItemSelected("some link");
+  }
+}
+
+public class RssfeedActivity extends FragmentActivity implements
+  MyListFragment.OnItemSelectedListener {
+    DetailFragment fragment;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_rssfeed);
+      fragment = (DetailFragment) getSupportFragmentManager()
+            .findFragmentById(R.id.detailFragment);
+  }
+
+  // Now we can define the action to take in the activity when the fragment event fires
+  @Override
+  public void onRssItemSelected(String link) {
+      if (fragment != null && fragment.isInLayout()) {
+          fragment.setText(link);
+      }
+  }
+}
+</code></pre>
+简单的数据传递直接用bundle。
+activity中调用Fragment.setArgument(bundle)
+fragment中调用getArguments()获取</br>
 #####fragment的生命周期</br>
 ![Alt text](./1354170699_6619.png)
 </br>与activity的生命周期联系起来</br>
