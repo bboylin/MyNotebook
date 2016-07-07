@@ -129,7 +129,7 @@ public class RssfeedActivity extends FragmentActivity implements
 }
 </code></pre>
 简单的数据传递直接用bundle。
-activity中调用Fragment.setArgument(bundle)
+activity中调用Fragment.setArgument(bundle)</br>
 fragment中调用getArguments()获取</br>
 #####fragment的生命周期</br>
 ![Alt text](./1354170699_6619.png)
