@@ -1,0 +1,162 @@
+@charset "utf-8";
+/* CSS Document */
+
+.social-links {
+	clear: both;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.social-links .span9 {
+	padding-left: 20%;
+}
+
+.social-links ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.social-links ul li {
+	float: left;
+	padding: 0 28px 10px 0;
+}
+
+.social-links ul li a{
+	display: block;
+	text-indent: -999em;
+	width: 66px;
+	height: 66px;
+	cursor: pointer;
+}
+
+.social-links ul li.facebook a {
+	background: url(../img/icon-facebook.png) no-repeat 0 0;
+}
+
+.social-links ul li.twitter a {
+	background: url(../img/icon-twitter.png) no-repeat 0 0;
+}
+
+.social-links ul li.flickr a {
+	background: url(../img/icon-flickr.png) no-repeat 0 0;
+}
+
+.social-links ul li.pinterest a {
+	background: url(../img/icon-pinterest.png) no-repeat 0 0;
+}
+
+.social-links ul li.dribble a {
+	background: url(../img/icon-dribble.png) no-repeat 0 0;
+}
+
+.social-links ul li.gplus a {
+	background: url(../img/icon-gplus.png) no-repeat 0 0;
+}
+
+.social-links ul li.instagram a {
+	background: url(../img/icon-instagram.png) no-repeat 0 0;
+}
+
+.clock {
+	position: relative;
+}
+
+.clock .span6{
+	margin: 96px auto 0;
+	float: none;
+	position: relative;
+}
+
+.img-clock {
+	display: block;
+    margin: 0 auto;
+    max-height: 146px;
+}
+
+#countdown {
+	position: absolute;
+	left: 28%;
+	bottom: 18%;
+}
+
+#countdown div {
+	float: left;
+	font-family: 'JournalRegular', Arial, sans-serif;
+	font-size: 50px;
+	line-height: 38px;	
+}
+
+#countdown em {
+	display: block;
+	font-size: 34px;
+	text-align: right;
+	padding: 0 10px 0 0;
+}
+
+#countdown ins {
+	color: #ffbd38;
+	text-decoration: none;
+}
+
+#countdown div.days span {
+	width: 50px;
+	display: inline-block;
+	text-align: right;
+}
+
+#countdown div.hours span {
+	padding: 0 14px;
+}
+
+#countdown div.hours em {
+	text-align: left;
+}
+
+#countdown div.minutes span {
+	padding: 0 0 0 7px;
+}
+
+#countdown div.minutes em {
+	text-align: left;
+	margin-left: -10px;
+}
+
+#countdown div.seconds span {
+	padding-left: 10px;
+}
+
+#countdown div.seconds em {
+	text-align: left;
+	margin-left: -10px;
+}
+
+.form-container {
+	padding: 0 50px;
+}
+
+.form-container h2 {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 36px;
+	font-weight: bold;
+	width: 80%;
+	border: none;
+}
+
+.form-container input {
+	width: 97%;
+	line-height:30px !important;
+}
+
+.form-container .btn {
+	float: right;
+}
+
+.addthis {
+	padding: 10px 10px 0px 10px;
+	background: #ffffff;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+}
