@@ -1,4 +1,4 @@
-<h2><center>android中的消息机制</center></h2>
+<h2><center>android中的消息机制和多线程</center></h2>
 ###<li>handler的消息传递机制
 android 只允许UI线程修改UI组件，所以子线程需要消息传递给UI线程来更改UI组件</br>
 ####handler类的主要作用：
@@ -24,3 +24,6 @@ android 只允许UI线程修改UI组件，所以子线程需要消息传递给UI
 <li>execute(Params...params)在UI线程调用
 <li>不能在doInBackground()中更改UI组件
 <li>一个实例只能execute一次。
+
+---
+待续
