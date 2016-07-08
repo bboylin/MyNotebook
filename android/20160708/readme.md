@@ -8,7 +8,7 @@ Activity的生命周期</br>
 6）Activity处于被覆盖或者后台不可见状态（即2/4步），由于内存不足被杀死，而后用户退回该activity，同启动过程。oncreate,onstart,onresume</br>
 7）用户退出当前activity，onpause,onstop,ondestroy</br>
 
-![](/pic1.png)
+![](https://github.com/bboylin/bboylin.github.io/blob/master/android/20160708/pic1.png)
 activity之间传递数据
 1.intent。用于数据比较少。Intent intent=new Intent();intent.putExtra("key",value);intent.setClass(CurrentActivity.this,AnotherActivity.class);startActivity(intent)
 getIntent().getStringExtra("key")获取</br>
@@ -20,7 +20,7 @@ startActivityForReault()/onActivityReault()用于从调用的另一个activity�
 intent可给除了contentprovider之外的三大组件传递数据</br>
 
 android布局关系图：
-![](/image.png)
+![](https://github.com/bboylin/bboylin.github.io/blob/master/android/20160708/Image.png)
 android布局高级技术：</br>
 1.重用布局。<include android:id="@+id/myid" layout="@layout/activity_main">还可以加上宽高自定义
 在被重用的布局中声明merge，可以消除不必要的viewgroup。（比如两个垂直的linearlayout）
