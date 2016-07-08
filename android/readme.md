@@ -7,3 +7,5 @@
 	* [adapter pattern (Android源码解析之适配器(Adapter)模式)](https://github.com/bboylin/bboylin.github.io/tree/master/android/20160705)
     * [android中消息传递机制](https://github.com/bboylin/bboylin.github.io/tree/master/android/20160706)
     * [MVC & MVP & MVVM](https://github.com/bboylin/bboylin.github.io/tree/master/android/20160707)
+    * [android基础杂记（查漏补缺）](https://github.com/bboylin/bboylin.github.io/tree/master/android/20160708)
+    * [架构中的设计原则](https://github.com/bboylin/bboylin.github.io/tree/master/android/20160708/designPrinciple.md)
