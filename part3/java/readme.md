@@ -57,6 +57,155 @@ java单继承多实现（接口），而c++多重继承。</br>
     * 联系：[工厂方法模式](https://github.com/bboylin/bboylin.github.io/tree/master/designPattern/FactoryMethodPattern.md)
 
 * chapter10 : Inner Classes
+    * 当一个新类继承一个外部类时，外部类内嵌的内部类不会被自动继承。因此，无法再新类中简单地覆盖内部类。可以用“外部类.内部类”的方式来继承内部类，并可用这种方法来覆盖父类内部类的方法
+
+* chapter11 ：Holding Your Objects
+    * 泛型和类型安全的容器
+        * ArrayList，可以自动扩充大小的数组，add插入对象，get访问对象，size查看对象数目。
+        * 泛型（就是跟在ArrayList后面的那个尖括号指明Apple类型的标识）的添加可以在编译期间防止将错误类型的对象放进容器中。
+同样，容器也可以用foreach语法。
+    * 概念
+        * Collection，List顺序保存元素，Set不能有重复元素，Queue按照排队来。
+        * Map,键值对，通过键找值，也成为字典
+        * 注意collection是接口</br>
+        <pre><code>public interface List<E>
+extends Collection<E>
+
+
+public class ArrayList<E>
+extends AbstractList<E>
+implements List<E>, RandomAccess, Cloneable, Serializable
+</code></pre>
+    * 添加一组元素</br>Collections.addAll()方法参数默认为collection，Arrays.asList()参数为数组，返回List.</br>
+    <pre><code>public class AddGroup {
+    public static void main(String[] args) {
+        Collection<Integer> c = new ArrayList<Integer>(Arrays.asList(1,2,3,4));
+        Integer[] group = {5,6,7,8 };
+        c.addAll(Arrays.asList(group));
+        System.out.println(c);
+        Collections.addAll(c, 9,0);
+        System.out.println(c);
+    }
+}
+
+//[1, 2, 3, 4, 5, 6, 7, 8]
+//[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+</code></pre>
+
+    * 容器的打印
+        * 具体的容器已经实现了自己的toString方法,collection打印的用[]括住，元素用,分隔；map打印用{}括住，键值由等号连接，每组键值用,分割
+    * List
+        * ArrayList，随机访问元素快，中间插入和删除操作慢。
+        * LinkedList，随机访问慢，但是中间插入和删除快，类似链表。
+        * 常用方法</br>
+        <pre><code>class Member{
+    int age;
+    Member(int i){
+        age = i;
+    }
+    public String toString(){
+        return "member"+age;
+    }
+}
+
+public class ListMethod {
+    public static void main(String[] args) {
+        List<Member> members = new ArrayList<Member>();
+        Member member1 = new Member(1);
+        
+        //添加元素
+        members.add(member1);
+        
+        //判断容器是否为空
+        System.out.println(members.isEmpty());
+        
+        //判断容器是否包含该元素
+        System.out.println(members.contains(member1));
+        
+        //显示索引
+        System.out.println(members.indexOf(member1));
+        
+        //移除元素
+        members.remove(member1);
+        System.out.println(members);
+        
+        Member member2 = new Member(2);
+        Member member3 = new Member(3);
+        Member member4 = new Member(4);
+        members.add(member2);
+        members.add(member3);
+        members.add(member4);
+        
+        //类似subString，从索引0开始截取到1，包含0和1
+        System.out.println(members.subList(0, 2));
+        
+        //移除 不同于remove
+        //removeAll(Collection<?> c) 
+        //remove(int index)   remove(Object o) 
+        members.removeAll(members);
+        System.out.println(members);
+    }
+    
+}</code></pre>
+
+    * Iterator</br>
+    <pre><code>        Iterator<Member> iterator = members.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }</code></pre>
+     只能单向移动，next移动下一个元素，但是拿到的当前元素。hasNext检查是否还有元素,iterator()返回一个iterator，remove（）将迭代器新近返回的元素删除
+     * ListIterator</br>
+     可双向移动，增加了hasPrevious()和previous()方法
+     * LinkedList，随机访问慢，但是中间插入和删除快，类似链表。</br>
+     <pre><code>public class TestLinkedList {
+    public static void main(String[] args) {
+        LinkedList<Member> members = new LinkedList<Member>();
+        Member member1 = new Member(1);
+        Member member2 = new Member(2);
+        Member member3 = new Member(3);
+        members.add(member1);
+        members.add(member2);
+        members.add(member3);
+        
+        //返回列表头
+        System.out.println(members.peek());
+        
+        //移除并返回列表头
+        System.out.println(members.removeFirst());
+        System.out.println(members);
+        
+        //返回并移除表头
+        System.out.println(members.poll());
+        System.out.println(members);
+        
+        //removelast 移除最后一个
+        members.add(member1);
+        members.add(member2);
+        System.out.println(members.removeLast());
+        System.out.println(members);
+        
+        
+        //addLast和add一样 都是往列表尾插入元素 addFirst自然就是表头
+        members.add(member2);
+        members.addFirst(member2);
+        members.addLast(member2);
+        System.out.println(members);
+    }
+}</code></pre>
+
+    * stack(LIFO)</br>LinkedList具有能够直接实现栈的所有功能的方法，因此可以直接将LinkedList作为栈使用。</br>
+    <pre><code>public interface Stack<T> {
+    public T push(T item);
+    public T pop();
+    public T peek();
+    public boolean empty();
+    public int search(T desiredItem);
+    public Iterator<T> iteraotr();
+    public ListIterator<T> listIterator();
+}</code></pre>
+    
+    * set
+
 ---
 to be continued
 
