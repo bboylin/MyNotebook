@@ -2,12 +2,12 @@
 ---
 * chapter1 : Introduction to Objects
     * 主数据类型(Primitive Type)</br>
-    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic1.png)
+    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic1.jpg)
 
 * chapter2 : Everything is an Object
     * 用引用操作对象
     * 内存</br>
-    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic2.png)
+    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic2.jpg)
 
 * chapter3 : Operators
     * ==和！=比较的是对象的引用，equals()比较的是对象的内容</br>
