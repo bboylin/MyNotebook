@@ -1,4 +1,4 @@
-### notes of thinking in java
+### notes of thinking in java（上）
 ---
 * chapter1 : Introduction to Objects
     * 主数据类型(Primitive Type)</br>
@@ -249,8 +249,6 @@ public interface Set<E> extends Collection<E> {
 
     * Foreach&Iterator
         * 略
-
-* chapter12 ：Error Handling with Exceptions
 
 ---
 to be continued
