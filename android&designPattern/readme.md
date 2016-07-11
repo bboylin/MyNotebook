@@ -1,6 +1,6 @@
-##bboylin.com : android notes
+##bboylin.com : android & design pattern
 ---
-* [android](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern)
+* [android&design pattern](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern)
 	* [the Observer Pattern (从adapter源码看其中的观察者模式)](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160630)
     * [fragment](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160702)
     * [four components (android进阶：四大组件)](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160704)
