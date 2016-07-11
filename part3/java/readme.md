@@ -71,14 +71,12 @@ java单继承多实现（接口），而c++多重继承。</br>
         * Map,键值对，通过键找值，也成为字典
         * 注意collection是接口</br>
         <pre><code>public interface List<E>
-extends Collection<E>
-
-
+extends Collection<E>;
 public class ArrayList<E>
 extends AbstractList<E>
 implements List<E>, RandomAccess, Cloneable, Serializable
-</code></pre>
 
+</br>
     * 添加一组元素</br>Collections.addAll()方法参数默认为collection，Arrays.asList()参数为数组，返回List.</br>
     <pre><code>public class AddGroup {
     public static void main(String[] args) {
@@ -90,7 +88,6 @@ implements List<E>, RandomAccess, Cloneable, Serializable
         System.out.println(c);
     }
 }
-
 //[1, 2, 3, 4, 5, 6, 7, 8]
 //[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 </code></pre>
@@ -101,8 +98,8 @@ implements List<E>, RandomAccess, Cloneable, Serializable
     * List
         * ArrayList，随机访问元素快，中间插入和删除操作慢。
         * LinkedList，随机访问慢，但是中间插入和删除快，类似链表。
-        * 常用方法</br>
-        <pre><code>class Member{
+        * 常用方法
+<pre><code>class Member{
     int age;
     Member(int i){
         age = i;
@@ -148,16 +145,15 @@ public class ListMethod {
         //remove(int index)   remove(Object o) 
         members.removeAll(members);
         System.out.println(members);
-    }
-    
+    }    
 }</code></pre>
 
-    * Iterator</br>
-    <pre><code>        Iterator<Member> iterator = members.iterator();
+    * Iterator
+<pre><code>        Iterator<Member> iterator = members.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());
-        }</code></pre>
-     只能单向移动，next移动下一个元素，但是拿到的当前元素。hasNext检查是否还有元素,iterator()返回一个iterator，remove（）将迭代器新近返回的元素删除
+        }
+        只能单向移动，next移动下一个元素，但是拿到的当前元素。hasNext检查是否还有元素,iterator()返回一个iterator，remove（）将迭代器新近返回的元素删除
 
      * ListIterator</br>
      可双向移动，增加了hasPrevious()和previous()方法
@@ -197,7 +193,7 @@ public class ListMethod {
         members.addLast(member2);
         System.out.println(members);
     }
-}</code></pre>
+}
 
     * stack(LIFO)</br>LinkedList具有能够直接实现栈的所有功能的方法，因此可以直接将LinkedList作为栈使用。</br>
     <pre><code>public interface Stack<T> {
@@ -208,7 +204,7 @@ public class ListMethod {
     public int search(T desiredItem);
     public Iterator<T> iteraotr();
     public ListIterator<T> listIterator();
-}</code></pre>
+}
     
     * set
         * 和collection一样的接口，但是行为不同（继承和多态思想的应用）
@@ -236,7 +232,7 @@ public interface Set<E> extends Collection<E> {
     void clear();
     boolean equals(Object o);
     int hashCode();
-}</code></pre>
+}
 
     * map
         * 将对象映射到其他对象的能力是解决编程问题的杀手锏。(例如查看随机数的分布)
