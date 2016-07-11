@@ -60,6 +60,8 @@ java单继承多实现（接口），而c++多重继承。</br>
     * 当一个新类继承一个外部类时，外部类内嵌的内部类不会被自动继承。因此，无法再新类中简单地覆盖内部类。可以用“外部类.内部类”的方式来继承内部类，并可用这种方法来覆盖父类内部类的方法
 
 * chapter11 ：Holding Your Objects
+    * 容器分类图</br>
+    ![](http://img.blog.csdn.net/20140907200342039?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaWFpdGk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</br>
     * 泛型和类型安全的容器
         * ArrayList，可以自动扩充大小的数组，add插入对象，get访问对象，size查看对象数目。
         * 泛型（就是跟在ArrayList后面的那个尖括号指明Apple类型的标识）的添加可以在编译期间防止将错误类型的对象放进容器中。
@@ -76,6 +78,7 @@ public class ArrayList<E>
 extends AbstractList<E>
 implements List<E>, RandomAccess, Cloneable, Serializable
 </code></pre>
+
     * 添加一组元素</br>Collections.addAll()方法参数默认为collection，Arrays.asList()参数为数组，返回List.</br>
     <pre><code>public class AddGroup {
     public static void main(String[] args) {
@@ -94,6 +97,7 @@ implements List<E>, RandomAccess, Cloneable, Serializable
 
     * 容器的打印
         * 具体的容器已经实现了自己的toString方法,collection打印的用[]括住，元素用,分隔；map打印用{}括住，键值由等号连接，每组键值用,分割
+
     * List
         * ArrayList，随机访问元素快，中间插入和删除操作慢。
         * LinkedList，随机访问慢，但是中间插入和删除快，类似链表。
@@ -154,8 +158,10 @@ public class ListMethod {
             System.out.println(iterator.next());
         }</code></pre>
      只能单向移动，next移动下一个元素，但是拿到的当前元素。hasNext检查是否还有元素,iterator()返回一个iterator，remove（）将迭代器新近返回的元素删除
+
      * ListIterator</br>
      可双向移动，增加了hasPrevious()和previous()方法
+
      * LinkedList，随机访问慢，但是中间插入和删除快，类似链表。</br>
      <pre><code>public class TestLinkedList {
     public static void main(String[] args) {
@@ -205,6 +211,60 @@ public class ListMethod {
 }</code></pre>
     
     * set
+        * 和collection一样的接口，但是行为不同（继承和多态思想的应用）
+        * hashset和treeset，linkedhashset维护的顺序都不同，因为treeset将元素存储在红黑中，hashset采用散列函数，linkedhashset也采用散列，但看起来使用了链表维护元素的插入顺序。
+        * 无序不重复，treeset有序
+        * 源代码</br>
+        <pre><code>package com.kiritor;
+/**
+  Set源码研究*/
+import java.util.Iterator;
+
+public interface Set<E> extends Collection<E> {
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    Iterator<E> iterator();
+    Object[] toArray();
+    <T> T[] toArray(T[] a);
+    boolean add(E e);
+    boolean remove(Object o);
+    boolean containsAll(Collection<?> c);
+    boolean addAll(Collection<? extends E> c);
+    boolean retainAll(Collection<?> c);
+    boolean removeAll(Collection<?> c);
+    void clear();
+    boolean equals(Object o);
+    int hashCode();
+}</code></pre>
+
+    * map
+        * 将对象映射到其他对象的能力是解决编程问题的杀手锏。(例如查看随机数的分布)
+        * 很容易扩展到多维
+        * containsKey(),containsValue()
+
+    * queue（FIFO）
+        * linkedlist实现了queue的接口，可看做queue的一种实现，可向上转型为queue。
+        * 方法:避免使用add、remove，这两者失败时会抛出异常，而要采用offer、poll等队列特性方法。
+        add：加入
+        remove、poll：移除并返回队头
+        peek、element：不移除并返回队头
+        offer：插入队尾
+
+    * PriorityQueue
+        * An unbounded priority queue based on a priority heap. 
+        The elements of the priority queue are ordered according to their natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used. 
+        A priority queue does not permit null elements.
+        A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so may result in ClassCastException).
+        * 声明下一个弹出元素是最需要的元素
+
+    * Collection&Iterator
+        * 略
+
+    * Foreach&Iterator
+        * 略
+
+* chapter12 ：Error Handling with Exceptions
 
 ---
 to be continued
