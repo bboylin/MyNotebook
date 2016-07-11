@@ -16,4 +16,4 @@
     * [电子商务](https://github.com/bboylin/bboylin.github.io/tree/master/part2/turningPoint/chapter5.md)
 
 ### part 3
-* [thinking in java](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/readme.md)
+* [thinking in java](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/notes of thinking in java.md)

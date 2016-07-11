@@ -2,12 +2,13 @@
 ---
 * chapter1 : Introduction to Objects
     * 主数据类型(Primitive Type)</br>
-    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic1.jpg)
+   ![Alt text](./pic1.jpg)
 
 * chapter2 : Everything is an Object
     * 用引用操作对象
     * 内存</br>
-    ![](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/pic2.jpg)
+   ![Alt text](./pic2.jpg)
+
 
 * chapter3 : Operators
     * ==和！=比较的是对象的引用，equals()比较的是对象的内容</br>
@@ -54,7 +55,7 @@ friendly          本包可见（即默认的形式）</br>
 可向上转型为多个接口类型</br>
 java单继承多实现（接口），而c++多重继承。</br>
 类中嵌套接口和非嵌套接口一样，可以拥有public和包访问两种可视性。
-    * 联系：[工厂方法模式](https://github.com/bboylin/bboylin.github.io/tree/master/designPattern/FactoryMethodPattern.md)
+    * 联系：[工厂方法模式](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/FactoryMethodPattern.md)
 
 * chapter10 : Inner Classes
     * 当一个新类继承一个外部类时，外部类内嵌的内部类不会被自动继承。因此，无法再新类中简单地覆盖内部类。可以用“外部类.内部类”的方式来继承内部类，并可用这种方法来覆盖父类内部类的方法
@@ -69,14 +70,11 @@ java单继承多实现（接口），而c++多重继承。</br>
     * 概念
         * Collection，List顺序保存元素，Set不能有重复元素，Queue按照排队来。
         * Map,键值对，通过键找值，也成为字典
-        * 注意collection是接口</br>
-        <pre><code>public interface List<E>
+        * 注意collection是接口`public interface List<E>
 extends Collection<E>;
 public class ArrayList<E>
 extends AbstractList<E>
-implements List<E>, RandomAccess, Cloneable, Serializable
-
-</br>
+implements List<E>, RandomAccess, Cloneable, Serializable`
     * 添加一组元素</br>Collections.addAll()方法参数默认为collection，Arrays.asList()参数为数组，返回List.</br>
     <pre><code>public class AddGroup {
     public static void main(String[] args) {
@@ -147,12 +145,11 @@ public class ListMethod {
         System.out.println(members);
     }    
 }</code></pre>
-
-    * Iterator
-<pre><code>        Iterator<Member> iterator = members.iterator();
+* Iterator
+	`Iterator<Member> iterator = members.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());
-        }
+        }`
         只能单向移动，next移动下一个元素，但是拿到的当前元素。hasNext检查是否还有元素,iterator()返回一个iterator，remove（）将迭代器新近返回的元素删除
 
      * ListIterator</br>
@@ -168,25 +165,19 @@ public class ListMethod {
         members.add(member1);
         members.add(member2);
         members.add(member3);
-        
         //返回列表头
         System.out.println(members.peek());
-        
         //移除并返回列表头
         System.out.println(members.removeFirst());
         System.out.println(members);
-        
         //返回并移除表头
         System.out.println(members.poll());
         System.out.println(members);
-        
         //removelast 移除最后一个
         members.add(member1);
         members.add(member2);
         System.out.println(members.removeLast());
         System.out.println(members);
-        
-        
         //addLast和add一样 都是往列表尾插入元素 addFirst自然就是表头
         members.add(member2);
         members.addFirst(member2);
@@ -215,7 +206,6 @@ public class ListMethod {
 /**
   Set源码研究*/
 import java.util.Iterator;
-
 public interface Set<E> extends Collection<E> {
     int size();
     boolean isEmpty();
