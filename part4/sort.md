@@ -31,7 +31,7 @@
 
 下面一一介绍，并附上c++实现。
 * 冒泡排序：第i次外循环使A[i]比后面的数都小
-`void bubbleSort(int* a,int n)
+<pre><code>void bubbleSort(int* a,int n)
 {
     for(int i=0;i<n;++i)
         for(int j=n-1;j>i;--j)
@@ -39,9 +39,10 @@
             if(a[j]>a[j-1])
                 swap(a[j],a[j-1]);
         }
-}`
+}</code></pre>
+
 * 冒泡排序的优化：设置一个flag判断内循环是否执行了swap函数，没有则说明已经排序好了，可以直接break
-`void optimizedBubbleSort(int* a,int n)
+<pre><code>void optimizedBubbleSort(int* a,int n)
 {
     for(int i=0;i<n;++i)
     {
@@ -57,41 +58,41 @@
         if(isOver)
             break;
     }
-}`
+}</code></pre>
 * 插入排序：第i次外循环保证前i个数有序
-`void insertsort(int A[],int n)
+<pre><code>void insertsort(int A[],int n)
     {
         for(int i=1;i<n;++i)
-            for(int j=i;(j>0)&&A[j]<A[j-1];--j)
+            for(int j=i;(j>0)&&A[j]< A[j-1];--j)
         {
             swap(A[j-1],A[j]);
         }
-    }`
+    }</code></pre>
 * 归并排序：实质是递归，是分治思想的体现，先分组排序再合并排序
-`#include<iostream>
+<pre><code>#include<iostream>
 using namespace std;
 void Merge(int a[],int left,int mid,int right)
     {
         int ln=mid-left+1;
         int rn=right-mid;
         int l[ln],r[rn],i,j,k=left;
-        for(i=0;i<ln;i++)
+        for(i=0;i< ln;i++)
             l[i]=a[left+i];
-        for(j=0;j<rn;++j)
+        for(j=0;j< rn;++j)
             r[j]=a[mid+1+j];
         i=0;
         j=0;
-        while(i<ln&&j<rn)
+        while(i< ln&&j< rn)
         {
-            if(l[i]<r[j]) a[k++]=l[i++];
+            if(l[i]< r[j]) a[k++]=l[i++];
             else a[k++]=r[j++];
         }
-        while(i<ln) a[k++]=l[i++];
-        while(j<rn) a[k++]=r[j++];
+        while(i< ln) a[k++]=l[i++];
+        while(j< rn) a[k++]=r[j++];
     }
 void mergesort(int a[],int left,int right)
     {
-        if(left<right)//之前漏了这句导致运行时内存错误。
+        if(left< right)//之前漏了这句导致运行时内存错误。
         {
         int mid=(left+right)/2;
         mergesort(a,left,mid);
@@ -106,23 +107,22 @@ int main()
     mergesort(a,0,l-1);
     while(l--)
     {
-        cout<<a[l]<<" ";
+        cout<< a[l]<<" ";
     }
     return 0;
-}
-`
+}</code></pre>
 * 选择排序：原理和冒泡排序类似，也是第i次外循环使A[i]比后面的数都小，但是交换次数少。
-`#include <iostream>
+<pre><code>#include <iostream>
 using namespace std;
 void selectsort(int* a,int n)
 {
     int item;
-    for(int i=0;i<n-1;i++)
+    for(int i=0;i< n-1;i++)
     {
         int lowindex=i;
         for(int j=n-1;j>i;--j)
         {
-            if(a[j]<a[lowindex]) lowindex=j;
+            if(a[j]< a[lowindex]) lowindex=j;
         }
         if(i!=lowindex)
         {
@@ -137,16 +137,16 @@ int main()
     int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
     int n=sizeof(a)/sizeof(a[0]);
     selectsort(a,n);
-    while(n--) cout<<a[n]<<" ";
+    while(n--) cout<< a[n]<<" ";
     return 0;
-}`
+}</code></pre>
 * 希尔排序，也叫缩小增量排序，利用了插入排序的最优情况。
-`#include <iostream>
+<pre><code>#include <iostream>
 using namespace std;
 void insertsort(int A[],int n)
     {
-        for(int i=1;i<n;++i)
-            for(int j=i;(j>0)&&A[j]<A[j-1];--j)
+        for(int i=1;i< n;++i)
+            for(int j=i;(j>0)&&A[j]< A[j-1];--j)
         {
             swap(A[j-1],A[j]);
         }
@@ -159,7 +159,7 @@ void shellsort(int *a,int n)
             for(j=i;j<n;++j)
             {
               temp=a[j];
-              for(k=j;k>=i&&temp<a[k-i];k-=i)
+              for(k=j;k>=i&&temp< a[k-i];k-=i)
                     a[k]=a[k-i];
               a[k]=temp;
             }
@@ -170,11 +170,11 @@ int main()
 int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
     int n=sizeof(a)/sizeof(a[0]);
     shellsort(a,n);
-    while(n--) cout<<a[n]<<" ";
+    while(n--) cout<< a[n]<<" ";
     return 0;
-}`
+}</code></pre>
 * 堆排序：（二叉）堆是一个数组，可以近似的看作一个完全二叉树，最大堆指某节点的值小于等于其父节点的值。最差O(nlgn)。是一种非常高效的排序法。
-`#include <iostream>
+<pre><code>#include <iostream>
 using namespace std;
 void maxheapify(int *a,int i,int imax)
     {
@@ -208,87 +208,85 @@ int main()
     int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
     int n=sizeof(a)/sizeof(a[0]);
     heapsort(a,n-1);
-    while(n--) cout<<a[n]<<" ";
+    while(n--) cout<< a[n]<<" ";
     return 0;
-}`
+}</code></pre>
 * 快速排序：通常是实际应用中最好的选择，O(nlgn)中隐含的常数因子非常小。也是分治思想的体现。
 	* 算法导论上面的实现
-	`#include <iostream>
-using namespace std;
-int q_partition(int a[],int p,int r)
-{
-    int x=a[r];
-    int i=p-1;
-    for(int j=p;j<r;j++)
+    <pre><code>#include < iostream>
+    using namespace std;
+    int q_partition(int a[],int p,int r)
     {
-        if(a[j]<x)
+        int x=a[r];
+        int i=p-1;
+        for(int j=p;j< r;j++)
         {
-            swap(a[++i],a[j]);
+            if(a[j]< x)
+            {
+                swap(a[++i],a[j]);
+            }
+        }
+        swap(a[++i],a[r]);
+        return i;
+    }
+    void quicksort(int a[],int p,int r)
+    {
+        if(p< r)
+        {
+            int q=q_partition(a,p,r);
+            quicksort(a,p,q-1);
+            quicksort(a,q+1,r);
         }
     }
-    swap(a[++i],a[r]);
-    return i;
-}
-void quicksort(int a[],int p,int r)
-{
-    if(p<r)
+    int main()
     {
-        int q=q_partition(a,p,r);
-        quicksort(a,p,q-1);
-        quicksort(a,q+1,r);
-    }
-}
-int main()
-{
-    enum{maxx=10};
-    int a[maxx]={0,3,2,32,4,22,6,76,0,11};
-    int p=0,r=maxx-1;
-    quicksort(a,p,r);
-    for(int i=0;i<maxx;i++)
-    {
-        cout<<a[i]<<" ";
-    }
-    return 0;
-}
-`
+        enum{maxx=10};
+        int a[maxx]={0,3,2,32,4,22,6,76,0,11};
+        int p=0,r=maxx-1;
+        quicksort(a,p,r);
+        for(int i=0;i< maxx;i++)
+        {
+            cout<< a[i]<<" ";
+        }
+        return 0;
+    }</code></pre>
 	* 课本教材上的实现（略有不同）
-	`#include<iostream>
-using namespace std;
-//sort in decreasing order
-int partition1(int a[],int p,int r)
-{
-    int k=a[p];
-    while(p<r)
+	<pre><code>#include< iostream>
+    using namespace std;
+    //sort in decreasing order
+    int partition1(int a[],int p,int r)
     {
-        while(p<r&&k>a[r]) r--;
-        a[p]=a[r];
-        while(p<r&&k<a[p]) p++;
-        a[r]=a[p];
+        int k=a[p];
+        while(p< r)
+        {
+            while(p< r&&k>a[r]) r--;
+            a[p]=a[r];
+            while(p< r&&k< a[p]) p++;
+            a[r]=a[p];
+        }
+        a[p]=k;
+        return p;
     }
-    a[p]=k;
-    return p;
-}
-void qsort(int a[],int p,int r)
-{
-    if(p<r)
+    void qsort(int a[],int p,int r)
     {
-        int k=partition1(a,p,r);
-        qsort(a,p,k-1);
-        qsort(a,k+1,r);
+        if(p< r)
+        {
+            int k=partition1(a,p,r);
+            qsort(a,p,k-1);
+            qsort(a,k+1,r);
+        }
     }
-}
-int main()
-{
-    enum{maxx=10};
-    int a[maxx]={1,5,33,7,88,6,44,23,65,32};
-    int p=0;
-    int r=maxx-1;
-    qsort(a,p,r);
-    for(int i=0;i<maxx;i++)
+    int main()
     {
-        cout<<a[i]<<" ";
-    }
-    return 0;
-}
-`
+        enum{maxx=10};
+        int a[maxx]={1,5,33,7,88,6,44,23,65,32};
+        int p=0;
+        int r=maxx-1;
+        qsort(a,p,r);
+        for(int i=0;i< maxx;i++)
+        {
+            cout<< a[i]<<" ";
+        }
+        return 0;
+    }</code></pre>
 * 桶排序：排序数A1,A2,A3...AN最大值为M，可设M个桶，即大小为M的数组count，初始化为0；扫描数组，读Ai时count[Ai]++；最后扫描count数组就可以打印出排好序的数组。
