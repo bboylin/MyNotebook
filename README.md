@@ -9,7 +9,9 @@
     * [android中消息传递机制与多线程](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160706)
     * [MVC & MVP & MVVM](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160707)
     * [android基础杂记（查漏补缺）](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708)
-    * [架构中的设计原则](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708/designPrinciple.md)
+    * [设计模式六大原则](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708/designPrinciple.md)
+    * [RecyclerView和listview的区别](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160713/readme.md)
+    
 
 ### part 2
 * [转折点：互联网时代的商业法则]
@@ -18,3 +20,8 @@
 ### part 3
 * [thinking in java（上）](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/notes of thinking in java1.md)
 * [thinking in java（下）](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/notes of thinking in java2.md)
+
+### part 4
+* [data structure & algorithm](https://github.com/bboylin/bboylin.github.io/tree/master/part4/readme.md)
+    * 红黑树详解
+    * [八种常见排序算法的总结](https://github.com/bboylin/bboylin.github.io/tree/master/part4/sort.md)
