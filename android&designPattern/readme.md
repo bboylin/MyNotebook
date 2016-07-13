@@ -8,4 +8,8 @@
     * [android中消息传递机制与多线程](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160706)
     * [MVC & MVP & MVVM](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160707)
     * [android基础杂记（查漏补缺）](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708)
-    * [架构中的设计原则](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708/designPrinciple.md)
+    * [设计模式六大原则](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708/designPrinciple.md)
+    * [Factory Method Pattern (工厂方法模式)](https://github.com/bboylin/bboylin.github.io/blob/master/android%26designPattern/FactoryMethodPattern.md)
+    * [RecyclerView和listview的区别](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160713/readme.md)
+
+
