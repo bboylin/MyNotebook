@@ -23,5 +23,5 @@
 
 ### part 4
 * [data structure & algorithm](https://github.com/bboylin/bboylin.github.io/tree/master/part4/readme.md)
-    * [红黑树详解（以前在CSDN写的）](http://blog.csdn.net/qq_29407877/article/details/49556143)
+    * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
     * [八种常见排序算法的总结](https://github.com/bboylin/bboylin.github.io/tree/master/part4/sort.md)
