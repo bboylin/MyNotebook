@@ -1,4 +1,4 @@
-### 八种排序算法的总结
+### 八种排序算法的总结及实现
 ---
 常见的排序算法有：
 
@@ -69,7 +69,7 @@
         }
     }</code></pre>
 * 归并排序：实质是递归，是分治思想的体现，先分组排序再合并排序
-<pre><code>#include<iostream>
+<pre><code>#include< iostream>
 using namespace std;
 void Merge(int a[],int left,int mid,int right)
     {
@@ -112,7 +112,7 @@ int main()
     return 0;
 }</code></pre>
 * 选择排序：原理和冒泡排序类似，也是第i次外循环使A[i]比后面的数都小，但是交换次数少。
-<pre><code>#include <iostream>
+<pre><code>#include < iostream>
 using namespace std;
 void selectsort(int* a,int n)
 {
@@ -141,7 +141,7 @@ int main()
     return 0;
 }</code></pre>
 * 希尔排序，也叫缩小增量排序，利用了插入排序的最优情况。
-<pre><code>#include <iostream>
+<pre><code>#include < iostream>
 using namespace std;
 void insertsort(int A[],int n)
     {
@@ -174,7 +174,7 @@ int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
     return 0;
 }</code></pre>
 * 堆排序：（二叉）堆是一个数组，可以近似的看作一个完全二叉树，最大堆指某节点的值小于等于其父节点的值。最差O(nlgn)。是一种非常高效的排序法。
-<pre><code>#include <iostream>
+<pre><code>#include < iostream>
 using namespace std;
 void maxheapify(int *a,int i,int imax)
     {
