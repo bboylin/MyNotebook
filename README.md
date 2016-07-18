@@ -13,6 +13,8 @@
     * [RecyclerView和listview的区别](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160713/readme.md)
     * [Factory Method Pattern (工厂方法模式)](https://github.com/bboylin/bboylin.github.io/blob/master/android%26designPattern/FactoryMethodPattern.md)
     * [深入浅出RecyclerView](http://kymjs.com/code/2016/07/10/01)
+    * [Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
+
 
     
 
