@@ -12,6 +12,8 @@
     * [设计模式六大原则](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160708/designPrinciple.md)
     * [RecyclerView和listview的区别](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/20160713/readme.md)
     * [Factory Method Pattern (工厂方法模式)](https://github.com/bboylin/bboylin.github.io/blob/master/android%26designPattern/FactoryMethodPattern.md)
+    * [深入浅出RecyclerView](http://kymjs.com/code/2016/07/10/01)
+
     
 
 ### part 2
