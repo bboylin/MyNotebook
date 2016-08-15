@@ -33,7 +33,7 @@
 * 冒泡排序：第i次外循环使A[i]比后面的数都小
 <pre><code>void bubbleSort(int* a,int n)
 {
-    for(int i=0;i<n;++i)
+    for(int i=0;i< n;++i)
         for(int j=n-1;j>i;--j)
         {
             if(a[j]>a[j-1])
@@ -44,7 +44,7 @@
 * 冒泡排序的优化：设置一个flag判断内循环是否执行了swap函数，没有则说明已经排序好了，可以直接break
 <pre><code>void optimizedBubbleSort(int* a,int n)
 {
-    for(int i=0;i<n;++i)
+    for(int i=0;i< n;++i)
     {
         bool isOver=true;
         for(int j=n-1;j>i;--j)
