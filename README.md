@@ -25,7 +25,7 @@
 ### part 3
 * [thinking in java（上）](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/notes of thinking in java1.md)
 * [thinking in java（下）](https://github.com/bboylin/bboylin.github.io/tree/master/part3/java/notes of thinking in java2.md)
-* [git基础](https://github.com/bboylin/testgit/readme.md)
+* [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
 
 ### part 4
 * [data structure & algorithm](https://github.com/bboylin/bboylin.github.io/tree/master/part4/readme.md)
