@@ -55,7 +55,9 @@ object1和object2指向的对象需要被回收，但是引用计数器不为0�
 目前大部分垃圾收集器对于新生代都采取Copying算法，因为新生代中每次垃圾回收都要回收大部分对象，也就是说需要复制的操作次数较少，但是实际中并不是按照1：1的比例来划分新生代的空间的，一般来说是将新生代划分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden空间和其中的一块Survivor空间，当进行回收时，将Eden和Survivor中还存活的对象复制到另一块Survivor空间中，然后清理掉Eden和刚才使用过的Survivor空间。
 而由于老年代的特点是每次回收都只回收少量对象，一般使用的是Mark-Compact算法。
 注意，在堆区之外还有一个代就是永久代（Permanet Generation），它用来存储class类、常量、方法描述等。对永久代的回收主要回收两部分内容：废弃常量和无用的类。
+
 ### 4.GC（垃圾收集器）
+
 新生代收集器使用的收集器：Serial、PraNew、Parallel Scavenge
 
 老年代收集器使用的收集器：Serial Old、Parallel Old、CMS
