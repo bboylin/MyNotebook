@@ -5,7 +5,7 @@
 </br>而java采用垃圾回收机制，使程序员不需要关心内存的管理。由于有个垃圾回收机制，Java中的对象不再有“作用域”的概念，只有对象的引用才有“作用域”。垃圾回收可以有效的防止内存泄露，有效的使用空闲的内存。然而另一方面，也正是因为Java程序员把内存控制的权利交给Java虚拟机，一旦出现内存泄露和溢出方面的问题，如果不了解虚拟机是怎样使用内存的，那排查错误将会是一项异常艰难的工作。
 ### 2.垃圾判定的算法
 既然如此，java怎么判断哪些东西是垃圾呢</br>
-![](/gc.jpg)
+![](https://github.com/bboylin/bboylin.github.io/blob/master/part3/gc/gc.jpg)
 </br>
 
 * 引用计数法
@@ -30,7 +30,7 @@ object1和object2指向的对象需要被回收，但是引用计数器不为0�
 
 * 根搜索算法(GC Root Tracing)
 </br>通过一系列的名为"GC Roots"的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链（Reference Chain），当一个对象到GC Roots没有任何引用链相连，即从GC Roots到这个对象不可达，则证明此对象是不可用的。</br>
-![](/root.jpg)
+![](https://github.com/bboylin/bboylin.github.io/blob/master/part3/gc/root.jpg)
 </br>比如上图，左边的对象都是存活的，右边的都是可以回收的。
 </br>可作为GC ROOT的对象有：
 * 虚拟机栈（栈帧中的本地变量表）中引用的对象。
