@@ -1,0 +1,273 @@
+#bar_container{
+    float: left;
+    color: #ffffff;
+    width: 50%;
+}
+
+#box02_text{
+    float: left;
+}
+
+.bar {
+  height: 40px;
+  width: 0;
+  transition: width 1.2s ease-in-out;
+  -webkit-transition: width 1.2s ease-in-out;
+  -moz-transition: width 1.2s ease-in-out;
+  -ms-transition: width 1.2s ease-in-out;
+  position: relative;
+  margin: 30px 0;
+  border-radius: 4px;
+}
+
+.bar.mint {
+  background-color: #14c3a2;
+  background-image: repeating-linear-gradient(-45deg, #14c3a2, #14c3a2 30px, #22e8c3 30px, #22e8c3 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #0d7e68;
+}
+
+.bar.red {
+  background-color: #cf4647;
+  background-image: repeating-linear-gradient(-45deg, #cf4647, #cf4647 30px, #da6e6f 30px, #da6e6f 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #9f292a;
+}
+
+.bar.orange {
+  background-color: #eb7b59;
+  background-image: repeating-linear-gradient(-45deg, #eb7b59, #eb7b59 30px, #f09f87 30px, #f09f87 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #dd481b;
+}
+
+.bar.lila {
+  background-color: #524656;
+  background-image: repeating-linear-gradient(-45deg, #524656, #524656 30px, #6d5d72 30px, #6d5d72 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  border-bottom: 5px solid #2a242c;
+}
+
+.bar.gray {
+  background-color: #595b5a;
+  background-image: repeating-linear-gradient(-45deg, #595b5a, #595b5a 30px, #727574 30px, #727574 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  border-bottom: 5px solid #333434;
+}
+
+.bar.blue {
+  background-color: blueviolet;
+  background-image: repeating-linear-gradient(-45deg, #595b5a, #595b5a 30px, #727574 30px, #727574 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #333434;
+}
+
+.bar.green {
+  background-color: green;
+   background-image: repeating-linear-gradient(-45deg, #cf4647, #cf4647 30px, #da6e6f 30px, #da6e6f 60px);
+  background-size: 600px 100%;
+  animation: barberpole 12s linear infinite;
+  -webkit-animation: barberpole 12s linear infinite;
+  -moz-animation: barberpole 12s linear infinite;
+  -o-animation: barberpole 12s linear infinite;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #dd481b;
+}
+
+.bar.active:after, .bar.active:before {
+  opacity: 1;
+  font-size: 16px;
+}
+
+.bar:before {
+  content: attr(data-skill);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  height: 40px;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 2s 0.6s;
+  -webkit-transition: opacity 2s 0.6s;
+  -moz-transition: opacity 2s 0.6s;
+  -ms-transition: opacity 2s 0.6s;
+  -o-animation: opacity 2s 0.6s;
+}
+
+.bar:after {
+  content: attr(data-percent) "%";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 2s 0.6s;
+  -webkit-transition: opacity 2s 0.6s;
+  -moz-transition: opacity 2s 0.6s;
+  -ms-transition: opacity 2s 0.6s;
+  -o-animation: opacity 2s 0.6s;
+}
+
+@keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}
+
+@-webkit-keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}
+
+@-moz-keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}
+
+@-ms-keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}
+
+@-o-keyframes barberpole {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 600px 0%;
+  }
+}
+
+.bar.active[data-percent="5"] {
+  width: 5%;
+}
+
+.bar.active[data-percent="10"] {
+  width: 10%;
+}
+
+.bar.active[data-percent="15"] {
+  width: 15%;
+}
+
+.bar.active[data-percent="20"] {
+  width: 20%;
+}
+
+.bar.active[data-percent="25"] {
+  width: 25%;
+}
+
+.bar.active[data-percent="30"] {
+  width: 30%;
+}
+
+.bar.active[data-percent="35"] {
+  width: 35%;
+}
+
+.bar.active[data-percent="40"] {
+  width: 40%;
+}
+
+.bar.active[data-percent="45"] {
+  width: 45%;
+}
+
+.bar.active[data-percent="50"] {
+  width: 50%;
+}
+
+.bar.active[data-percent="55"] {
+  width: 55%;
+}
+
+.bar.active[data-percent="60"] {
+  width: 60%;
+}
+
+.bar.active[data-percent="65"] {
+  width: 65%;
+}
+
+.bar.active[data-percent="70"] {
+  width: 70%;
+}
+
+.bar.active[data-percent="75"] {
+  width: 75%;
+}
+
+.bar.active[data-percent="80"] {
+  width: 80%;
+}
+
+.bar.active[data-percent="85"] {
+  width: 85%;
+}
+
+.bar.active[data-percent="90"] {
+  width: 90%;
+}
+
+.bar.active[data-percent="95"] {
+  width: 95%;
+}
+
+.bar.active[data-percent="100"] {
+  width: 100%;
+}
