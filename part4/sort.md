@@ -31,7 +31,8 @@
 
 下面一一介绍，并附上c++实现。
 * 冒泡排序：第i次外循环使A[i]比后面的数都小
-<pre><code>void bubbleSort(int* a,int n)
+```c++
+void bubbleSort(int* a,int n)
 {
     for(int i=0;i< n;++i)
         for(int j=n-1;j>i;--j)
@@ -39,10 +40,12 @@
             if(a[j]>a[j-1])
                 swap(a[j],a[j-1]);
         }
-}</code></pre>
+}
+```
 
 * 冒泡排序的优化：设置一个flag判断内循环是否执行了swap函数，没有则说明已经排序好了，可以直接break
-<pre><code>void optimizedBubbleSort(int* a,int n)
+```c++
+void optimizedBubbleSort(int* a,int n)
 {
     for(int i=0;i< n;++i)
     {
@@ -58,18 +61,22 @@
         if(isOver)
             break;
     }
-}</code></pre>
+}
+```
 * 插入排序：第i次外循环保证前i个数有序
-<pre><code>void insertsort(int A[],int n)
+```c++
+void insertsort(int A[],int n)
     {
         for(int i=1;i<n;++i)
             for(int j=i;(j>0)&&A[j]< A[j-1];--j)
         {
             swap(A[j-1],A[j]);
         }
-    }</code></pre>
+    }
+```
 * 归并排序：实质是递归，是分治思想的体现，先分组排序再合并排序
-<pre><code>#include< iostream>
+```c++
+#include< iostream>
 using namespace std;
 void Merge(int a[],int left,int mid,int right)
     {
@@ -110,9 +117,11 @@ int main()
         cout<< a[l]<<" ";
     }
     return 0;
-}</code></pre>
+}
+```
 * 选择排序：原理和冒泡排序类似，也是第i次外循环使A[i]比后面的数都小，但是交换次数少。
-<pre><code>#include < iostream>
+```c++
+#include < iostream>
 using namespace std;
 void selectsort(int* a,int n)
 {
@@ -139,9 +148,11 @@ int main()
     selectsort(a,n);
     while(n--) cout<< a[n]<<" ";
     return 0;
-}</code></pre>
+}
+```
 * 希尔排序，也叫缩小增量排序，利用了插入排序的最优情况。
-<pre><code>#include < iostream>
+```c++
+#include < iostream>
 using namespace std;
 void insertsort(int A[],int n)
     {
@@ -172,9 +183,11 @@ int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
     shellsort(a,n);
     while(n--) cout<< a[n]<<" ";
     return 0;
-}</code></pre>
+}
+```
 * 堆排序：（二叉）堆是一个数组，可以近似的看作一个完全二叉树，最大堆指某节点的值小于等于其父节点的值。最差O(nlgn)。是一种非常高效的排序法。
-<pre><code>#include < iostream>
+```c++
+#include < iostream>
 using namespace std;
 void maxheapify(int *a,int i,int imax)
     {
@@ -210,10 +223,12 @@ int main()
     heapsort(a,n-1);
     while(n--) cout<< a[n]<<" ";
     return 0;
-}</code></pre>
+}
+```
 * 快速排序：通常是实际应用中最好的选择，O(nlgn)中隐含的常数因子非常小。也是分治思想的体现。
 	* 算法导论上面的实现
-    <pre><code>#include < iostream>
+```c++
+#include < iostream>
     using namespace std;
     int q_partition(int a[],int p,int r)
     {
@@ -249,9 +264,11 @@ int main()
             cout<< a[i]<<" ";
         }
         return 0;
-    }</code></pre>
-	* 课本教材上的实现（略有不同）
-	<pre><code>#include< iostream>
+    }
+```
+* 课本教材上的实现（略有不同）
+```c++
+    #include< iostream>
     using namespace std;
     //sort in decreasing order
     int partition1(int a[],int p,int r)
@@ -288,5 +305,6 @@ int main()
             cout<< a[i]<<" ";
         }
         return 0;
-    }</code></pre>
+    }
+```
 * 桶排序：排序数A1,A2,A3...AN最大值为M，可设M个桶，即大小为M的数组count，初始化为0；扫描数组，读Ai时count[Ai]++；最后扫描count数组就可以打印出排好序的数组。

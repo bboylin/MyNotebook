@@ -11,7 +11,7 @@
 * 引用计数法
 </br>一个对象创建时，其实例引用计数器为1，以后每有一个引用指向该实例，引用计数器就加1；当指向该实例的引用脱离作用于或者设置为null时，引用计数器减1。当引用计数器为0 时表示该实例是垃圾，占用的内存空间需要释放。
 </br>这种方法不能解决循环引用带来的问题，举个例子。
-```
+```java
 public class Main {
     public static void main(String[] args) {
         MyObject object1 = new MyObject();
@@ -76,7 +76,7 @@ object1和object2指向的对象需要被回收，但是引用计数器不为0�
 * 老年代 GC（Major GC/Full GC）：发生在老年代的 GC，出现了 Major GC，经常会伴随至少一次 Minor GC。由于老年代中的对象生命周期比较长，因此 Major GC 并不频繁，一般都是等待老年代满了后才进行 Full GC，而且其速度一般会比 Minor GC 慢 10 倍以上。另外，如果分配了 Direct Memory，在老年代中进行 Full GC时，会顺便清理掉 Direct Memory 中的废弃对象。
 
 下面我们来看代码
-```
+```java
 public class SlotGc{  
     public static void main(String[] args){  
         byte[] holder = new byte[32*1024*1024];  
@@ -97,7 +97,7 @@ public class SlotGc{
 从结果中可以看出，System.gc()运行后并没有回收掉这 32MB 的内存，这应该是意料之中的结果，因为变量holder 还处在作用域内，虚拟机自然不会回收掉 holder 引用的对象所占用的内存。
 
 我们把代码修改如下：
-```
+```java
 public class SlotGc{  
     public static void main(String[] args){  
         {  
@@ -116,7 +116,7 @@ public class SlotGc{
 [Full GC 32902K->32902K(37828K), 0.0089226 secs]
 ```
 很明显，这 32MB 的数据并没有被回收。下面我们再做如下修改：
-```
+```java
 public class SlotGc{  
     public static void main(String[] args){  
         {  

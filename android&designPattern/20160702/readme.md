@@ -11,8 +11,9 @@ fragment在平常开发过程中算是用的比较多的，也是android比较�
 <li>onCreate()创建后回调的方法，初始化组件
 <li>onCreateView()绘制组件是回调的方法，返回该fragment返回的view
 <li>onPause()用户离开该fragment时回调的方法（我才疏学浅，还没用过，一般第一个和第三个是一定要的）
-#####关于fragment的子类，主要是ListFragment，和ListActivity类似。
 
+##### 关于fragment的子类，主要是ListFragment，和ListActivity类似。
+```java
     public class BookListFragment extends ListFragment
 	{
 	private Callbacks mCallbacks;
@@ -72,14 +73,18 @@ fragment在平常开发过程中算是用的比较多的，也是android比较�
 						: ListView.CHOICE_MODE_NONE);
 	}
 	}
-#####fragment和activity通信
+```
+
+##### fragment和activity通信
 将fragment添加到activity中方法
 <li>xml中<fragment.../>
 <li>java代码中FragmentTransation
 对象的add()方法
 需要注意的是：FragmentTransation修改fragment后要调用commit()，调用commit()之前可以用addToBackStack（）将事务添加到Back栈，使得按back键能回到前一个fragment状态</br>
 为了让fragment与activity交互，可以在Fragment 类中定义一个接口，并在activity中实现。Fragment在他们生命周期的onAttach()方法中获取接口的实现，然后调用接口的方法来与Activity交互。</br>
-<pre><code>public class MyListFragment extends Fragment {
+
+```java
+public class MyListFragment extends Fragment {
   // ...
   // Define the listener of the interface type
   // listener is the activity itself
@@ -127,19 +132,20 @@ public class RssfeedActivity extends FragmentActivity implements
       }
   }
 }
-</code></pre>
+```
 简单的数据传递直接用bundle。
 activity中调用Fragment.setArgument(bundle)</br>
 fragment中调用getArguments()获取</br>
-#####fragment的生命周期</br>
+##### fragment的生命周期</br>
 ![Alt text](./1354170699_6619.png)
 </br>与activity的生命周期联系起来</br>
 ![Alt text](./1354170682_3824.png)
 </br>（顺便复习下activity的生命周期）</br>
 ![Alt text](./2016-06-04_221833.png)
-#####开发中常用的套路：fragment+viewpager实现滑动切换tab
+##### 开发中常用的套路：fragment+viewpager实现滑动切换tab
 自定义一个FragmentPagerAdapter ，将所有要用的fragments加入ArrayList，FragmentPagerAdapter设置给viewpager，将fragments和viewpager藕合起来。然后viewpager中实现滑动的最重要的三个方法
 
+```java
     viewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));
         //ViewPager显示第一个Fragment
         viewPager.setCurrentItem(0);
@@ -194,4 +200,5 @@ fragment中调用getArguments()获取</br>
 
             }
         });
+```
 以上就是fragment一些比较基础的内容，相关demo可以自行搜索。
