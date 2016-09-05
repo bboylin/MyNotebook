@@ -16,6 +16,8 @@
     * [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
     * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
     * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
+    * [Strategy Pattern (策略模式)](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/StrategyPattern.md)
+    
     
 
 ### part 2
