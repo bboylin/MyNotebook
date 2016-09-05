@@ -41,4 +41,4 @@
 
 ### part 5
 * [笔试/面试]
-    * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNoteBook/tree/master/part5/sizeof.md)
+    * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
