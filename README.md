@@ -6,7 +6,6 @@
     * [four components (android进阶：四大组件)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704)
     * [android中消息传递机制与多线程](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160706)
     * [android基础杂记（查漏补缺）](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708)
-    * [设计模式六大原则](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708/designPrinciple.md)
     * [RecyclerView和listview的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160713/readme.md)
     * [转：深入浅出RecyclerView](http://kymjs.com/code/2016/07/10/01)
     * [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
