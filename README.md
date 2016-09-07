@@ -42,3 +42,7 @@
 ### part 5
 * [笔试/面试]
     * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
+
+### part 6
+* [operating system]
+    * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
