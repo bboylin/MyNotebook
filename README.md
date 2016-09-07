@@ -38,6 +38,8 @@
 * [data structure & algorithm](https://github.com/bboylin/MyNoteBook/tree/master/part4/readme.md)
     * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
     * [八种常见排序算法的总结](https://github.com/bboylin/MyNoteBook/tree/master/part4/sort.md)
+    * [dynamic programming](https://github.com/bboylin/MyNoteBook/tree/master/part4/dp.md)
+
 
 ### part 5
 * [笔试/面试]
