@@ -76,8 +76,6 @@ void insertsort(int A[],int n)
 ```
 * 归并排序：实质是递归，是分治思想的体现，先分组排序再合并排序
 ```c++
-#include< iostream>
-using namespace std;
 void Merge(int a[],int left,int mid,int right)
     {
         int ln=mid-left+1;
@@ -107,22 +105,9 @@ void mergesort(int a[],int left,int right)
         Merge(a,left,mid,right);
         }
     }
-int main()
-{
-    int a[]={10,3,2,55,4,22,6,76,0,11,45,33,-1,23};
-    int l=sizeof(a)/sizeof(a[0]);
-    mergesort(a,0,l-1);
-    while(l--)
-    {
-        cout<< a[l]<<" ";
-    }
-    return 0;
-}
 ```
 * 选择排序：原理和冒泡排序类似，也是第i次外循环使A[i]比后面的数都小，但是交换次数少。
 ```c++
-#include < iostream>
-using namespace std;
 void selectsort(int* a,int n)
 {
     int item;
@@ -141,19 +126,9 @@ void selectsort(int* a,int n)
         }
     }
 }
-int main()
-{
-    int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
-    int n=sizeof(a)/sizeof(a[0]);
-    selectsort(a,n);
-    while(n--) cout<< a[n]<<" ";
-    return 0;
-}
 ```
 * 希尔排序，也叫缩小增量排序，利用了插入排序的最优情况。
 ```c++
-#include < iostream>
-using namespace std;
 void insertsort(int A[],int n)
     {
         for(int i=1;i< n;++i)
@@ -176,19 +151,9 @@ void shellsort(int *a,int n)
             }
         insertsort(a,n);
     }
-int main()
-{
-int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
-    int n=sizeof(a)/sizeof(a[0]);
-    shellsort(a,n);
-    while(n--) cout<< a[n]<<" ";
-    return 0;
-}
 ```
 * 堆排序：（二叉）堆是一个数组，可以近似的看作一个完全二叉树，最大堆指某节点的值小于等于其父节点的值。最差O(nlgn)。是一种非常高效的排序法。
 ```c++
-#include < iostream>
-using namespace std;
 void maxheapify(int *a,int i,int imax)
     {
         int l=2*i+1;
@@ -216,21 +181,11 @@ void heapsort(int *a,int imax)
             maxheapify(a,0,imax);
         }
     }
-int main()
-{
-    int a[]={1,77,5,44,434,123,56,-4,65,34,13,6,75,333,23};
-    int n=sizeof(a)/sizeof(a[0]);
-    heapsort(a,n-1);
-    while(n--) cout<< a[n]<<" ";
-    return 0;
-}
 ```
 * 快速排序：通常是实际应用中最好的选择，O(nlgn)中隐含的常数因子非常小。也是分治思想的体现。
 	* 算法导论上面的实现
 ```c++
-#include < iostream>
-    using namespace std;
-    int q_partition(int a[],int p,int r)
+int q_partition(int a[],int p,int r)
     {
         int x=a[r];
         int i=p-1;
@@ -253,25 +208,10 @@ int main()
             quicksort(a,q+1,r);
         }
     }
-    int main()
-    {
-        enum{maxx=10};
-        int a[maxx]={0,3,2,32,4,22,6,76,0,11};
-        int p=0,r=maxx-1;
-        quicksort(a,p,r);
-        for(int i=0;i< maxx;i++)
-        {
-            cout<< a[i]<<" ";
-        }
-        return 0;
-    }
 ```
 * 课本教材上的实现（略有不同）
 ```c++
-    #include< iostream>
-    using namespace std;
-    //sort in decreasing order
-    int partition1(int a[],int p,int r)
+int partition1(int a[],int p,int r)
     {
         int k=a[p];
         while(p< r)
@@ -293,18 +233,5 @@ int main()
             qsort(a,k+1,r);
         }
     }
-    int main()
-    {
-        enum{maxx=10};
-        int a[maxx]={1,5,33,7,88,6,44,23,65,32};
-        int p=0;
-        int r=maxx-1;
-        qsort(a,p,r);
-        for(int i=0;i< maxx;i++)
-        {
-            cout<< a[i]<<" ";
-        }
-        return 0;
-    }
 ```
-* 桶排序：排序数A1,A2,A3...AN最大值为M，可设M个桶，即大小为M的数组count，初始化为0；扫描数组，读Ai时count[Ai]++；最后扫描count数组就可以打印出排好序的数组。
+* 桶排序：排序数A1,A2,A3...AN最大值为M，可设M个桶，即大小为M的数组count，初始化为0；扫描数组A1-AN，读Ai时count[Ai]++；最后扫描count数组,依次将AI打印count[AI]次就可以排好序。
