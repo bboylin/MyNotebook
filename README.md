@@ -1,6 +1,6 @@
 ## bboylin.com : my study notes(我的学习笔记和技术博客)
 ---
-### part 1
+### part 1：android & design pattern
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
     * [fragment](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160702)
     * [four components (android进阶：四大组件)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704)
@@ -22,11 +22,11 @@
    
     
 
-### part 2
+### part 2：internet
 * [转折点：互联网时代的商业法则]
     * [电子商务](https://github.com/bboylin/MyNoteBook/tree/master/part2/turningPoint/chapter5.md)
 
-### part 3
+### part 3：programming language
 * [thinking in java（上）:chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java1.md)
 * [thinking in java（下）](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java2.md)
 * [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
@@ -47,3 +47,4 @@
 ### part 6
 * [operating system]
     * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
+    * [《程序员的自我修养：链接，装载和库》部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/xiuyang.md)
