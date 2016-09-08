@@ -1,4 +1,4 @@
-##bboylin.com : android & design pattern
+## bboylin.com : android & design pattern
 ---
 * [android&design pattern](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
 	* [the Observer Pattern (从adapter源码看其中的观察者模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160630)

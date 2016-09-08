@@ -1,4 +1,4 @@
-## bboylin.com : my study notes(我的学习笔记和技术博客)
+## my notebook
 ---
 ### part 1：android & design pattern
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
