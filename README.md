@@ -32,6 +32,7 @@
 * [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
 * [java中的垃圾回收机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/gc/readme.md)
 * [thinking in java chapter 18:IO](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/io.md)
+* [review of c++](https://github.com/bboylin/MyNoteBook/tree/master/part3/cppreview.md)
 
 ### part 4
 * [data structure & algorithm](https://github.com/bboylin/MyNoteBook/tree/master/part4/readme.md)
