@@ -13,6 +13,7 @@
     * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
 
 * [设计模式与架构] 
+    * [android利用mvvm和databinding构建APP](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160914/mvvm.md)
 	* [the Observer Pattern (从adapter源码看其中的观察者模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160630)
 	* [转：adapter pattern (Android源码解析之适配器(Adapter)模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160705)
     * [MVC & MVP & MVVM](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160707)
