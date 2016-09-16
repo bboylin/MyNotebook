@@ -82,5 +82,7 @@ return tailrec(x+1) + x;
 * 表达式树：叶子是操作数，节点为operator，先序和后序分别对应前缀和后缀表达式。利用栈构建表达式树。
 * 二叉树简单的插入：插入书作为叶子结点。删除分三种情形，叶子--直接删，有一个子节点--以子节点替换之，两个子节点--寻找大于他的最小节点替换之。如果删除的次数不多，通常用的策略是懒惰删除：当一个元素要被删除时仍留在树中，只是被标记为删除，这特别是在有重复项的时候比较常用，因为此时记录频率数的项可以减1.
 * 平衡二叉树：[红黑树](http://blog.csdn.net/qq_29407877/article/details/49556143)，[AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md).etc
+
+
 ---
 to be continued
