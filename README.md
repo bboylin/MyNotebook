@@ -40,6 +40,8 @@
     * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
     * [八种常见排序算法的总结](https://github.com/bboylin/MyNoteBook/tree/master/part4/sort.md)
     * [dynamic programming](https://github.com/bboylin/MyNoteBook/tree/master/part4/dp.md)
+    * [算法基础杂记](https://github.com/bboylin/MyNoteBook/tree/master/part4/zaji.md)
+    * [AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md)
 
 
 ### part 5
