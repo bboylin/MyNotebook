@@ -42,6 +42,8 @@
     * [dynamic programming](https://github.com/bboylin/MyNoteBook/tree/master/part4/dp.md)
     * [算法基础杂记](https://github.com/bboylin/MyNoteBook/tree/master/part4/zaji.md)
     * [AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md)
+    * [伸展树](https://github.com/bboylin/MyNoteBook/tree/master/part4/splay.md)
+
 
 
 ### part 5
