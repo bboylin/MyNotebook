@@ -56,4 +56,4 @@
     * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
     * [《程序员的自我修养：链接，装载和库》部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/xiuyang.md)
     * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
-
+    * [死锁/信号量/管程](https://github.com/bboylin/MyNotebook/blob/master/part6/lock.md)
