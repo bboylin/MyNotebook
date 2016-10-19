@@ -39,8 +39,25 @@
         * `if(x instanceof Dog) ((Dog)x).bark()`,instanceof运算符的动态等价:`Pet.class.isInstance(dog)`
     * instanceof与Class的等价性:instanceof保持了类型的概念，它表示“该类是否为某个类或是其派生类”，而equals()和==比较实际的Class对象，则不考虑继承，或者是这个确切的类型，或者不是。
     * RTTI和反射之间真正的区别在于，对RTTI来说，编译器在编译时打开和检查.class文件。而对于反射机制来说，.class文件在编译时是不可获取的，所以是在运行时打开和检查.class文件。
-    
+
 * chapter 15 ：Generics
+    * 面向对象的泛化机制（多态）：将方法的参数设为基类，该方法可以接收这个基类中导出的所有类作为参数。考虑到除了final类和私有构造器的类不能扩展，其他所有类都可以被扩展，所以这种灵活性大多数时候也会带来一定的性能损耗。而泛型实现了参数化类型的概念。
+    * 简单泛型
+        * 可重用性：持有对象<持有object对象<泛型
+        * 元组（tuple）：元组就是将一组对象直接打包存储进一个单一对象，这个容器只允许读取，不允许放入新的对象（这个概念也称为数据传送对象或信使）。可以解决想在一个return语句中返回多个对象的问题。泛型可以让我们很容易的创建元组。下面是利用泛型实现元组的一个实例：
+        ```java
+        public class TwoTuple<A,B> {
+            public final A first ;
+            public final B second ;
+            public TwoTuple(A first,B second){
+                this.first = first ;
+                this.second = second ;
+            }
+            public String toString() { return first +"," +second ;}
+        }
+        ```
+            java编程中的安全性原则：变量声明为private，使用get和set方法访问。final自带安全保险，一般声明为public，而且简洁明了。
+        * 一个堆栈类：
 * chapter 16 : Arrays
 * chapter 17 : Containers in Depth
 * chapter 18 : I/O
