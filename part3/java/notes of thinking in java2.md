@@ -57,7 +57,57 @@
         }
         ```
             java编程中的安全性原则：变量声明为private，使用get和set方法访问。final自带安全保险，一般声明为public，而且简洁明了。
-        * 一个堆栈类：
+        * 一个堆栈类：链式栈的实现
+        ```java
+        public class LinkedStack<T> {
+
+            private static class Node<U> {
+                U item;
+                Node<U> next;
+
+                Node(){
+                    item=null;
+                    next=null;
+                }
+
+                Node(U item, Node<U> next) {
+                    this.item = item;
+                    this.next = next;
+                }
+
+                boolean end() {
+                    return item == null && next == null;
+                }
+            }
+
+            private Node<T> top=new Node<T>();
+
+            public void push(T item){
+                top=new Node<T>(item,top);
+            }
+
+            public T pop(){
+                T result=top.item;
+                if (!top.end()){
+                    top=top.next;
+                }
+                return result;
+            }
+
+            public static void main(String[] args) {
+                LinkedStack<String> lss=new LinkedStack<>();
+                for (String s:"hello world I see you".split(" ")){
+                    lss.push(s);
+                }
+                String s;
+                while ((s=lss.pop())!=null){
+                    System.out.println(s);
+                }
+            }
+        }
+        ```
+        泛型的局限：无法传入基本类型。
+    × 类型擦除：
 * chapter 16 : Arrays
 * chapter 17 : Containers in Depth
 * chapter 18 : I/O
