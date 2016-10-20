@@ -30,8 +30,9 @@
 
 ### part 3：programming language
 * [java反射机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/reflection.md)
-* [thinking in java（上）:chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java1.md)
-* [thinking in java（下）](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java2.md)
+* [thinking in java:chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java1.md)
+* [thinking in java：chapter14-15](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java2.md)
+* [thinking in java：chapter16-21](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java3.md)
 * [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
 * [java中的垃圾回收机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/gc/readme.md)
 * [thinking in java chapter 18:IO](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/io.md)

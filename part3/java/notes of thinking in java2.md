@@ -144,6 +144,7 @@
             </br>在调用泛型方法的时候，可以指定泛型，也可以不指定泛型。
             </br>在不指定泛型的情况下，泛型变量的类型为 该方法中的几种类型的同一个父类的最小级，直到Object。
             </br>在指定泛型的时候，该方法中的几种类型必须是该泛型实例类型或者其子类。
+            
             ```java
             public class Test2{
                 public static void main(String[] args) {
@@ -164,22 +165,17 @@
                 }
             }
             ```
-            其实在泛型类中，不指定泛型的时候，也差不多，只不过这个时候的泛型类型为Object，就比如ArrayList中，如果不指定泛型，那么这个ArrayList中可以放任意类型的对象。
-            ```java
-            public static void main(String[] args) {
-                    ArrayList arrayList=new ArrayList();
-                    arrayList.add(1);
-                    arrayList.add("121");
-                    arrayList.add(new Date());
-            }
-            ```
 
-    * 类型擦除引起的问题及解决方法
-    http://blog.csdn.net/lonelyroamer/article/details/7868820
-* chapter 16 : Arrays
-* chapter 17 : Containers in Depth
-* chapter 18 : I/O
-* chapter 19 : Enumerated Types
-* chapter 20 : Annotations
-* chapter 21 : Concurrency
-* chapter 22 : Graphical User Interfaces
+其实在泛型类中，不指定泛型的时候，也差不多，只不过这个时候的泛型类型为Object，就比如ArrayList中，如果不指定泛型，那么这个ArrayList中可以放任意类型的对象。
+            
+```java
+    public static void main(String[] args) {
+        ArrayList arrayList=new ArrayList();
+        arrayList.add(1);
+        arrayList.add("121");
+        arrayList.add(new Date());
+    }
+```
+
+* 类型擦除引起的问题及解决方法
+    
