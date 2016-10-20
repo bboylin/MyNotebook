@@ -107,7 +107,75 @@
         }
         ```
         泛型的局限：无法传入基本类型。
-    × 类型擦除：
+    * 类型擦除：泛型类型只有在静态类型检查期才出现。java的泛型是伪泛型，因为在编译的时候所有的泛型信息都会被擦除掉。正确理解泛型概念的首要前提是理解类型擦出（type erasure）。
+        * Java中的泛型基本上都是在编译器这个层次来实现的。在生成的Java字节码中是不包含泛型中的类型信息的。使用泛型的时候加上的类型参数，会在编译器在编译的时候去掉。这个过程就称为类型擦除。
+        * 如在代码中定义的List<object>和List<String>等类型，在编译后都会编程List。JVM看到的只是List，而由泛型附加的类型信息对JVM来说是不可见的。Java编译器会在编译时尽可能的发现可能出错的地方，但是仍然无法避免在运行时刻出现类型转换异常的情况。类型擦除也是Java的泛型实现方法与C++模版机制实现方式之间的重要区别。
+        两个例子
+        ```java
+        public class Test4 {
+            public static void main(String[] args) {
+                ArrayList<String> arrayList1=new ArrayList<String>();
+                arrayList1.add("abc");
+                ArrayList<Integer> arrayList2=new ArrayList<Integer>();
+                arrayList2.add(123);
+                System.out.println(arrayList1.getClass()==arrayList2.getClass());
+            }
+        }
+        //结果为true
+        ```
+        ```java
+        public class Test4 {
+            public static void main(String[] args) throws IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+                ArrayList<Integer> arrayList3=new ArrayList<Integer>();
+                arrayList3.add(1);//这样调用add方法只能存储整形，因为泛型类型的实例为Integer
+                arrayList3.getClass().getMethod("add", Object.class).invoke(arrayList3, "asd");
+                for (int i=0;i<arrayList3.size();i++) {
+                    System.out.println(arrayList3.get(i));
+                }
+            }
+        ```
+
+        在程序中定义了一个ArrayList泛型类型实例化为Integer的对象，如果直接调用add方法，那么只能存储整形的数据。不过当我们利用反射调用add方法的时候，却可以存储字符串。这说明了Integer泛型实例在编译之后被擦除了，只保留了原始类型。 
+
+        * 类型擦除后保留的原始类型：原始类型（raw type）就是擦除去了泛型信息，最后在字节码中的类型变量的真正类型。无论何时定义一个泛型类型，相应的原始类型都会被自动地提供。类型变量被擦除（crased），并使用其限定类型（无限定的变量用Object）替换。 
+    例如泛型参数T会被替换成Object，<T extends F>会被F替换。如果类型变量有限定，那么原始类型就用第一个边界的类型变量来替换。如`<T extends Comparable& Serializable>`会被替换成`Comparable`，注意：如果Pair这样声明public class Pair<T extends Serializable&Comparable> ，那么原始类型就用Serializable替换，而编译器在必要的时要向Comparable插入强制类型转换。为了提高效率，应该将标签（tagging）接口（即没有方法的接口）放在边界限定列表的末尾。
+        * 泛型不能用于显式地引用运行时类型的操作之中，例如转型、instanceof操作和new表达式。
+        * 要区分原始类型和泛型变量的类型
+            </br>在调用泛型方法的时候，可以指定泛型，也可以不指定泛型。
+            </br>在不指定泛型的情况下，泛型变量的类型为 该方法中的几种类型的同一个父类的最小级，直到Object。
+            </br>在指定泛型的时候，该方法中的几种类型必须是该泛型实例类型或者其子类。
+            ```java
+            public class Test2{
+                public static void main(String[] args) {
+                    /**不指定泛型的时候*/
+                    int i=Test2.add(1, 2); //这两个参数都是Integer，所以T为Integer类型
+                    Number f=Test2.add(1, 1.2);//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Number
+                    Object o=Test2.add(1, "asd");//这两个参数一个是Integer，以风格是Float，所以取同一父类的最小级，为Object
+
+                            /**指定泛型的时候*/
+                    int a=Test2.<Integer>add(1, 2);//指定了Integer，所以只能为Integer类型或者其子类
+                    int b=Test2.<Integer>add(1, 2.2);//编译错误，指定了Integer，不能为Float
+                    Number c=Test2.<Number>add(1, 2.2); //指定为Number，所以可以为Integer和Float
+                }
+                
+                //这是一个简单的泛型方法
+                public static <T> T add(T x,T y){
+                    return y;
+                }
+            }
+            ```
+            其实在泛型类中，不指定泛型的时候，也差不多，只不过这个时候的泛型类型为Object，就比如ArrayList中，如果不指定泛型，那么这个ArrayList中可以放任意类型的对象。
+            ```java
+            public static void main(String[] args) {
+                    ArrayList arrayList=new ArrayList();
+                    arrayList.add(1);
+                    arrayList.add("121");
+                    arrayList.add(new Date());
+            }
+            ```
+
+    * 类型擦除引起的问题及解决方法
+    http://blog.csdn.net/lonelyroamer/article/details/7868820
 * chapter 16 : Arrays
 * chapter 17 : Containers in Depth
 * chapter 18 : I/O
