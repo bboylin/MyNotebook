@@ -189,4 +189,87 @@
         * 小结：Builder模式在简单地类（参数较少，例如4个以下）中，优势并不明显，但是需要予以考虑，尤其是当参数可能会变多时，有可选参数时更是如此。
 
     * item3：用私有构造器或者枚举类型强化singleton属性
+        * 实现singleton的两种方法：
+        ```java
+        // Singleton with public final field - Page 17
+        package org.effectivejava.examples.chapter02.item03.field;
+
+        public class Elvis {
+            public static final Elvis INSTANCE = new Elvis();
+
+            private Elvis() {
+            }
+
+            public void leaveTheBuilding() {
+                System.out.println("Whoa baby, I'm outta here!");
+            }
+
+            // This code would normally appear outside the class!
+            public static void main(String[] args) {
+                Elvis elvis = Elvis.INSTANCE;
+                elvis.leaveTheBuilding();
+            }
+        }
+        ```
+        第一种方法中，共有静态成员是个final域。由于构造器是私有的，保证了只有一个实例。但是需要提醒的一点是：享有特权的客户端可以通过AccessibleObject.setAccessible方法，通过反射机制调用私有构造器。要抵御这种攻击，需要修改构造器，在被要求创建第二个实例的时候抛出异常
+        ```java
+        // Singleton with static factory - Page 17
+        package org.effectivejava.examples.chapter02.item03.method;
+
+        public class Elvis {
+            private static final Elvis INSTANCE = new Elvis();
+
+            private Elvis() {
+            }
+
+            public static Elvis getInstance() {
+                return INSTANCE;
+            }
+
+            public void leaveTheBuilding() {
+                System.out.println("Whoa baby, I'm outta here!");
+            }
+
+            // This code would normally appear outside the class!
+            public static void main(String[] args) {
+                Elvis elvis = Elvis.getInstance();
+                elvis.leaveTheBuilding();
+            }
+        }
+        ```
+        第二种方法中，共有成员是个静态工厂方法。调用getInstance方法可以获得唯一的一个实例。但是上述提醒依然适用。
+
+        共有域的好处在于很清楚表达了该类是个singleton，但在性能上已经不再有优势。现在jvm已经把静态工厂方法的调用内联化了。
+        工厂方法的优势在于灵活，可以很容易修改，比如把改为每个线程可以有一个单例。
+
+        为使其中一种方法提供的singleton可序列化，仅仅声明implements serializable是不够的。必须声明所有field都是瞬时的（transient），并提供readResolve方法。
+        ```java
+        private Object readResolve() {
+            // Return the one true Elvis and let the garbage collector
+            // take care of the Elvis impersonator.
+            return INSTANCE;
+        }
+        ```
+        * 利用枚举实现singleton
+        ```java
+        // Enum singleton - the preferred approach - page 18
+        package org.effectivejava.examples.chapter02.item03.enumoration;
+
+        public enum Elvis {
+            INSTANCE;
+
+            public void leaveTheBuilding() {
+                System.out.println("Whoa baby, I'm outta here!");
+            }
+
+            // This code would normally appear outside the class!
+            public static void main(String[] args) {
+                Elvis elvis = Elvis.INSTANCE;
+                elvis.leaveTheBuilding();
+            }
+        }
+        ```
+        这种方法在功能上与公有域类似，而且更简洁，无偿提供序列化机制，绝对阻止多次创建实例，即使是面对复杂的序列化或者单设攻击时。单元素的枚举已经成为实现singleton的最佳方法。
+    
+    * item4：通过私有构造器强化不可实例化的能力
     
