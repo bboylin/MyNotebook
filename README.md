@@ -21,8 +21,8 @@
     * [设计模式六大原则](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708/designPrinciple.md)
     * [Factory Method Pattern (工厂方法模式)](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/FactoryMethodPattern.md)
     * [Strategy Pattern (策略模式)](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/StrategyPattern.md)
-   
-    
+    * [单例模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/Singleton.md)   
+    * [抽象工厂模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/abstractFactory.md)    
 
 ### part 2：internet
 * [转折点：互联网时代的商业法则]
