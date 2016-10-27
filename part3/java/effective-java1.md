@@ -272,4 +272,98 @@
         这种方法在功能上与公有域类似，而且更简洁，无偿提供序列化机制，绝对阻止多次创建实例，即使是面对复杂的序列化或者单设攻击时。单元素的枚举已经成为实现singleton的最佳方法。
     
     * item4：通过私有构造器强化不可实例化的能力
-    
+        * 不宜使用抽象类禁止类的实例化，因为被继承后子类可以被实例化。应该使用私有构造器防止类的实例化，并添加注释。副作用是子类也不能实例化（无法调用父类的构造器）
+
+    * item5：避免创建不必要的对象
+        * 使用`String str="123"`代替`String str=new String("123")`
+        * 使用静态工厂方法代替构造器：例如，`Boolean.valueOf(String)`优于`Boolean(String)`。
+        * 重用已知的不会被修改的对象。例如
+        ```java
+        // Creates lots of unnecessary duplicate objects - page 20-21
+        package org.effectivejava.examples.chapter02.item05.slowversion;
+
+        import java.util.Calendar;
+        import java.util.Date;
+        import java.util.TimeZone;
+
+        public class Person {
+            private final Date birthDate;
+
+            public Person(Date birthDate) {
+                // Defensive copy - see Item 39
+                this.birthDate = new Date(birthDate.getTime());
+            }
+
+            // Other fields, methods omitted
+
+            // DON'T DO THIS!
+            public boolean isBabyBoomer() {
+                // Unnecessary allocation of expensive object
+                Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+                gmtCal.set(1946, Calendar.JANUARY, 1, 0, 0, 0);
+                Date boomStart = gmtCal.getTime();
+                gmtCal.set(1965, Calendar.JANUARY, 1, 0, 0, 0);
+                Date boomEnd = gmtCal.getTime();
+                return birthDate.compareTo(boomStart) >= 0
+                        && birthDate.compareTo(boomEnd) < 0;
+            }
+        }
+        ```
+        可以优化为：
+        ```java
+        // Doesn't creates unnecessary duplicate objects - page 21
+        package org.effectivejava.examples.chapter02.item05.fastversion;
+
+        import java.util.Calendar;
+        import java.util.Date;
+        import java.util.TimeZone;
+
+        class Person {
+            private final Date birthDate;
+
+            public Person(Date birthDate) {
+                // Defensive copy - see Item 39
+                this.birthDate = new Date(birthDate.getTime());
+            }
+
+            // Other fields, methods
+
+            /**
+            * The starting and ending dates of the baby boom.
+            */
+            private static final Date BOOM_START;
+            private static final Date BOOM_END;
+
+            static {
+                Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+                gmtCal.set(1946, Calendar.JANUARY, 1, 0, 0, 0);
+                BOOM_START = gmtCal.getTime();
+                gmtCal.set(1965, Calendar.JANUARY, 1, 0, 0, 0);
+                BOOM_END = gmtCal.getTime();
+            }
+
+            public boolean isBabyBoomer() {
+                return birthDate.compareTo(BOOM_START) >= 0
+                        && birthDate.compareTo(BOOM_END) < 0;
+            }
+        }
+        ```
+        * 优先使用基本类型而不是装箱基本类型，要当心无意识的装箱行为。
+        ```java
+        package org.effectivejava.examples.chapter02.item05;
+
+        public class Sum {
+            // Hideously slow program! Can you spot the object creation?
+            public static void main(String[] args) {
+                Long sum = 0L;
+                for (long i = 0; i < Integer.MAX_VALUE; i++) {
+                    sum += i;
+                }
+                System.out.println(sum);
+            }
+        }
+        ```
+        sum声明成Long而不是long导致该程序创建了大约2^31个Long实例，无疑拖慢了程序运行速度。
+        * 不要认为本节所讲的就是创建对象代价非常高昂，应该尽量少创建对象。小对象的创建和回收是非常廉价的。通过创建小对象可以提高程序简洁性，可读性和功能性的话通常是好事。反之，通过维护自己的对象池也创建对象不是一种好的做法，除非这些对象非常重量级。
+    * item6：消除过期的对象引用
+        * 
