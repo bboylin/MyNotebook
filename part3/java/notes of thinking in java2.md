@@ -178,4 +178,37 @@
 ```
 
 * 类型擦除引起的问题及解决方法
-    
+    * 先类型检查再编译：既然说类型变量会在编译的时候擦除掉，那为什么我们往ArrayList<String> arrayList=new ArrayList<String>();所创建的数组列表arrayList中，不能使用add方法添加整形呢？不是说泛型变量Integer会在编译时候擦除变为原始类型Object吗，为什么不能存别的类型呢？既然类型擦除了，如何保证我们只能使用泛型变量限定的类型呢？
+java是如何解决这个问题的呢？java编译器是通过先检查代码中泛型的类型，然后再进行类型擦除，在进行编译的。
+
+那么，这么类型检查是针对谁的呢？我们先看看参数化类型与原始类型的兼容
+以ArrayList举例子，以前的写法：
+```java
+ArrayList arrayList=new ArrayList();
+```
+现在的写法：
+```java
+ArrayList<String>  arrayList=new ArrayList<String>();
+```
+如果与以前的写法兼容会出现下列情况：
+```java
+ArrayList<String> arrayList1=new ArrayList(); //第一种 情况
+ArrayList arrayList2=new ArrayList<String>();//第二种 情况
+```
+这样是没有错误的，不过会有个编译时警告。
+不过在第一种情况，可以实现与 完全使用泛型参数一样的效果，第二种则完全没效果。
+因为，本来类型检查就是编译时完成的。new ArrayList()只是在内存中开辟一个存储空间，可以存储任何的类型对象。而真正涉及类型检查的是它的引用，因为我们是使用它引用arrayList1 来调用它的方法，比如说调用add()方法。所以arrayList1引用能完成泛型类型的检查。
+而引用arrayList2没有使用泛型，所以不行。
+举例子：
+![](./2016-10-27_104235.png)
+通过上面的例子，我们可以明白，类型检查就是针对引用的，谁是一个引用，用这个引用调用泛型方法，就会对这个引用调用的方法进行类型检测，而无关它真正引用的对象。
+
+* 自动类型转换
+```java
+public class Test {
+public static void main(String[] args) {
+ArrayList<Date> list=new ArrayList<Date>();
+list.add(new Date());
+Date myDate=list.get(0);//get方法返回Object。在调用的地方进行Object到Date类型的强转，而不是get方法处。
+}
+```
