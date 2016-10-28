@@ -21,7 +21,7 @@ startActivityForReault()/onActivityReault()用于从调用的另一个activity�
 intent可给除了contentprovider之外的三大组件传递数据</br>
 
 android布局关系图：
-![](https://github.com/bboylin/bboylin.github.io/blob/master/android/20160708/Image.png)
+![](./Image.png)
 android布局高级技术：</br>
 1.重用布局。<include android:id="@+id/myid" layout="@layout/activity_main">还可以加上宽高自定义
 在被重用的布局中声明merge，可以消除不必要的viewgroup。（比如两个垂直的linearlayout）
