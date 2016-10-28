@@ -8,7 +8,8 @@ Activity的生命周期</br>
 6）Activity处于被覆盖或者后台不可见状态（即2/4步），由于内存不足被杀死，而后用户退回该activity，同启动过程。oncreate,onstart,onresume</br>
 7）用户退出当前activity，onpause,onstop,ondestroy</br>
 
-![](https://github.com/bboylin/bboylin.github.io/blob/master/android/20160708/pic1.png)
+![](./pic1.png)
+
 activity之间传递数据
 1.intent。用于数据比较少。Intent intent=new Intent();intent.putExtra("key",value);intent.setClass(CurrentActivity.this,AnotherActivity.class);startActivity(intent)
 getIntent().getStringExtra("key")获取</br>

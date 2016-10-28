@@ -3,7 +3,7 @@
 ### part 1：android & design pattern
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
     * [fragment](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160702)
-    * [four components (android进阶：四大组件)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704)
+    * [android四大组件](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704)
     * [android中消息传递机制与多线程](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160706)
     * [android基础杂记（查漏补缺）](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708)
     * [RecyclerView和listview的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160713/readme.md)
@@ -11,7 +11,9 @@
     * [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
     * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
     * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
-    * [请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
+    * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
+    * android开发艺术探索笔记
+        * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/ch1.md)
 
 * [设计模式与架构] 
     * [android利用mvvm和databinding构建APP](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160914/mvvm.md)
