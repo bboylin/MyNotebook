@@ -31,6 +31,7 @@
     * [电子商务](https://github.com/bboylin/MyNoteBook/tree/master/part2/turningPoint/chapter5.md)
 
 ### part 3：programming language
+* [java8：函数式编程](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java8.md)
 * [java反射机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/reflection.md)
 * [thinking in java:chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java1.md)
 * [thinking in java：chapter14-15](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java2.md)
