@@ -1,4 +1,4 @@
-###<center>fragment详解</center>
+###<center>fragment</center>
 fragment在平常开发过程中算是用的比较多的，也是android比较基础和重要的一个知识点，在这里有必要总结一下。
 首先声明，fragment应该使用support v4包内的，最低可兼容至android 1.6，app包下的fragment只能兼容至3.0
 #####关于fragment可归纳出一下几个特征
@@ -10,7 +10,7 @@ fragment在平常开发过程中算是用的比较多的，也是android比较�
 <li>构造方法（一般无参，且只有一个，因为推荐使用bundle传递参数给fragment）
 <li>onCreate()创建后回调的方法，初始化组件
 <li>onCreateView()绘制组件是回调的方法，返回该fragment返回的view
-<li>onPause()用户离开该fragment时回调的方法（我才疏学浅，还没用过，一般第一个和第三个是一定要的）
+<li>onPause()用户离开该fragment时回调的方法
 
 ##### 关于fragment的子类，主要是ListFragment，和ListActivity类似。
 ```java

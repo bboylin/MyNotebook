@@ -160,6 +160,7 @@ to be continued
 ```java
 Annotation[] annotations = aClass.getAnnotations();
 ```
+more：[Java Reflection(八):注解](http://ifeve.com/java-reflection-8-annotation/)
 * 泛型
 * 数组
 * 动态代理
