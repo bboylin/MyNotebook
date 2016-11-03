@@ -1,4 +1,4 @@
-## effective java 
+## effective java chapter 2
 ---
 
 * chapter2:创建和销毁对象。
