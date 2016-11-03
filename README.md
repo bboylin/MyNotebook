@@ -31,6 +31,8 @@
     * [电子商务](https://github.com/bboylin/MyNoteBook/tree/master/part2/turningPoint/chapter5.md)
 
 ### part 3：programming language
+* [Java 多线程：volatile关键字](https://github.com/pzxwhc/MineKnowContainer/issues/11)
+* [Java 多线程：synchronized 关键字用法（修饰类，方法，静态方法，代码块）](https://github.com/pzxwhc/MineKnowContainer/issues/7)
 * [java8：函数式编程](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java8.md)
 * [java反射机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/reflection.md)
 * [thinking in java:chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/notes of thinking in java1.md)

@@ -25,9 +25,9 @@
     Arrays.sort(a,new CompTypeComparator());
     ```
     * 在已排序的数组中查找：`binarySearch()`查找成功返回非负数，查找失败返回- (插入点) - 1。插入点是第一个大于查找对象的元素在数组中的位置，没有则是a.size()。
-* chapter 17 : Containers in Depth
-* chapter 18 : I/O
-* chapter 19 : Enumerated Types
-* chapter 20 : Annotations
+* [chapter 17 : Containers in Depth](http://jiangjun.name/thinking-in-java/chapter17)
+* [chapter 18 : I/O](http://jiangjun.name/thinking-in-java/chapter18)
+* [chapter 19 : Enumerated Types](http://jiangjun.name/thinking-in-java/chapter19)
+* [chapter 20 : Annotations](http://jiangjun.name/thinking-in-java/chapter20)
 * chapter 21 : Concurrency
 * chapter 22 : Graphical User Interfaces

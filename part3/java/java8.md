@@ -87,3 +87,26 @@ assertEquals("c", emptyOptional.orElseGet(() -> "c"));
 ```
 
 * chapter 5:高级集合类和收集器
+    * 方法引用：`artist -> artist.getName()`相当于`Artist::getName`，还有`Artist::new`,`String[]::new`等表示新建对象。
+    * 流是有序的，按出现顺序。
+    * 使用收集器：`toList()`,`toSet()`,`toCollection()`。使用`toCollection`用定制的集合收集元素，`stream.collect(toCollection(TreeSet::new))`
+    * maxBy,minBy.例如`artists.collect(maxBy(comparing(getCount)))`
+    * 数据分块：`partitionintBy`例如，`artists.collect(partitionintBy(Artist::isSolo))`
+    * 数据分组：groupingBy
+    * `Collectors.joining`收集流中的值，参数为分隔符（用以分割元素），前缀，后缀
+* chapter 6:数据并行化
+    * 并发与并行的区别在于并行是在多个核上执行的
+    * 并行流：`.parallelStream()`
+    * 并行性能分类：好：ArrayList，数组，IntStream.range等随机读取的数据结构；一般，HashSet,TreeSet，不易公平的分解；差，LinkedList，etc
+* chapter 7：测试，调试和重构
+    * logger对象使用isDebugEnabled方法避免不必要的性能开销。
+    ```java
+    Logger logger = new Logger();
+    if(logger.isDebudEnabled()){
+        logger.debug("look at this: "+expensiveOperation());
+    }
+    ```
+    * Threadlocal:
+
+---
+to be continued
