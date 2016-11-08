@@ -86,17 +86,12 @@ EventBus in 3 steps
 >RxJava不仅带来了响应式编程的便利，而且可以轻松实现RxBus作为事件总线。
 
 ```java
-package link.xjtu.core;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
-/**
- * RxBus
- * Created by YoKeyword on 2015/6/17.
- */
 public class RxBus {
     private static volatile RxBus defaultInstance;
     // 主题
