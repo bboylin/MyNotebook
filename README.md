@@ -12,6 +12,7 @@
     * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
     * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
     * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
+    * [初探event bus和RxBus](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161108/bus.md)
     * android开发艺术探索笔记
         * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/ch1.md)
 
