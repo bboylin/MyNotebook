@@ -29,7 +29,7 @@
     button.addActionListener(event -> System.out.println("hi " + name));
     ```
     * 函数接口：只有一个方法的接口
-    ![](./2016-10-31_220136.png)
+    ![](https://github.com/bboylin/MyNotebook/raw/master/part3/java/2016-10-31_220136.png)
 
         图为java中重要的函数接口
     * 类型推断

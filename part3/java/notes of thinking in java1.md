@@ -30,7 +30,7 @@ java没有sizeof因为不同机器上相同的数据类型具有相同大小。�
 显式地清理用dispose()方法
     * 回收器如何工作：对象存储空间的分配，堆指针移动到未分配区域即可，工作时一面回收空间，一面使堆中的对象紧凑排列，高速、有无限空间可分配。每个对象都有一个引用计数器，有引用时+1，离开引用时-1，垃圾回收器遍历所有对象列表，引用计数为0 时释放空间，循环引用的处理比较麻烦。
     另一种：根据目前的存活对象深度查找关联引用对象，不活动的则会释放。停止—复制方式，先把存活对象从当前堆复制到另一个堆，没有被复制的都是垃圾，复制后的对象也是紧密排列的，比较好。此种模式效率较低。此外，一但程序进入稳定状态后，极少会产生垃圾，此时复制就是浪费。
-    一些虚拟机会转换到标记—横扫模式，速度慢，但是当你知道有很少垃圾时，它就很快了。遍历存活对象，给对象标记不会被回收，全部标记完成才会清理。更详细的请参考：[java中的垃圾回收机制](https://github.com/bboylin/bboylin.github.io/tree/master/part3/gc/readme.md)
+    一些虚拟机会转换到标记—横扫模式，速度慢，但是当你知道有很少垃圾时，它就很快了。遍历存活对象，给对象标记不会被回收，全部标记完成才会清理。更详细的请参考：[java中的垃圾回收机制](https://github.com/bboylin/MyNotebook/blob/master/part3/gc/readme.md)
 
 * chapter6 : Access Control
     * priavte          本类可见</br>
@@ -55,7 +55,7 @@ friendly          本包可见（即默认的形式）</br>
 可向上转型为多个接口类型</br>
 java单继承多实现（接口），而c++多重继承。</br>
 类中嵌套接口和非嵌套接口一样，可以拥有public和包访问两种可视性。
-    * 联系：[工厂方法模式](https://github.com/bboylin/bboylin.github.io/tree/master/android&designPattern/FactoryMethodPattern.md)
+    * 联系：[工厂方法模式](https://github.com/bboylin/MyNotebook/blob/master/android%26designPattern/FactoryMethodPattern.md)
 
 * chapter10 : Inner Classes
     * 当一个新类继承一个外部类时，外部类内嵌的内部类不会被自动继承。因此，无法再新类中简单地覆盖内部类。可以用“外部类.内部类”的方式来继承内部类，并可用这种方法来覆盖父类内部类的方法
