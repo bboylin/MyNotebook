@@ -13,6 +13,7 @@
     * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
     * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
     * [初探event bus和RxBus](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161108/bus.md)
+    * [picasso源码分析](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161202/picasso.md)
     * android开发艺术探索笔记
         * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/ch1.md)
 
