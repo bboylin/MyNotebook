@@ -16,8 +16,9 @@
     * [picasso源码分析](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161202/picasso.md)
     * android开发艺术探索笔记
         * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/ch1.md)
+    * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
 
-* [设计模式与架构] 
+* [设计模式与架构]
     * [android利用mvvm和databinding构建APP](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160914/mvvm.md)
 	* [the Observer Pattern (从adapter源码看其中的观察者模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160630)
 	* [转：adapter pattern (Android源码解析之适配器(Adapter)模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160705)
@@ -25,8 +26,8 @@
     * [设计模式六大原则](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708/designPrinciple.md)
     * [Factory Method Pattern (工厂方法模式)](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/FactoryMethodPattern.md)
     * [Strategy Pattern (策略模式)](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/StrategyPattern.md)
-    * [单例模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/Singleton.md)   
-    * [抽象工厂模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/abstractFactory.md)    
+    * [单例模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/Singleton.md)
+    * [抽象工厂模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/abstractFactory.md)
 
 ### part 2：internet
 * [转折点：互联网时代的商业法则]
