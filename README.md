@@ -2,6 +2,7 @@
 ---
 ### part 1：android & design pattern
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
+    * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20170111/Serializable和Parcelable的区别.md)
     * [fragment](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160702)
     * [android四大组件](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704)
     * [android中消息传递机制与多线程](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160706)
