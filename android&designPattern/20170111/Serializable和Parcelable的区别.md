@@ -51,7 +51,7 @@ public class MyParcelable implements Parcelable {
 ```
 当类字段较多时务必保持写入和读取的类型及顺序一致。
 
-而对于Serializable来说，transient关键字修饰的变量不会被序列化，同时可以为所要序列化的类指定一个serialVersionUID。序列化和反序列化的时候是会检验类的serialVersionUID是否一致，不一致就会失败。不指定的时候serialVersionUID是由eclipse计算hash值生成。手动指定以后，当类中增加或者删除了一个成员以后反序列化依然能成功，但是当类的结构发生变化时，比如类名改了，变量类型变了，反序列化依然失败。也可以覆盖writeObject、readObject方法以实现序列化过程自定义。序列化原理：
+而对于Serializable来说，transient关键字修饰的变量不会被序列化，同时可以为所要序列化的类指定一个serialVersionUID。序列化和反序列化的时候是会检验类的serialVersionUID是否一致，不一致就会失败。不指定的时候serialVersionUID是由eclipse计算hash值生成。手动指定以后，当类中增加或者删除了一个成员以后反序列化依然能成功，但是当类的结构发生变化时，比如类名改了，变量类型变了，反序列化依然失败。也可以覆盖writeObject、readObject方法以实现序列化过程自定义。序列化举例：
 ```java
                 //序列化
                 File cachedFile = new File(MyConstants.CACHE_FILE_PATH);
