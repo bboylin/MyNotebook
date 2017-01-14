@@ -4,7 +4,6 @@
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
     * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20170111/Serializable和Parcelable的区别.md)
     * [fragment](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160702/fragment.md)
-    * [android四大组件](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160704/android四大组件.md)
     * [android中消息传递机制与多线程](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160706/android中消息传递机制与多线程.md)
     * [android基础杂记（查漏补缺）](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160708/android基础杂记（查漏补缺）.md)
     * [RecyclerView和listview的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160713/RecyclerView和listview的区别.md)
@@ -16,7 +15,8 @@
     * [初探event bus和RxBus](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161108/初探event bus和RxBus.md)
     * [picasso源码分析](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20161202/picasso源码分析.md)
     * android开发艺术探索笔记
-        * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/ch1.md)
+        * [第一章：activity的生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/第一章笔记.md)
+        * [第二章：IPC机制](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/art/第二章笔记.md)        
     * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
 
 * [设计模式与架构]
