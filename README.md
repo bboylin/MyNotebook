@@ -1,6 +1,6 @@
 ## my notebook
 ---
-### part 1：android & design pattern
+### part 1：Android
 * [android](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern)
     * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20170111/Serializable和Parcelable的区别.md)
     * [fragment](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160702/fragment.md)
@@ -20,7 +20,6 @@
     * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
 
 * [设计模式与架构]
-    * [android利用mvvm和databinding构建APP](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160914/mvvm.md)
 	* [the Observer Pattern (从adapter源码看其中的观察者模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160630)
 	* [转：adapter pattern (Android源码解析之适配器(Adapter)模式)](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160705)
     * [MVC & MVP & MVVM](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20160707/MVC & MVP & MVVM.md)
@@ -30,9 +29,7 @@
     * [单例模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/Singleton.md)
     * [抽象工厂模式](https://github.com/bboylin/MyNoteBook/blob/master/android%26designPattern/abstractFactory.md)
 
-### part 2：internet
-* [转折点：互联网时代的商业法则]
-    * [电子商务](https://github.com/bboylin/MyNoteBook/tree/master/part2/turningPoint/chapter5.md)
+### part 2：设计模式与架构
 
 ### part 3：programming language
 * [Java 多线程：volatile关键字](https://github.com/pzxwhc/MineKnowContainer/issues/11)
@@ -65,9 +62,10 @@
 * [笔试/面试]
     * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
     * [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
+    * [2017年1月：头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
 
 ### part 6
-* [operating system & computer organization]
+* [专业基础]
     * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
     * [《程序员的自我修养：链接，装载和库》部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/xiuyang.md)
     * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
