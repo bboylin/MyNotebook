@@ -4,12 +4,11 @@
 ### part 1：Android
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
-* [转：深入浅出RecyclerView](http://kymjs.com/code/2016/07/10/01)
 * [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
 * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
 * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
 * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
-* [RecyclerView和listview的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/RecyclerView%E5%92%8Clistview%E7%9A%84%E5%8C%BA%E5%88%AB.md)
+* [RecyclerView和listview的比较](https://github.com/bboylin/MyNotebook/blob/master/part1/RecyclerView%E5%92%8Clistview%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [picasso源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/picasso%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 * [初探event bus和RxBus](https://github.com/bboylin/MyNotebook/blob/master/part1/%E5%88%9D%E6%8E%A2event%20bus%E5%92%8CRxBus.md)
 * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
@@ -31,7 +30,7 @@
 * [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
 * [java中的垃圾回收机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/gc/java中的垃圾回收机制.md)
 
-### part 4:数据结构与算法
+### part 4: 数据结构与算法
 * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
 * [八种常见排序算法的总结](https://github.com/bboylin/MyNoteBook/tree/master/part4/sort.md)
 * [dynamic programming](https://github.com/bboylin/MyNoteBook/tree/master/part4/dp.md)
@@ -39,7 +38,7 @@
 * [AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md)
 * [伸展树](https://github.com/bboylin/MyNoteBook/tree/master/part4/splay.md)
 
-### part 5:笔试/面试
+### part 5: 笔试/面试
 * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
 * [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
 * [2017年1月：头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)

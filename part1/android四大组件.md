@@ -69,11 +69,14 @@ AIDL（Android接口描述语言）是一种接口描述语言，通常用于进
 这部分我看的不是很懂，AIDL使用并不难，但是理解起来可能不容易。这里给出一篇博客供参考：[<android开发进阶——从小工到专家>学习之AIDL](http://www.jianshu.com/p/68defd0b0016)
 ### broadcast广播
 android 广播机制是典型的发布-订阅模式，即我们常说的观察者模式。一个广播可以有若干个接收者。广播机制最大的特点是发送方并不关心接收者是否接收到数据，也不管其怎样处理数据，通过这样的形式来实现接，收双方的完全解耦和。
-android广播机制包括三个基本要素：Broadcast，BroadcastReceiver，和intentandroid广播可分为普通广播，有序广播，本地广播，sticky广播。
+android广播机制包括三个基本要素：Broadcast，BroadcastReceiver，和intent。android广播可分为普通广播，有序广播，本地广播，sticky广播。
 <li>普通广播
 通过Context.sendBroadcast()方法来发送。它是完全异步的。 所有的receivers接收器的执行顺序不确定。效率更高，但是接收者不能将处理结果传递给下一个接收者，并且无法终止广播intent的传播，直到没有匹配的广播接收器为止。
+
 1.自定义一个广播接收器，继承自BroadcastReceiver，然后在onReceive()里面执行操作
+
 2.注册广播
+
 1）静态：
 
 ```xml
@@ -86,7 +89,7 @@ android广播机制包括三个基本要素：Broadcast，BroadcastReceiver，�
 2）动态：
 ```java
      private void RegisterHelloBroadcast(){
-        unregisterReceiver(new HelloBroadcastReceiver(),new IntentFilter(HELLO_ACTION));
+        registerReceiver(new HelloBroadcastReceiver(),new IntentFilter(HELLO_ACTION));
     }
 ```
 如果是在activity或者fragment中动态测试，记得在onDestroy()中注销广播。注册之后就可以发送广播了。
