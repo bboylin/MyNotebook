@@ -12,6 +12,7 @@
 * [picasso源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/picasso%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 * [初探event bus和RxBus](https://github.com/bboylin/MyNotebook/blob/master/part1/%E5%88%9D%E6%8E%A2event%20bus%E5%92%8CRxBus.md)
 * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
+* [Android事件分发机制](https://github.com/bboylin/MyNotebook/blob/master/part1/Android事件分发机制.md)
 
 ### part 2：设计模式与架构
 * [从adapter源码看其中的观察者模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
