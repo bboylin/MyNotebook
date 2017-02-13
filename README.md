@@ -4,23 +4,23 @@
 ### part 1：Android
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
-* [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
-* [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
-* [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
-* [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
 * [RecyclerView和listview的比较](https://github.com/bboylin/MyNotebook/blob/master/part1/RecyclerView%E5%92%8Clistview%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [picasso源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/picasso%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 * [初探event bus和RxBus](https://github.com/bboylin/MyNotebook/blob/master/part1/%E5%88%9D%E6%8E%A2event%20bus%E5%92%8CRxBus.md)
 * [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
 * [Android事件分发机制](https://github.com/bboylin/MyNotebook/blob/master/part1/Android事件分发机制.md)
+* [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
+* [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
+* [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
+* [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
 
 ### part 2：设计模式与架构
+* [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
 * [从adapter源码看其中的观察者模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
-* [浅谈MVC & MVP & MVVM](https://github.com/bboylin/MyNotebook/blob/master/part2/MVC%20%26%20MVP%20%26%20MVVM.md)
+* [MVC & MVP & MVVM](https://github.com/bboylin/MyNotebook/blob/master/part2/MVC%20%26%20MVP%20%26%20MVVM.md)
 * [设计模式六大原则](https://github.com/bboylin/MyNotebook/blob/master/part2/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99.md)
 * [工厂方法模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.md)
 * [策略模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.md)
-* [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
 * [抽象工厂模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
 
 ### part 3：Java

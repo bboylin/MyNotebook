@@ -3,7 +3,7 @@
 
 * 正常情况下生命周期
 
-![](https://github.com/bboylin/MyNotebook/raw/master/android%26designPattern/20160708/pic1.png)
+![](https://github.com/bboylin/MyNotebook/blob/master/part1/pic1.png)
 
 从activity是否在前台来说，onResume和onPause是配对的，从activity是否可见来说，onStart和onStop是配对的（已经可见但是在后台）。
 只有当旧的activity的onPause执行完新的activity的onResume才会执行。
