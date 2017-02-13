@@ -7,7 +7,6 @@
 * [RecyclerView和listview的比较](https://github.com/bboylin/MyNotebook/blob/master/part1/RecyclerView%E5%92%8Clistview%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [picasso源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/picasso%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 * [初探event bus和RxBus](https://github.com/bboylin/MyNotebook/blob/master/part1/%E5%88%9D%E6%8E%A2event%20bus%E5%92%8CRxBus.md)
-* [Android自定义view和贝塞尔曲线](http://bboylin.xyz/2016/12/31/360/)
 * [Android事件分发机制](https://github.com/bboylin/MyNotebook/blob/master/part1/Android事件分发机制.md)
 * [转：Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
 * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
