@@ -2,6 +2,7 @@
 ---
 
 ### part 1：Android
+* [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
 * [RecyclerView和listview的比较](https://github.com/bboylin/MyNotebook/blob/master/part1/RecyclerView%E5%92%8Clistview%E7%9A%84%E5%8C%BA%E5%88%AB.md)
@@ -41,7 +42,11 @@
 ### part 5: 笔试/面试
 * [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
 * [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
-* [2017年1月：头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
+* [2017年1月：今日头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
+* [2017年2月：腾讯MIG实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/MIG.png)
+* [2017年3月：阿里实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里一面.png)
+* [2017年3月：阿里实习生二面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里二面.png)
+* [2017年3月：携程实习生两面（已拿offer）](https://github.com/bboylin/MyNotebook/blob/master/part5/携程.png)
 
 ### part 6：专业基础
 * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
@@ -51,12 +56,12 @@
 
 ### part 7：读书笔记
 * thinking in java
-    * [chapter 1-13](https://github.com/bboylin/MyNoteBook/tree/master/part7/thinking in java笔记上.md)
-    * [chapter 14-15](https://github.com/bboylin/MyNoteBook/tree/master/part7/thinking in java笔记中.md)
-    * [chapter 16-21](https://github.com/bboylin/MyNoteBook/tree/master/part7/thinking in java笔记下.md)
+    * [chapter 1-13](https://github.com/bboylin/MyNotebook/blob/master/part7/thinking%20in%20java%E7%AC%94%E8%AE%B0%E4%B8%8A.md)
+    * [chapter 14-15](https://github.com/bboylin/MyNotebook/blob/master/part7/thinking%20in%20java%E7%AC%94%E8%AE%B0%E4%B8%AD.md)
+    * [chapter 16-21](https://github.com/bboylin/MyNotebook/blob/master/part7/thinking%20in%20java%E7%AC%94%E8%AE%B0%E4%B8%8B.md)
 * effective java
-    * [chapter 2](https://github.com/bboylin/MyNoteBook/tree/master/part7/effective java第二章笔记.md)
-    * [chapter 3](https://github.com/bboylin/MyNoteBook/tree/master/part7/effective java第三章笔记.md)
+    * [chapter 2](https://github.com/bboylin/MyNotebook/blob/master/part7/effective%20java%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0.md)
+    * [chapter 3](https://github.com/bboylin/MyNotebook/blob/master/part7/effective%20java%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0.md)
 * Android开发艺术探索
     * [Android开发艺术探索第一章笔记](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第一章笔记.md)
     * [Android开发艺术探索第二章笔记](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第二章笔记.md)
