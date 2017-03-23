@@ -40,13 +40,13 @@
 * [伸展树](https://github.com/bboylin/MyNoteBook/tree/master/part4/splay.md)
 
 ### part 5: 笔试/面试
-* [怎么计算类的大小（2017年阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
+* [怎么计算类的大小（阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
 * [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
-* [2017年1月：今日头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
-* [2017年2月：腾讯MIG实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/MIG.png)
-* [2017年3月：阿里实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里一面.png)
-* [2017年3月：阿里实习生二面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里二面.png)
-* [2017年3月：携程实习生两面（已拿offer）](https://github.com/bboylin/MyNotebook/blob/master/part5/携程.png)
+* [今日头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
+* [腾讯MIG实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/MIG.png)
+* [阿里实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里一面.png)
+* [阿里实习生二面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里二面.png)
+* [携程实习生两面（已拿offer）](https://github.com/bboylin/MyNotebook/blob/master/part5/携程.png)
 
 ### part 6：专业基础
 * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)

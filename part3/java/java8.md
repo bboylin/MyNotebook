@@ -106,7 +106,3 @@ assertEquals("c", emptyOptional.orElseGet(() -> "c"));
         logger.debug("look at this: "+expensiveOperation());
     }
     ```
-    * Threadlocal:
-
----
-to be continued
