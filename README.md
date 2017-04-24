@@ -47,6 +47,7 @@
 * [阿里实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里一面.png)
 * [阿里实习生二面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里二面.png)
 * [携程实习生两面（已拿offer）](https://github.com/bboylin/MyNotebook/blob/master/part5/携程.png)
+* [腾讯/百度/今日头条/美团2017Android开发实习生面经](https://github.com/bboylin/MyNotebook/blob/master/part5/interview.md)
 
 ### part 6：专业基础
 * [CSAPP部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/csapp.md)
