@@ -1,6 +1,6 @@
 ## 腾讯/百度/今日头条/美团2017Android开发实习生面经
 
-本文由[bboylin](https://github.com/bboylin)首发于bboylin的春招笔记本:[https://github.com/bboylin/MyNotebook](https://github.com/bboylin/MyNotebook)，同时唯一授权于郭霖大神的公众平台发表。
+本文由[bboylin](https://github.com/bboylin)首发于bboylin的春招笔记本:[https://github.com/bboylin/MyNotebook](https://github.com/bboylin/MyNotebook)。
 
 ### 前言
 本人是国内某985大三本科生，说来惭愧，大一刚学完C语言还是勉强会用函数的水平，准确来说我的编程生涯开始于大一下学期，而这两年间我算是进步速度比较快，中间也比常人花了更多时间在编程和看书上。大三寒假在搜狐公司实习，三月开始准备实习生春招（实际上这时候有点晚了，以至于我阿里一面面的很不好）。最近两周也面了腾讯百度头条美团等公司，而今天联系学长查到腾讯面试状态为offer待报批，激动之余不由得感叹，实习生春招终于是结束了。本文仅列举最近两周面试的公司的面经，一个月之前还面试过携程阿里腾讯头条等公司，也拿到了携程的offer，面经都在我的春招笔记本中，里面也有一些平时的总结和笔记，主要针对Android和Java，希望对正在找工作或者实习的同学有帮助。废话不多说，下面是面经。想看推荐书籍的可以直接翻到文末。
