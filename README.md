@@ -2,6 +2,10 @@
 ---
 
 ### part 1：Android
+* APP启动过程
+* 性能优化总结
+* LeakCanary检测内存泄漏的原理
+* view的绘制原理
 * [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
@@ -38,6 +42,7 @@
 * [算法基础杂记](https://github.com/bboylin/MyNoteBook/tree/master/part4/zaji.md)
 * [AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md)
 * [伸展树](https://github.com/bboylin/MyNoteBook/tree/master/part4/splay.md)
+* NP问题
 
 ### part 5: 笔试/面试
 * [怎么计算类的大小（阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
@@ -54,6 +59,7 @@
 * [《程序员的自我修养：链接，装载和库》部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/xiuyang.md)
 * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
 * [操作系统之进程管理](https://github.com/bboylin/MyNotebook/blob/master/part6/os2.md)
+* TCP/IP，HTTP,HTTPS常见问题总结
 
 ### part 7：读书笔记
 * thinking in java
