@@ -2,6 +2,7 @@
 ---
 
 ### part 1：Android
+* [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
 * APP启动过程
 * 性能优化总结
 * LeakCanary检测内存泄漏的原理
@@ -60,6 +61,7 @@
 * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
 * [操作系统之进程管理](https://github.com/bboylin/MyNotebook/blob/master/part6/os2.md)
 * TCP/IP，HTTP,HTTPS常见问题总结
+* 输入URL到页面加载完成的过程
 
 ### part 7：读书笔记
 * thinking in java

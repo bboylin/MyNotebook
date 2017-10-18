@@ -14,7 +14,7 @@ Android中使用多进程（此处指一个应用多个进程）的方法有：
 * Application会多次创建
 
 IPC基础概念：
-* [Serializable和Parcelable的区别](https://github.com/bboylin/MyNoteBook/tree/master/android&designPattern/20170111/Serializable和Parcelable的区别.md)
+* [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * Binder：略。
 
 Android中的IPC方式：Bundle（传输的数据必须能够序列化），共享文件，Binder，ContentProvider,网络通信。
