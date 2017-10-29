@@ -4,9 +4,8 @@
 ### part 1：Android
 * [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
 * APP启动过程
-* 性能优化总结
-* LeakCanary检测内存泄漏的原理
-* view的绘制原理
+* [性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
+* LeakCanary源码分析
 * [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
@@ -43,16 +42,10 @@
 * [算法基础杂记](https://github.com/bboylin/MyNoteBook/tree/master/part4/zaji.md)
 * [AVL](https://github.com/bboylin/MyNoteBook/tree/master/part4/avl.md)
 * [伸展树](https://github.com/bboylin/MyNoteBook/tree/master/part4/splay.md)
-* NP问题
 
 ### part 5: 笔试/面试
 * [怎么计算类的大小（阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
 * [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
-* [今日头条实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/头条一面.png)
-* [腾讯MIG实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/MIG.png)
-* [阿里实习生一面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里一面.png)
-* [阿里实习生二面](https://github.com/bboylin/MyNotebook/blob/master/part5/阿里二面.png)
-* [携程实习生两面（已拿offer）](https://github.com/bboylin/MyNotebook/blob/master/part5/携程.png)
 * [腾讯/百度/今日头条/美团2017Android开发实习生面经](https://github.com/bboylin/MyNotebook/blob/master/part5/interview.md)
 
 ### part 6：专业基础
