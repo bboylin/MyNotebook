@@ -4,7 +4,7 @@
 ### part 1：Android
 * [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
 * APP启动过程
-* [性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
+* [APP性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
 * LeakCanary源码分析
 * [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)

@@ -21,4 +21,5 @@
 引用链如下：looper->messagequeue->message->handler->outter class
 * listener的注销
 * cursor,connection关闭。
-* 容器中对象泄露。
+* 容器中对象未清理。
+* webview
