@@ -207,6 +207,16 @@ Derived(b).print() // 打印结果为: 10
 ```
 `Derived`类声明的基类列表中的 `by` 子句表示, `b` 将被保存在`Derived`的对象实例内部, 而且编译器将会
 生成继承自`Base`接口的所有方法, 并将调用转发给`b`
+* 扩展函数：
+```kotlin
+fun Context.toast(message: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
+}
+
+//这个方法可以在Activity内部直接调用：
+toast("Hello world!")
+toast("Hello world!", Toast.LENGTH_LONG)
+```
 
 ---
 to be continued...

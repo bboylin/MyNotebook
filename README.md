@@ -54,7 +54,7 @@
 * [《程序员的自我修养：链接，装载和库》部分章节笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/xiuyang.md)
 * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
 * [操作系统之进程管理](https://github.com/bboylin/MyNotebook/blob/master/part6/os2.md)
-* TCP/IP，HTTP,HTTPS常见问题总结
+* [http相关基础总结](https://github.com/bboylin/MyNotebook/blob/master/part6/network.md)
 * 输入URL到页面加载完成的过程
 
 ### part 7：读书笔记
