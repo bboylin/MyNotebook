@@ -40,3 +40,17 @@ RSA原理：选择质数p,q,计算n=p*q，φ(n)=(P-1)(Q-1)，选择d使得gcd(φ
 
 
 #### http2.0
+
+相比于1.x提升的几个方面：
+* 多路复用
+* 头部压缩（HPACK）
+* 请求划分优先级
+* 支持server push数据给客户端
+
+HTTP2目前在实际使用中，只用于HTTPS协议场景下，通过握手阶段ClientHello与ServerHello的extension字段协商而来，所以目前HTTP2的使用场景，都是默认安全加密的。
+
+reference：
+
+[High Performance Browser Networking  |  O'Reilly](https://hpbn.co/http2/)
+
+[https://www.zhihu.com/question/34074946](https://www.zhihu.com/question/34074946)
