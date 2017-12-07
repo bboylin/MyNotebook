@@ -47,7 +47,7 @@
 
 ### part 5: 笔试/面试
 * [怎么计算类的大小（阿里实习生笔试题）](https://github.com/bboylin/MyNotebook/blob/master/part5/seizeof.md)
-* [强引用、软引用、弱引用、虚引用](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477721&idx=2&sn=dba0ec5814f670ee92c4ecb1bedc1ed8&chksm=bd253aa68a52b3b02e91de772a8b40e2e4893b30efd58eb0c5a72aafb818a95cab5a8f2d14d7&mpshare=1&scene=23&srcid=1201CLtCPEuk4AeQtsh2xuL7#rd)
+* [强引用、软引用、弱引用、虚引用](https://github.com/bboylin/MyNotebook/blob/master/part5/4reference.md)
 * [腾讯/百度/今日头条/美团2017Android开发实习生面经](https://github.com/bboylin/MyNotebook/blob/master/part5/interview.md)
 
 ### part 6：专业基础
