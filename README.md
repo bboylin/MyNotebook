@@ -5,6 +5,7 @@
 * [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
 * [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
 * APP启动过程
+* [activity启动流程](https://github.com/bboylin/MyNotebook/blob/master/part1/activity启动流程.md)
 * [APP性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
 * LeakCanary源码分析
 * [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
