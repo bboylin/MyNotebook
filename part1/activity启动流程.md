@@ -250,7 +250,7 @@ final int startActivityMayWait(IApplicationThread caller, int callingUid,
         }
     }
 ```
-可以看到`startActivityMayWait`方法接着调用了`startActivityLocked`方法，而`startActivityLocked`又调用了`startActivityUnchecked`:
+可以看到`startActivityMayWait`方法接着调用了`startActivityLocked`方法，而`startActivityLocked`又调用了`doPendingActivityLaunchesLocked`，三个方法都是`ActivityStarter`的方法:
 ```java
 final int startActivityLocked(IApplicationThread caller, Intent intent, Intent ephemeralIntent,
             String resolvedType, ActivityInfo aInfo, ResolveInfo rInfo,
@@ -260,22 +260,33 @@ final int startActivityLocked(IApplicationThread caller, Intent intent, Intent e
             ActivityOptions options, boolean ignoreTargetSecurity, boolean componentSpecified,
             ActivityRecord[] outActivity, ActivityStackSupervisor.ActivityContainer container,
             TaskRecord inTask) {
-        int err = ActivityManager.START_SUCCESS;
         ......
-        try {
-            mService.mWindowManager.deferSurfaceLayout();
-            err = startActivityUnchecked(r, sourceRecord, voiceSession, voiceInteractor, startFlags,
-                    true, options, inTask);
-        } finally {
-            mService.mWindowManager.continueSurfaceLayout();
-        }
-        postStartActivityUncheckedProcessing(r, err, stack.mStackId, mSourceRecord, mTargetStack);
-        return err;
+        doPendingActivityLaunchesLocked(false);
+        ......
     }
 ```
-`startActivityUnchecked`主要是处理好activity启动模式和任务栈相关的事情：
+`doPendingActivityLaunchesLocked`又调用了`startActivityUnchecked`：
 ```java
-private int startActivityUnchecked(final ActivityRecord r, ActivityRecord sourceRecord,
+    final void doPendingActivityLaunchesLocked(boolean doResume) {
+        while (!mPendingActivityLaunches.isEmpty()) {
+            final PendingActivityLaunch pal = mPendingActivityLaunches.remove(0);
+            final boolean resume = doResume && mPendingActivityLaunches.isEmpty();
+            try {
+                final int result = startActivityUnchecked(
+                        pal.r, pal.sourceRecord, null, null, pal.startFlags, resume, null, null);
+                postStartActivityUncheckedProcessing(
+                        pal.r, result, mSupervisor.mFocusedStack.mStackId, mSourceRecord,
+                        mTargetStack);
+            } catch (Exception e) {
+                Slog.e(TAG, "Exception during pending activity launch pal=" + pal, e);
+                pal.sendErrorResult(e.getMessage());
+            }
+        }
+    }
+```
+`startActivityUnchecked`又调用了` mSupervisor.resumeFocusedStackTopActivityLocked();`
+```java
+    private int startActivityUnchecked(final ActivityRecord r, ActivityRecord sourceRecord,
             IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,
             int startFlags, boolean doResume, ActivityOptions options, TaskRecord inTask) {
 
@@ -400,107 +411,314 @@ private int startActivityUnchecked(final ActivityRecord r, ActivityRecord source
                     top.task, preferredLaunchStackId, topStack.mStackId);
 
             return START_DELIVERED_TO_TOP;
-        }
-
-        boolean newTask = false;
-        final TaskRecord taskToAffiliate = (mLaunchTaskBehind && mSourceRecord != null)
-                ? mSourceRecord.task : null;
-
-        // Should this be considered a new task?
-        if (mStartActivity.resultTo == null && mInTask == null && !mAddingToTask
-                && (mLaunchFlags & FLAG_ACTIVITY_NEW_TASK) != 0) {
-            newTask = true;
-            setTaskFromReuseOrCreateNewTask(taskToAffiliate);
-
-            if (mSupervisor.isLockTaskModeViolation(mStartActivity.task)) {
-                Slog.e(TAG, "Attempted Lock Task Mode violation mStartActivity=" + mStartActivity);
-                return START_RETURN_LOCK_TASK_MODE_VIOLATION;
-            }
-            if (!mMovedOtherTask) {
-                // If stack id is specified in activity options, usually it means that activity is
-                // launched not from currently focused stack (e.g. from SysUI or from shell) - in
-                // that case we check the target stack.
-                updateTaskReturnToType(mStartActivity.task, mLaunchFlags,
-                        preferredLaunchStackId != INVALID_STACK_ID ? mTargetStack : topStack);
-            }
-        } else if (mSourceRecord != null) {
-            if (mSupervisor.isLockTaskModeViolation(mSourceRecord.task)) {
-                Slog.e(TAG, "Attempted Lock Task Mode violation mStartActivity=" + mStartActivity);
-                return START_RETURN_LOCK_TASK_MODE_VIOLATION;
-            }
-
-            final int result = setTaskFromSourceRecord();
-            if (result != START_SUCCESS) {
-                return result;
-            }
-        } else if (mInTask != null) {
-            // The caller is asking that the new activity be started in an explicit
-            // task it has provided to us.
-            if (mSupervisor.isLockTaskModeViolation(mInTask)) {
-                Slog.e(TAG, "Attempted Lock Task Mode violation mStartActivity=" + mStartActivity);
-                return START_RETURN_LOCK_TASK_MODE_VIOLATION;
-            }
-
-            final int result = setTaskFromInTask();
-            if (result != START_SUCCESS) {
-                return result;
-            }
-        } else {
-            // This not being started from an existing activity, and not part of a new task...
-            // just put it in the top task, though these days this case should never happen.
-            setTaskToCurrentTopOrCreateNewTask();
-        }
-
-        mService.grantUriPermissionFromIntentLocked(mCallingUid, mStartActivity.packageName,
-                mIntent, mStartActivity.getUriPermissionsLocked(), mStartActivity.userId);
-
-        if (mSourceRecord != null && mSourceRecord.isRecentsActivity()) {
-            mStartActivity.task.setTaskToReturnTo(RECENTS_ACTIVITY_TYPE);
-        }
-        if (newTask) {
-            EventLog.writeEvent(
-                    EventLogTags.AM_CREATE_TASK, mStartActivity.userId, mStartActivity.task.taskId);
-        }
-        ActivityStack.logStartActivity(
-                EventLogTags.AM_CREATE_ACTIVITY, mStartActivity, mStartActivity.task);
-        mTargetStack.mLastPausedActivity = null;
-
-        sendPowerHintForLaunchStartIfNeeded(false /* forceSend */);
-
-        mTargetStack.startActivityLocked(mStartActivity, newTask, mKeepCurTransition, mOptions);
-        if (mDoResume) {
-            if (!mLaunchTaskBehind) {
-                // TODO(b/26381750): Remove this code after verification that all the decision
-                // points above moved targetStack to the front which will also set the focus
-                // activity.
-                mService.setFocusedActivityLocked(mStartActivity, "startedActivity");
-            }
-            final ActivityRecord topTaskActivity = mStartActivity.task.topRunningActivityLocked();
-            if (!mTargetStack.isFocusable()
-                    || (topTaskActivity != null && topTaskActivity.mTaskOverlay
-                    && mStartActivity != topTaskActivity)) {
-                // If the activity is not focusable, we can't resume it, but still would like to
-                // make sure it becomes visible as it starts (this will also trigger entry
-                // animation). An example of this are PIP activities.
-                // Also, we don't want to resume activities in a task that currently has an overlay
-                // as the starting activity just needs to be in the visible paused state until the
-                // over is removed.
-                mTargetStack.ensureActivitiesVisibleLocked(null, 0, !PRESERVE_WINDOWS);
-                // Go ahead and tell window manager to execute app transition for this activity
-                // since the app transition will not be triggered through the resume channel.
-                mWindowManager.executeAppTransition();
-            } else {
-                mSupervisor.resumeFocusedStackTopActivityLocked(mTargetStack, mStartActivity,
-                        mOptions);
-            }
-        } else {
-            mTargetStack.addRecentActivityLocked(mStartActivity);
-        }
-        mSupervisor.updateUserStackLocked(mStartActivity.userId, mTargetStack);
-
-        mSupervisor.handleNonResizableTaskIfNeeded(
-                mStartActivity.task, preferredLaunchStackId, mTargetStack.mStackId);
-
-        return START_SUCCESS;
     }
 ```
+`ActivityStackSupervisor`主要负责管理`ActivityStack`和`ActivityRecord`，`TaskRecord`。
+```java
+    /** The stack containing the launcher app. Assumed to always be attached to
+     * Display.DEFAULT_DISPLAY. */
+    ActivityStack mHomeStack;
+
+    /** The stack currently receiving input or launching the next activity. */
+    ActivityStack mFocusedStack;
+
+    /** If this is the same as mFocusedStack then the activity on the top of the focused stack has
+     * been resumed. If stacks are changing position this will hold the old stack until the new
+     * stack becomes resumed after which it will be set to mFocusedStack. */
+    private ActivityStack mLastFocusedStack;
+
+     /** List of activities that are ready to be stopped, but waiting for the next activity to
+     * settle down before doing so. */
+    final ArrayList<ActivityRecord> mStoppingActivities = new ArrayList<>();
+
+    /** List of activities that are ready to be finished, but waiting for the previous activity to
+     * settle down before doing so.  It contains ActivityRecord objects. */
+    final ArrayList<ActivityRecord> mFinishingActivities = new ArrayList<>();
+
+    /** List of activities that are in the process of going to sleep. */
+    final ArrayList<ActivityRecord> mGoingToSleepActivities = new ArrayList<>();
+
+    /** List of activities whose multi-window mode changed that we need to report to the
+     * application */
+    final ArrayList<ActivityRecord> mMultiWindowModeChangedActivities = new ArrayList<>();
+
+    /** List of activities whose picture-in-picture mode changed that we need to report to the
+     * application */
+    final ArrayList<ActivityRecord> mPipModeChangedActivities = new ArrayList<>();
+
+    /** The chain of tasks in lockTask mode. The current frontmost task is at the top, and tasks
+     * may be finished until there is only one entry left. If this is empty the system is not
+     * in lockTask mode. */
+    ArrayList<TaskRecord> mLockTaskModeTasks = new ArrayList<>();
+```
+其`resumeFocusedStackTopActivityLocked()`源码如下：
+```java
+    boolean resumeFocusedStackTopActivityLocked() {
+        return resumeFocusedStackTopActivityLocked(null, null, null);
+    }
+
+    boolean resumeFocusedStackTopActivityLocked(
+            ActivityStack targetStack, ActivityRecord target, ActivityOptions targetOptions) {
+        if (targetStack != null && isFocusedStack(targetStack)) {
+            return targetStack.resumeTopActivityUncheckedLocked(target, targetOptions);
+        }
+        final ActivityRecord r = mFocusedStack.topRunningActivityLocked();
+        if (r == null || r.state != RESUMED) {
+            mFocusedStack.resumeTopActivityUncheckedLocked(null, null);
+        }
+        return false;
+    }
+```
+又调用了`ActivityStack`类型`mFocusedStack`的`resumeTopActivityUncheckedLocked`方法,`resumeTopActivityUncheckedLocked`又调用了`resumeTopActivityInnerLocked`，`resumeTopActivityInnerLocked`又调用了`mStackSupervisor.startSpecificActivityLocked(next, true, false);`。
+`startSpecificActivityLocked`源码如下：
+```java
+    void startSpecificActivityLocked(ActivityRecord r,
+            boolean andResume, boolean checkConfig) {
+        // Is this activity's application already running?
+        ProcessRecord app = mService.getProcessRecordLocked(r.processName,
+                r.info.applicationInfo.uid, true);
+
+        r.task.stack.setLaunchTime(r);
+
+        if (app != null && app.thread != null) {
+            try {
+                if ((r.info.flags&ActivityInfo.FLAG_MULTIPROCESS) == 0
+                        || !"android".equals(r.info.packageName)) {
+                    // Don't add this if it is a platform component that is marked
+                    // to run in multiple processes, because this is actually
+                    // part of the framework so doesn't make sense to track as a
+                    // separate apk in the process.
+                    app.addPackage(r.info.packageName, r.info.applicationInfo.versionCode,
+                            mService.mProcessStats);
+                }
+                realStartActivityLocked(r, app, andResume, checkConfig);
+                return;
+            } catch (RemoteException e) {
+                Slog.w(TAG, "Exception when starting activity "
+                        + r.intent.getComponent().flattenToShortString(), e);
+            }
+
+            // If a dead object exception was thrown -- fall through to
+            // restart the application.
+        }
+
+        mService.startProcessLocked(r.processName, r.info.applicationInfo, true, 0,
+                "activity", r.intent.getComponent(), false, false, true);
+    }
+```
+如果这个activity的application已经运行，则会调用`realStartActivityLocked`:
+```java
+    final boolean realStartActivityLocked(ActivityRecord r, ProcessRecord app, boolean andResume, boolean checkConfig) throws RemoteException {
+    ......
+        app.thread.scheduleLaunchActivity(new Intent(r.intent), r.appToken,
+                  System.identityHashCode(r), r.info, new Configuration(mService.mConfiguration),
+                  new Configuration(task.mOverrideConfig), r.compat, r.launchedFromPackage,
+                  task.voiceInteractor, app.repProcState, r.icicle, r.persistentState, results,
+                  newIntents, !andResume, mService.isNextTransitionForward(), profilerInfo);
+    ......  
+        return true;
+    }
+```
+这里的 app.thread指的是IApplicationThread，它的实现是ActivityThread的内部类ApplicationThread，其中ApplicationThread继承了ApplicationThreadNative，而ApplicationThreadNative继承了Binder并实现了IApplicationThread接口。
+讲到这里再给出ActivityManageService到ApplicationThread调用过程的时序图，如下图所示。
+![](./activity_start.png)
+上面就是从AMS开始调用启动方法到ApplicationThread开始调用启动方法的调用流程。接下来就是ActivityThread启动Activity的过程：
+
+```java
+        // we use token to identify this activity without having to send the
+        // activity itself back to the activity manager. (matters more with ipc)
+        @Override
+        public final void scheduleLaunchActivity(Intent intent, IBinder token, int ident,
+                ActivityInfo info, Configuration curConfig, Configuration overrideConfig,
+                CompatibilityInfo compatInfo, String referrer, IVoiceInteractor voiceInteractor,
+                int procState, Bundle state, PersistableBundle persistentState,
+                List<ResultInfo> pendingResults, List<ReferrerIntent> pendingNewIntents,
+                boolean notResumed, boolean isForward, ProfilerInfo profilerInfo) {
+
+            updateProcessState(procState, false);
+
+            ActivityClientRecord r = new ActivityClientRecord();
+
+            r.token = token;
+            r.ident = ident;
+            r.intent = intent;
+            r.referrer = referrer;
+            r.voiceInteractor = voiceInteractor;
+            r.activityInfo = info;
+            r.compatInfo = compatInfo;
+            r.state = state;
+            r.persistentState = persistentState;
+
+            r.pendingResults = pendingResults;
+            r.pendingIntents = pendingNewIntents;
+
+            r.startsNotResumed = notResumed;
+            r.isForward = isForward;
+
+            r.profilerInfo = profilerInfo;
+
+            r.overrideConfig = overrideConfig;
+            updatePendingConfiguration(curConfig);
+
+            sendMessage(H.LAUNCH_ACTIVITY, r);
+        }
+```
+可以看到是把activity的各种信息封装进`ActivityClientRecord`，并通过handler发送出去。H是handler的子类，我们来看下handleMessage()方法：
+```java
+public void handleMessage(Message msg) {
+            if (DEBUG_MESSAGES) Slog.v(TAG, ">>> handling: " + codeToString(msg.what));
+            switch (msg.what) {
+                case LAUNCH_ACTIVITY: {
+                    Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, "activityStart");
+                    final ActivityClientRecord r = (ActivityClientRecord) msg.obj;
+
+                    r.packageInfo = getPackageInfoNoCheck(
+                            r.activityInfo.applicationInfo, r.compatInfo);
+                    handleLaunchActivity(r, null, "LAUNCH_ACTIVITY");
+                    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);
+                } break;
+                ......
+```
+显然是调用了`handleLaunchActivity`：
+```java
+    private void handleLaunchActivity(ActivityClientRecord r, Intent customIntent, String reason) {
+        // If we are getting ready to gc after going to the background, well
+        // we are back active so skip it.
+        unscheduleGcIdler();
+        mSomeActivitiesChanged = true;
+
+        if (r.profilerInfo != null) {
+            mProfiler.setProfiler(r.profilerInfo);
+            mProfiler.startProfiling();
+        }
+
+        // Make sure we are running with the most recent config.
+        handleConfigurationChanged(null, null);
+
+        if (localLOGV) Slog.v(
+            TAG, "Handling launch of " + r);
+
+        // Initialize before creating the activity
+        WindowManagerGlobal.initialize();
+
+        Activity a = performLaunchActivity(r, customIntent);//1
+
+        if (a != null) {
+            r.createdConfig = new Configuration(mConfiguration);
+            reportSizeConfigurations(r);
+            Bundle oldState = r.state;
+            handleResumeActivity(r.token, false, r.isForward,
+                    !r.activity.mFinished && !r.startsNotResumed, r.lastProcessedSeq, reason);//2
+
+            if (!r.activity.mFinished && r.startsNotResumed) {
+                // The activity manager actually wants this one to start out paused, because it
+                // needs to be visible but isn't in the foreground. We accomplish this by going
+                // through the normal startup (because activities expect to go through onResume()
+                // the first time they run, before their window is displayed), and then pausing it.
+                // However, in this case we do -not- need to do the full pause cycle (of freezing
+                // and such) because the activity manager assumes it can just retain the current
+                // state it has.
+                performPauseActivityIfNeeded(r, reason);
+
+                // We need to keep around the original state, in case we need to be created again.
+                // But we only do this for pre-Honeycomb apps, which always save their state when
+                // pausing, so we can not have them save their state when restarting from a paused
+                // state. For HC and later, we want to (and can) let the state be saved as the
+                // normal part of stopping the activity.
+                if (r.isPreHoneycomb()) {
+                    r.state = oldState;
+                }
+            }
+        } else {
+            // If there was an error, for any reason, tell the activity manager to stop us.
+            try {
+                ActivityManagerNative.getDefault()
+                    .finishActivity(r.token, Activity.RESULT_CANCELED, null,
+                            Activity.DONT_FINISH_TASK_WITH_ACTIVITY);
+            } catch (RemoteException ex) {
+                throw ex.rethrowFromSystemServer();
+            }
+        }
+    }
+```
+可见在创建activity之前，先初始化了`WindowManagerGlobal`,该类的功能就是“Provides low-level communication with the system window manager for operations that are not associated with any particular context.”也就是说承担了低级别的和system window manager的交流（通过IPC），以完成不和任何特定context有关联的操作。这么说有点绕口。我们知道他主要用来管理window的:
+```java
+    private final ArrayList<View> mViews = new ArrayList<View>();
+    private final ArrayList<ViewRootImpl> mRoots = new ArrayList<ViewRootImpl>();
+    private final ArrayList<WindowManager.LayoutParams> mParams = new ArrayList<WindowManager.LayoutParams>();
+```
+这三个list在相同索引下的`View`，`ViewRootImpl`，`WindowManager.LayoutParams`共同创建一个窗口。`WindowManagerGlobal`提供了`addView`和`updateViewLayout`方法管理窗口。具体可以看《深入理解Android 卷III
+》里面关于控件系统那章。
+
+注释1处的`performLaunchActivity`方法用来启动Activity ，注释2处的代码用来将Activity 的状态置为Resume。如果该Activity为null则会通知ActivityManager停止启动Activity。来查看`performLaunchActivit`y方法做了什么：
+```java
+    private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
+    ......
+        ActivityInfo aInfo = r.activityInfo;//1
+        if (r.packageInfo == null) {
+            r.packageInfo = getPackageInfo(aInfo.applicationInfo, r.compatInfo,
+                    Context.CONTEXT_INCLUDE_CODE);//2
+        }
+        ComponentName component = r.intent.getComponent();//3
+    ......
+        Activity activity = null;
+        try {
+            java.lang.ClassLoader cl = r.packageInfo.getClassLoader();
+            activity = mInstrumentation.newActivity(
+                    cl, component.getClassName(), r.intent);//4
+           ......
+            }
+        } catch (Exception e) {
+         ......
+        }
+        try {
+            Application app = r.packageInfo.makeApplication(false, mInstrumentation);//5
+        ......
+            if (activity != null) {
+                Context appContext = createBaseContextForActivity(r, activity);//6
+         ......
+                }
+                /**
+                *7
+                */
+                activity.attach(appContext, this, getInstrumentation(), r.token,
+                        r.ident, app, r.intent, r.activityInfo, title, r.parent,
+                        r.embeddedID, r.lastNonConfigurationInstances, config,
+                        r.referrer, r.voiceInteractor, window);
+              ......
+                if (r.isPersistable()) {
+                    mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);//8
+                } else {
+                    mInstrumentation.callActivityOnCreate(activity, r.state);
+                }
+                ......
+        }
+        return activity;
+}
+```
+注释1处用来获取ActivityInfo，在注释2处获取APK文件的描述类LoadedApk。注释3处获取要启动的Activity的ComponentName类，ComponentName类中保存了该Activity的包名和类名。注释4处根据ComponentName中存储的Activity类名，用类加载器来创建该Activity的实例。注释5处用来创建Application，makeApplication方法内部会调用Application的onCreate方法。注释6处用来创建要启动Activity的上下文环境。注释7处调用Activity的attach方法初始化Activity，attach方法中会创建Window对象（PhoneWindow）并与Activity自身进行关联。注释8处会调用Instrumentation的callActivityOnCreate方法来启动Activity：
+```java
+    /**
+     * Perform calling of an activity's {@link Activity#onCreate}
+     * method.  The default implementation simply calls through to that method.
+     *
+     * @param activity The activity being created.
+     * @param icicle The previously frozen state (or null) to pass through to onCreate().
+     */
+    public void callActivityOnCreate(Activity activity, Bundle icicle) {
+        prePerformCreate(activity);
+        activity.performCreate(icicle);
+        postPerformCreate(activity);
+    }
+```
+`performCreate`方法又调用了activity的onCreate:
+```java
+    final void performCreate(Bundle icicle) {
+        restoreHasCurrentPermissionRequest(icicle);
+        onCreate(icicle);
+        mActivityTransitionState.readState(icicle);
+        performCreateCommon();
+    }
+```
+到这里activity就正式启动了，最后附上ActivityThread启动Activity的时序图。
+![](./activity_start2.png)
