@@ -3,6 +3,7 @@
 
 ### part 1：Android
 * [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
+* [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
 * [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
 * APP启动过程
 * [activity启动流程](https://github.com/bboylin/MyNotebook/blob/master/part1/activity启动流程.md)
