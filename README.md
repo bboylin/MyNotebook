@@ -5,7 +5,7 @@
 * [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
 * [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
 * [mediaplayer注意点](https://github.com/bboylin/MyNotebook/blob/master/part1/mediaplayer.md)
-* [groovy closure中thisObject,owner,delegate辨析](https://github.com/bboylin/MyNotebook/blob/master/part1/thisObject,owner,delegate辨析.md)
+* [groovy和gradle](https://github.com/bboylin/MyNotebook/blob/master/part1/groovy&gradle.md)
 * APP启动过程
 * [activity启动流程](https://github.com/bboylin/MyNotebook/blob/master/part1/activity启动流程.md)
 * [APP性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
