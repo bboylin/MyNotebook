@@ -20,11 +20,11 @@ def xxx = {无参数，纯 code} //这种 case 不需要->符号
 ```
 闭包对象.call(参数) 或者 闭包对象(参数) 调用
 * 如果闭包没定义参数的话 ，则隐含有一个参数 it ，和this的作用类似 。it代表闭包的参数。
-* Groovy 中，当函数的最后一个参数是闭包的话，可以省略圆括号
+* Groovy 中，当函数的最后一个参数是闭包的话，可以省略圆括号</br>
 ![](./closure.png)
 
 4.编译成Java类
-* 通过`groovyc`命令将groovy文件编译成class文件，jd-gui打开可以看到继承自script类，同时生成了static main方法，groovy中所有代码都在run方法里执行。
+* 通过`groovyc`命令将groovy文件编译成class文件，jd-gui打开可以看到继承自script类，同时生成了static main方法，groovy中所有代码都在run方法里执行。</br>
 ![](./groovy_decompile.png)
 * 如果脚本中定义了函数，则函数会被定义在 test 类中。
 
