@@ -17,7 +17,7 @@
 * [picasso源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/picasso%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 * [初探event bus和RxBus](https://github.com/bboylin/MyNotebook/blob/master/part1/%E5%88%9D%E6%8E%A2event%20bus%E5%92%8CRxBus.md)
 * [Android事件分发机制](https://github.com/bboylin/MyNotebook/blob/master/part1/Android事件分发机制.md)
-* [控件系统](https://github.com/bboylin/MyNotebook/blob/master/part1/Android控件系统.md))
+* [控件系统](https://github.com/bboylin/MyNotebook/blob/master/part1/Android控件系统.md)
 * [Toast源码分析](https://github.com/bboylin/MyNotebook/blob/master/part1/toast源码分析.md)
 * [Android代码混淆](https://github.com/bboylin/MyNotebook/blob/master/part1/proguard.md)
 * [inflate和setContentView做了什么](https://github.com/bboylin/MyNotebook/blob/master/part1/inflate.md)

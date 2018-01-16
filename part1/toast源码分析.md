@@ -437,11 +437,9 @@ public void addView(View view, ViewGroup.LayoutParams params,
 也就是说在Android7.1.1上可能会遇到`BadTokenException`（当然我没遇到）。什么情况会遇到呢？源码上说了，因为the notification manager service会在通知toast取消之后cancel token，所以我们可能会试图在token失效的时候add一个window，这时候就出现了异常。避免方法也就是hook一下`WindowManager`的`addview`方法，手动catch这个exception。
 
 
-到这里我们的分析就差不多结束了。那么还剩下两个问题：
-* 这里token存在的意义？
-* 对于部分禁掉了悬浮窗或者通知权限不能正常显示toast的机型如何显示toast。
-
-to be continued...
+到这里我们的分析就差不多结束了。那么有个问题：token是干嘛的？这里token是这个窗口的Binder对象，WMS通过它对窗口进行IPC通信。
 
 
-参考：[https://zhuanlan.zhihu.com/p/30974432](https://zhuanlan.zhihu.com/p/30974432)
+参考：
+* [https://zhuanlan.zhihu.com/p/30974432](https://zhuanlan.zhihu.com/p/30974432)
+* [浅析Android的窗口](https://dev.qq.com/topic/5923ef85bdc9739041a4a798)
