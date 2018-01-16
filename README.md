@@ -36,11 +36,8 @@
 * [抽象工厂模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
 
 ### part 3：Java
-* [Java 多线程：volatile关键字](https://github.com/pzxwhc/MineKnowContainer/issues/11)
-* [Java 多线程：synchronized 关键字用法（修饰类，方法，静态方法，代码块）](https://github.com/pzxwhc/MineKnowContainer/issues/7)
 * [java8：函数式编程](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java8.md)
 * [java反射机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/reflection.md)
-* [git基础](https://github.com/bboylin/testgit/blob/master/readme.md)
 * [java中的垃圾回收机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/gc/java中的垃圾回收机制.md)
 
 ### part 4: 数据结构与算法
