@@ -1,6 +1,8 @@
 ## my notebook
 ---
 
+我的笔记本，大部分是在大二大三的时候写的笔记，对于已经毕业的来说偏基础。可能对面临校招和实习的同学会有所帮助。想看更干的干货请到我的博客来坐坐：[https://bboylin.github.io](https://bboylin.github.io)，也欢迎关注我的知乎：[bboylin](https://www.zhihu.com/people/bboylin/activities)
+
 ### part 1：Android
 * [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
 * [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
@@ -59,6 +61,7 @@
 * [计算机组成原理（北大MOOC）chapter1-6笔记](https://github.com/bboylin/MyNotebook/blob/master/part6/计算机组成chapter1-6.pdf)
 * [操作系统之进程管理](https://github.com/bboylin/MyNotebook/blob/master/part6/os2.md)
 * [http相关基础总结](https://github.com/bboylin/MyNotebook/blob/master/part6/network.md)
+* [浅谈linux-IPC](https://github.com/bboylin/MyNotebook/blob/master/part6/linux-ipc.md)
 * 输入URL到页面加载完成的过程
 
 ### part 7：读书笔记
@@ -70,5 +73,6 @@
     * [chapter 2](https://github.com/bboylin/MyNotebook/blob/master/part7/effective%20java%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0.md)
     * [chapter 3](https://github.com/bboylin/MyNotebook/blob/master/part7/effective%20java%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0.md)
 * Android开发艺术探索
-    * [Android开发艺术探索第一章笔记](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第一章笔记.md)
-    * [Android开发艺术探索第二章笔记](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第二章笔记.md)
+    * [第一章：activity生命周期和启动模式](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第一章笔记.md)
+    * [第二章：IPC机制](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第二章笔记.md)
+    * [第三章：View事件体系](https://github.com/bboylin/MyNoteBook/tree/master/part7/Android开发艺术探索第3章笔记.md)
