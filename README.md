@@ -4,7 +4,6 @@
 我的笔记本，大部分是在大二大三的时候写的笔记，对于已经毕业的来说偏基础。可能对面临校招和实习的同学会有所帮助。想看更干的干货请到我的博客来坐坐：[https://bboylin.github.io](https://bboylin.github.io)，也欢迎关注我的知乎：[bboylin](https://www.zhihu.com/people/bboylin/activities)
 
 ### part 1：Android
-* [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
 * [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
 * [mediaplayer注意点](https://github.com/bboylin/MyNotebook/blob/master/part1/mediaplayer.md)
 * [groovy和gradle](https://github.com/bboylin/MyNotebook/blob/master/part1/groovy&gradle.md)
@@ -37,10 +36,14 @@
 * [策略模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.md)
 * [抽象工厂模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
 
-### part 3：Java
+### part 3：编程语言 & 前端 & 机器学习
 * [java8：函数式编程](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java8.md)
 * [java反射机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/reflection.md)
 * [java中的垃圾回收机制](https://github.com/bboylin/MyNoteBook/tree/master/part3/gc/java中的垃圾回收机制.md)
+* [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
+* [js&ES6笔记](https://github.com/bboylin/MyNoteBook/tree/master/part3/js.md)
+* [微信小程序踩的坑](https://github.com/bboylin/MyNoteBook/tree/master/part3/weapp.md)
+* [Ubuntu16.04LTS安装tensorflow-gpu教程](https://zhuanlan.zhihu.com/p/34430408)
 
 ### part 4: 数据结构与算法
 * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
