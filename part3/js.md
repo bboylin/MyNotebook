@@ -54,3 +54,45 @@ arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
 
 JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前对象上查找该属性，如果没有找到，就到其原型对象上找，如果还没有找到，就一直上溯到Object.prototype对象，最后，如果还没有找到，就只能返回undefined。
 
+JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。当我们用obj.xxx访问一个对象的属性时，JavaScript引擎先在当前对象上查找该属性，如果没有找到，就到其原型对象上找，如果还没有找到，就一直上溯到Object.prototype对象，最后，如果还没有找到，就只能返回undefined。例如，创建一个Array对象：`var arr = [1, 2, 3];`其原型链是：
+`arr ----> Array.prototype ----> Object.prototype ----> null`
+Array.prototype定义了indexOf()、shift()等方法，因此你可以在所有的Array对象上直接调用这些方法。函数也是对象，其原型链类似。
+
+js的原型继承：
+```js
+function inherits(Child, Parent) {
+    var F = function () {};
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+}
+```
+
+ES6新增了class关键字，继承更容易了，类似java。
+```js
+class Student {
+    constructor(name) {
+        this.name = name;
+    }
+
+    hello() {
+        alert('Hello, ' + this.name + '!');
+    }
+}
+
+class PrimaryStudent extends Student {
+    constructor(name, grade) {
+        super(name); // 记得用super调用父类的构造方法!
+        this.grade = grade;
+    }
+
+    myGrade() {
+        alert('I am at grade ' + this.grade);
+    }
+}
+```
+student class的定义包含了构造函数constructor和定义在原型对象上的函数hello()（注意没有function关键字），这样就避免了`Student.prototype.hello = function () {...}`这样分散的代码。
+
+js的function中this的指向：取决于执行环境而不是定义环境。比如class里我定义的function用到了this，但是这个function在class外赋给另一个function了，然后另一个function执行，这时候this指向的已经不是这个对象本身了。在react.js或者react native 里我们会在render函数返回的组件里，比如flatlist，给他绑定一个onEndReached函数，我们会写`onEndReached={this._onEndReached.bind(this)}`而不是`onEndReached={this._onEndReached}`，在没用到this的情况下二者无差别，但是后者在用到this的情况下其this指向不是外部的component，而是这个flatlist。或者我们就用箭头函数亦可，因为在ES6里会自动绑定this。
+
+generator 用function* 定义，可以返回多次，返回的值通过next()依次取出。
