@@ -43,7 +43,7 @@
 * [kotlin语法笔记](https://github.com/bboylin/MyNotebook/blob/master/part1/kotlin_doc.md)
 * [js&ES6笔记](https://github.com/bboylin/MyNoteBook/tree/master/part3/js.md)
 * [微信小程序踩的坑](https://github.com/bboylin/MyNoteBook/tree/master/part3/weapp.md)
-* [RN踩的坑]((https://github.com/bboylin/MyNoteBook/tree/master/part3/rn.md)
+* [RN踩的坑](https://github.com/bboylin/MyNoteBook/tree/master/part3/rn.md)
 * [Ubuntu16.04LTS安装tensorflow-gpu教程](https://zhuanlan.zhihu.com/p/34430408)
 * [a detailed overview of es6 features](http://babeljs.io/learn-es2015/)
 

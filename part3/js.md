@@ -75,7 +75,7 @@ class Student {
         this.name = name;
     }
 
-    hello() {
+    hello()                      {
         alert('Hello, ' + this.name + '!');
     }
 }
@@ -95,4 +95,373 @@ student class的定义包含了构造函数constructor和定义在原型对象�
 
 js的function中this的指向：取决于执行环境而不是定义环境。比如class里我定义的function用到了this，但是这个function在class外赋给另一个function了，然后另一个function执行，这时候this指向的已经不是这个对象本身了。在react.js或者react native 里我们会在render函数返回的组件里，比如flatlist，给他绑定一个onEndReached函数，我们会写`onEndReached={this._onEndReached.bind(this)}`而不是`onEndReached={this._onEndReached}`，在没用到this的情况下二者无差别，但是后者在用到this的情况下其this指向不是外部的component，而是这个flatlist。或者我们就用箭头函数亦可，因为在ES6里会自动绑定this。
 
+函数定义和函数表达式：
+```js
+//函数定义
+function functionName(arg){
+    //函数体
+}
+//函数表达式
+var variableName = function functionName(arg){
+    //函数体
+};
+```
+二者区别在于：
+解析器会率先读取函数声明，使其在执行任何代码之前就可以访问（也就是 函数声明提升）；
+而函数表达式则需要解析器执行到它所在的代码行才会被解释执行。
+```js
+sayHi();//能正常运行 弹Hi
+sayHi123();//报错 Uncaught TypeError: sayHi123 is not a function(…)
+
+function sayHi(){
+    alert('Hi');
+}
+
+var sayHi123 = function sayHi(){
+    alert('Hi123');
+};
+```
+
+另外需要注意的是：
+当函数的参数是一个值，若被调用函数改变了这个参数的值，这样的改变不会影响到函数外部。
+但当函数的参数是一个对象（即一个非原始值，例如Array或用户自定义的其它对象），
+若函数改变了这个对象的属性，这样的改变对函数外部是可见的。
+这点和java是一样的。
+
 generator 用function* 定义，可以返回多次，返回的值通过next()依次取出。
+
+作用域嵌套：js执行引擎在当前作用域未找到某变量时会依次往外层作用域寻找该变量。
+
+变量声明时候会先寻找当前作用域是否有这个变量，有则会忽略声明。对于var a =2应该认为是一个声明语句加赋值语句。
+
+立即执行函数：
+*  `(function foo(){ .. })()` 第一个 ( ) 将函数变成表达式， 第二个 ( ) 执行了这个函数。
+* 或者这样：`(function(){ .. }())`
+
+声明的提升：考虑以下两段代码：
+```js
+a=2;
+var a;
+console.log(a);
+```
+和
+```js
+console.log(a);
+var a=2;
+```
+猜猜结果是啥：前者是2，后者undefined。因为js里声明语句会提前在所有语句之前(编译期)，实际执行顺序是这样的：
+```js
+var a;
+a=2;
+console.log(a);
+```
+和
+```js
+var a;
+console.log(a);
+a=2;
+```
+先有声明，后有赋值。
+
+函数的提升比声明优先，函数表达式不会被提升：考虑以下代码
+```js
+foo(); 
+var foo;
+function foo() {
+    console.log(1);
+}
+foo = function () {
+    console.log(2);
+};
+```
+执行结果为1。
+js引擎理解如下：
+```js
+function foo() {
+    console.log(1);
+}
+foo();
+foo = function () {
+    console.log(2);
+};
+```
+var foo作为重复的声明被忽略掉，但是后面如果还有相同的函数声明，会覆盖前面的。
+
+ES6支持函数形参默认值：
+```js
+// right
+var a = 'outer';
+
+function foo(x = a) {
+    var a = 'inner';
+    console.log(x);
+}
+
+foo();  // 输出 outer
+// wrong
+function foo(x = b) {
+    var b = 'inner';  
+    console.log(x);
+}
+
+foo();  // ReferenceError: b is not defined
+```
+
+this绑定规则：
+
+* 箭头函数对于 this 的指向的词法锁定：无论一个箭头函数以怎样的方式被调用（对象方法，bind, call, apply），其 this 始终指向箭头函数声明所在作用域的 this：
+```js
+var globalObject = this;
+var foo = (() => this);
+console.log(foo() === globalObject); // true
+
+// Call as a method of an object
+var obj = {foo: foo};
+console.log(obj.foo() === globalObject); // true
+
+// Attempt to set this using call
+console.log(foo.call(obj) === globalObject); // true
+
+// Attempt to set this using bind
+foo = foo.bind(obj);
+console.log(foo() === globalObject); // true
+```
+
+* 默认绑定
+```js
+function foo(){
+    console.log(this.a);
+}
+var a= 2;
+foo(): //2
+// 如果启用严格模式
+function foo(){
+    "use strict";  //注意不要代码中混合使用严格和非严格模式
+    console.log(this.a);
+}
+var a= 2;
+foo(): //TyoeError: this is undefined
+```
+在这里需要注意一点:虽然this的绑定规则完全取决于调用位置。但是只要foo()运作在非严格模式下，默认绑定到全局对象，严格模式下绑定到undefined。
+```js
+function foo(){
+// foo()运作在非严格模式下，默认绑定到全局对象
+    console.log(this.a);
+}
+var a= 2;
+(function(){
+    "use strict"; 
+// 严格模式下与foo()的调用位置无关。
+    foo(); //2
+})();
+```
+
+* 隐式绑定：
+```js
+function foo(){
+    console.log(this.a);
+}
+var obj2 = {
+    a: 42,
+    foo: foo
+};
+var obj1 = {
+    a: 2,
+    obj2: obj2
+};
+
+obj1.obj2.foo(); //42
+```
+
+注意隐式绑定的函数会丢失绑定对象：
+```js
+function foo(){
+    console.log(this.a);
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+var bar = obj.foo; //函数的别名
+var a = "oops, global" //a是全局对象的属性
+bar(); //oops, global
+```
+再来个例子
+```js
+function foo(){
+    console.log(this.a);
+}
+function doFoo(fn){
+    //fn其实引用的是foo
+    fn();  //调用位置
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+var a = "oops, global" //a是全局对象的属性
+doFoo(obj.foo); // oops, global
+```
+
+* 显式绑定
+```js
+function foo(){
+    console.log(this.a);
+}
+var obj = {
+     a:2
+};
+foo.call(obj); //2
+```
+
+硬绑定：
+1。在ES5中提供了内置的方法Function.prototype.bind
+2。API调用的“上下文”，如：
+```js
+function foo(el){
+    console.log(el, this.id);
+}
+var obj = {
+    id: "awesome"
+};
+[1, 2 ,3].forEach(foo, obj);
+//forEach除了接受一个必须的回调函数参数，还可以接受一个可选的上下文参数（改变回调函数里面的this指向）
+//1 awesome 2 awesome 3 awesome
+```
+3。new绑定
+```js
+function Foo(a)[
+   this.a = a;
+}
+var bar = new Foo(2);
+console.log(bar.a); //2
+```
+
+* 优先级方面：
+
+显式绑定优先于隐式绑定
+```js
+function foo(){
+   console.log(this.a);
+}
+var obj1 = {
+   a:2,
+   foo: foo
+};
+var obj2 = {
+   a:3,
+   foo: foo
+};
+
+obj1.foo(); //2
+obj2.foo(); //3
+
+obj1.foo.call(obj2); //3
+obj2.foo.call(obj1);  //2
+```
+
+new绑定优先于隐式绑定：
+```js
+function foo(something) {
+    this.a = something;
+}
+var obj1 = {
+    foo: foo
+}
+var obj2 = { };
+
+obj1.foo(2);
+console.log(obj1.a); //2
+
+obj1.foo.call(obj2, 3);
+console.log(obj2.a); //3
+
+var bar = new obj1.foo(4);
+console.log(obj1.a); //2
+console.log(bar.a); //4
+```
+
+new绑定高于硬绑定：
+```js
+function foo(something){
+    this.a = something
+}
+var obj1 = {};
+var bar = foo.bind(obj1); 
+bar(2);
+console.log(obj1.a); //2
+var baz = new bar(3);
+console.log(obj1.a); //2
+console.log(baz.a); //3
+```
+
+
+如果你把null或者undefined作为this的绑定对象传入call apply或者bind, 这些值调用的时会被忽略，实际应用的是默认绑定规则：
+```js
+function foo(){
+    console.log(this.a);
+}
+var a =2;
+foo.call(null); //2
+```
+什么情况下会传入null呢？
+```js
+function foo(a, b) {
+     console.log("a:"+a+", b:"+ b);
+}
+//把数组“展开”称参数
+foo.apply(null, [2,3]); //a:2,b:3
+
+//使用bind()进行柯里化
+var bar = foo.bind(null, 2);
+bar(3); //a:2, b:3
+```
+如果函数并不关心this的话，你仍然需要传入一个占位符，这是null可能是一个不错的选择。
+
+间接引用：
+```js
+function foo(){
+    console.log(this.a);
+}
+var a =2;
+var o = {a: 3, foo: foo};
+var p = {a: 4};
+o.foo(); //3
+(p.foo = o.foo)() ; //2
+// 赋值表达式p.foo = o.foo的返回值是目标函数的引用，因此调用位置是foo()而不是p.foo()或者o.foo(),
+// 根据之前的规则，这里会应用默认绑定。
+```
+
+考虑`myObject.foo = 'bar';`这条语句，如果：
+* `myObject`和原型链上都不存在foo属性，那么会在`myObject`上创建一个foo属性，设置为bar。
+* 仅`myObject`上有foo属性，那么直接修改该属性的值
+* 仅原型链上有foo属性，则再细分三种情况：
+    * foo没有标记为只读，那么直接在`myObject`上创建一个foo属性，且是屏蔽属性。
+    * foo只读，那么严格模式下会抛出错误，非严格模式下会忽略此条语句，总之不会屏蔽。
+    * foo是个setter，那么一定会调用这个setter。且不会在`myObject`创建foo，也不会重新定义setter。
+* `myObject`和原型链上都有foo属性，则发生屏蔽。修改的是`myObject`的foo。
+
+有些情况下会隐式发生屏蔽：
+```js
+var anotherObject = {
+       a:2
+};
+// myObject原型对象是anotherObject
+var myObject = Object.create(anotherObject );
+anotherObject.a; //2
+ myObject.a; //2
+
+anotherObject.hasOwnProperty("a"); //true
+myObject.hasOwnProperty("a"); //false
+
+myObject.a++; //隐式的屏蔽！
+anotherObject.a; //2
+myObject.a; //3
+myObject.hasOwnProperty("a"); //true
+```
+
+---
+
+参考：
+
+* 《你不知道的JavaScript》
