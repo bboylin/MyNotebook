@@ -46,6 +46,7 @@
 * [RN踩的坑](https://github.com/bboylin/MyNoteBook/tree/master/part3/rn.md)
 * [Ubuntu16.04LTS安装tensorflow-gpu教程](https://zhuanlan.zhihu.com/p/34430408)
 * [a detailed overview of es6 features](http://babeljs.io/learn-es2015/)
+* C++笔记
 
 ### part 4: 数据结构与算法
 * [红黑树详解](http://blog.csdn.net/qq_29407877/article/details/49556143)
