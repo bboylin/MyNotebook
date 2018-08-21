@@ -20,3 +20,8 @@ adb logcat | grep "^E.keyword" # 仅匹配错误tag
 adb logcat | grep "^..MyApp\|^..MyActivity"
 adb logcat | grep -E "^..MyApp|^..MyActivity"
 ```
+* logcat输出日志到文件
+```bash
+adb logcat > fileName
+adb logcat -v pid > filename # 仅输出某进程的日志到文件
+```
