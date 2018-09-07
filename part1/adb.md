@@ -25,3 +25,26 @@ adb logcat | grep -E "^..MyApp|^..MyActivity"
 adb logcat > fileName
 adb logcat -v pid > filename # 仅输出某进程的日志到文件
 ```
+* as run 的过程：
+
+参考：[在 AndroidStudio 工程点击 Run 按钮， 实际上做了什么操作呢？ - fengma chu的回答 - 知乎
+https://www.zhihu.com/question/65289196/answer/230459927](https://www.zhihu.com/question/65289196/answer/230459927)
+
+assembledebug之后执行了如下命令：
+```bash
+09/06 16:48:23: Launching app
+$ adb push /Users/denglin03/Desktop/baidu/searchbox-android/client/app/build/outputs/apk/debug/app-debug.apk /data/local/tmp/com.baidu.searchbox
+$ adb shell pm install -t -r "/data/local/tmp/com.baidu.searchbox"
+Success
+
+
+$ adb shell am start -n "com.baidu.searchbox/com.baidu.searchbox.SplashActivity" -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
+```
+
+* 查看data目录下文本内容
+
+```bash
+denglin03$ adb shell
+sagit:/ $ su
+sagit:/ # cat /data/data/xx.json
+```

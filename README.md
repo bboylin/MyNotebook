@@ -35,6 +35,7 @@
 * [工厂方法模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.md)
 * [策略模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.md)
 * [抽象工厂模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
+* [常用设计模式思想概述](https://github.com/bboylin/MyNotebook/blob/master/part2/设计模式之禅笔记.md)
 
 ### part 3：编程语言 & 前端 & 机器学习
 * [java8：函数式编程](https://github.com/bboylin/MyNoteBook/tree/master/part3/java/java8.md)
