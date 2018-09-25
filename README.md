@@ -26,6 +26,8 @@
 * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
 * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
 * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
+* [android逆向实践](https://github.com/bboylin/MyNotebook/blob/master/part1/逆向.md)
+* [aosp代码规范](https://source.android.com/source/code-style.html#follow-field-naming-conventions)
 
 ### part 2：设计模式与架构
 * [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)

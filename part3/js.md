@@ -458,6 +458,16 @@ myObject.a; //3
 myObject.hasOwnProperty("a"); //true
 ```
 
+using promise:
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+async和await,非常优雅的异步写法:
+[https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)
+
+await返回的promise对象可能会触发reject，所以必要时加try...catch。
+
 ---
 
 参考：
