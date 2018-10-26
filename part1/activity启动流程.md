@@ -100,9 +100,15 @@ mParent为我们当前activity的父activity（embedded inside关系），这里
                 final int N = mActivityMonitors.size();
                 for (int i=0; i<N; i++) {
                     final ActivityMonitor am = mActivityMonitors.get(i);
-                    if (am.match(who, null, intent)) {
+                    ActivityResult result = null;
+                    if (am.ignoreMatchingSpecificIntents()) {
+                        result = am.onStartActivity(intent);
+                    }
+                    if (result != null) {
                         am.mHits++;
-                        //当该monitor阻塞activity启动,则直接返回
+                        return result;
+                    } else if (am.match(who, null, intent)) {
+                        am.mHits++;
                         if (am.isBlocking()) {
                             return requestCode >= 0 ? am.getResult() : null;
                         }
@@ -114,7 +120,7 @@ mParent为我们当前activity的父activity（embedded inside关系），这里
         try {
             intent.migrateExtraStreamToClipData();
             intent.prepareToLeaveProcess(who);
-            int result = ActivityManagerNative.getDefault()
+            int result = ActivityManager.getService()
                 .startActivity(whoThread, who.getBasePackageName(), intent,
                         intent.resolveTypeIfNeeded(who.getContentResolver()),
                         token, target != null ? target.mEmbeddedID : null,
@@ -124,34 +130,45 @@ mParent为我们当前activity的父activity（embedded inside关系），这里
             throw new RuntimeException("Failure from system", e);
         }
         return null;
-    }
 ```
-进而通过`ActivityManagerNative.getDefault()`返回的对象启动activity
+`ActivityManager.getService()`返回`IActivityManagerSingleton.get()`,由此得到IActivityManager单例启动activity
 ```java
     /**
-     * Retrieve the system's default/global activity manager.
+     * @hide
      */
-    static public IActivityManager getDefault() {
-        return gDefault.get();
+    public static IActivityManager getService() {
+        return IActivityManagerSingleton.get();
     }
+
+    private static final Singleton<IActivityManager> IActivityManagerSingleton =
+            new Singleton<IActivityManager>() {
+                @Override
+                protected IActivityManager create() {
+                    final IBinder b = ServiceManager.getService(Context.ACTIVITY_SERVICE);
+                    final IActivityManager am = IActivityManager.Stub.asInterface(b);
+                    return am;
+                }
+            };
 ```
-gDefault是个singleTon,get()返回其泛型类型的单例。
+Singleton是Android中的util类
 ```java
-    private static final Singleton<IActivityManager> gDefault = new Singleton<IActivityManager>() {
-        protected IActivityManager create() {
-            IBinder b = ServiceManager.getService("activity");
-            if (false) {
-                Log.v("ActivityManager", "default service binder = " + b);
+public abstract class Singleton<T> {
+    private T mInstance;
+
+    protected abstract T create();
+
+    public final T get() {
+        synchronized (this) {
+            if (mInstance == null) {
+                mInstance = create();
             }
-            IActivityManager am = asInterface(b);
-            if (false) {
-                Log.v("ActivityManager", "default service = " + am);
-            }
-            return am;
+            return mInstance;
         }
-    };
+    }
+}
+
 ```
-可见这里是利用ipc获取到`ActivityManagerProxy`，进而调用其`startActivity`方法：
+可见`ActivityManager.getService()`是利用ipc获取到`ActivityManagerProxy`，进而调用其`startActivity`方法：
 ```java
 class ActivityManagerProxy implements IActivityManager
 {

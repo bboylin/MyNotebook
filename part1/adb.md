@@ -48,3 +48,16 @@ denglin03$ adb shell
 sagit:/ $ su
 sagit:/ # cat /data/data/xx.json
 ```
+
+* pull root目录下文件
+
+```bash
+denglin03$ adb root
+```
+再执行原pull语句
+
+* 查看当前activity
+
+```bash
+adb shell "dumpsys window w | grep name="
+```

@@ -4,6 +4,7 @@
 我的笔记本，大部分是在大二大三的时候写的笔记，对于已经毕业的来说偏基础。可能对面临校招和实习的同学会有所帮助。想看更干的干货请到我的博客来坐坐：[https://bboylin.github.io](https://bboylin.github.io)，也欢迎关注我的知乎：[bboylin](https://www.zhihu.com/people/bboylin/activities)
 
 ### part 1：Android
+* [华为刘海屏适配文档](https://developer.huawei.com/consumer/cn/devservice/doc/50114)
 * [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
 * [mediaplayer注意点](https://github.com/bboylin/MyNotebook/blob/master/part1/mediaplayer.md)
 * [groovy和gradle](https://github.com/bboylin/MyNotebook/blob/master/part1/groovy&gradle.md)
