@@ -32,6 +32,7 @@
 * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
 * [android逆向实践](https://github.com/bboylin/MyNotebook/blob/master/part1/逆向.md)
 * [aosp代码规范](https://source.android.com/source/code-style.html#follow-field-naming-conventions)
+* [判断全面屏](https://github.com/bboylin/MyNotebook/blob/master/part1/全面屏.md)
 
 ### part 2：设计模式与架构
 * [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
