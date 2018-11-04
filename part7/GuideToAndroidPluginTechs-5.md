@@ -1,0 +1,25 @@
+## android插件化开发指南
+
+### 第五章：对startActivity进行hook
+
+这章主要讲了startActivity的几处hook点，以及怎么hook，为后面启动插件apk中的activity做铺垫。
+如果忘了activity的启动流程可以看我之前写的笔记：[activity启动流程](https://github.com/bboylin/MyNotebook/blob/master/part1/activity启动流程.md)
+
+这里不讨论重写方法这种hook形式，这是成本最低的也是最容易想到的，例如onActivityResult方法经常通过重写来hook。
+
+将client的startActivity到AMS的startActivity之间称为启动流程的上半场的话，那么AMS的startActivity到activity的onCreate称为下半场。上半场可以hook的地方有：
+
+* hook activity的mInstrumentation对象，进而劫持execStartActivity方法。这种方法缺点在于只对当前activity生效（可通过在BaseActivity hook 里解决），对于context的startActivity不生效
+* hook ActivityThread的mInstrumentation对象，进而劫持execStartActivity方法。适用于阿 context启动activity的场景。
+* 通过动态代理hook掉ActivityManager的IActivityManagerSingleton对象的mInstance字段，劫持AMS的startActivity方法。注意，在Android 8.0以前是通过ActivityManagerNative的getDefault方法获取到AMS的代理对象来进行的，8.0以后取消了ActivityManagerProxy，取而代之通过AIDL与AMS通信，AMS继承IActivityManager.Stub作为IPC的server。这种方法同时适用于context和activity场景。
+
+下半场的hook地方主要是：
+
+* ActivityThread的mInstrumentation对象。进而劫持newActivity方法和callActivityOnCreate方法。
+* hook ActivityThread的mH对象的mCallback对象，重写handleMessage方法，处理LAUNCH_ACTIVITY消息。
+
+如何启动没在manifest注册的activity？直接启动的话因为AMS的startActivity会返回ActivityManager.START_CLASS_NOT_FOUND，进而抛异常，所以需要欺骗AMS。
+
+上半场通过hook startActivity替换掉intent，变成启动预先埋在manifest的activity，同时在新的intent里把原来的intent存下来。下半场通过hook mCallBack的handleMessage或者ActivityThread的newActivity方法从intent里拿出原来的intent，进行启动。
+
+缺点是：栈上会一直是埋点activity。同时activity的启动模式都会变成默认的。
