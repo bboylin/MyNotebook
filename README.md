@@ -11,10 +11,8 @@
 * [android adb命令](https://github.com/bboylin/MyNotebook/blob/master/part1/adb.md)
 * [mediaplayer注意点](https://github.com/bboylin/MyNotebook/blob/master/part1/mediaplayer.md)
 * [groovy和gradle](https://github.com/bboylin/MyNotebook/blob/master/part1/groovy&gradle.md)
-* APP启动过程
 * [activity启动流程](https://github.com/bboylin/MyNotebook/blob/master/part1/activity启动流程.md)
 * [APP性能优化总结](https://github.com/bboylin/MyNotebook/blob/master/part1/性能优化.md)
-* LeakCanary源码分析
 * [oom避免方法总结](https://github.com/bboylin/MyNotebook/blob/master/part1/oom避免方法总结.md)
 * [Serializable和Parcelable的区别](https://github.com/bboylin/MyNotebook/blob/master/part1/Serializable%E5%92%8CParcelable%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 * [android中消息传递机制与多线程](https://github.com/bboylin/MyNotebook/blob/master/part1/android%E4%B8%AD%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B.md)
@@ -30,9 +28,13 @@
 * [转：Android模拟器躲避的检测与应对](https://github.com/MindMac/HideAndroidEmulator/blob/master/XCON/Guess%20Where%20I%20am-Android%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BA%B2%E9%81%BF%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%BA%94%E5%AF%B9.pdf)
 * [[译] Android 开发中 Activity 的正确打开方式](https://zhuanlan.zhihu.com/p/22153655)
 * [转：请不要滥用SharedPreference](https://zhuanlan.zhihu.com/p/22913991)
-* [android逆向实践](https://github.com/bboylin/MyNotebook/blob/master/part1/逆向.md)
 * [aosp代码规范](https://source.android.com/source/code-style.html#follow-field-naming-conventions)
-* [判断全面屏](https://github.com/bboylin/MyNotebook/blob/master/part1/全面屏.md)
+* [屏幕适配相关](https://github.com/bboylin/MyNotebook/blob/master/part1/屏幕适配.md)
+* [fresco源码浅析（一）：overview](https://github.com/bboylin/MyNotebook/blob/master/part1/fresco.md)
+* APP启动过程
+* RxJava2 源码分析
+* LeakCanary源码分析
+* Android逆向基础
 
 ### part 2：设计模式与架构
 * [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
