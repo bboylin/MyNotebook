@@ -6,11 +6,11 @@
 // 将按钮作为一个窗口添加到WMS中
 private void installFloatingWindow() {
     // ① 获取一个WindowManager实例
-    finalWindowManager wm =
+    final WindowManager wm =
                     (WindowManager)getSystemService(Context.WINDOW_SERVICE);
  
     // ② 新建一个按钮控件
-    finalButton btn = new Button(this.getBaseContext());
+    final Button btn = new Button(this.getBaseContext());
    btn.setText("Click me to dismiss!");
  
     // ③ 生成一个WindowManager.LayoutParams，用以描述窗口的类型与位置信息
@@ -32,11 +32,11 @@ private void installFloatingWindow() {
 private layoutparams createlayoutparams() {
     layoutparams lp = new windowmanager.layoutparams();
     lp.type = layoutparams.type_phone;
-   lp.gravity = gravity.center;       lp.width = layoutparams.wrap_content;
-       lp.height = layoutparams.wrap_content;
-       lp.flags = layoutparams.flag_not_focusable
-               | layoutparams.flag_not_touch_modal;
-       return lp;
+    lp.gravity = gravity.center;       
+    lp.width = layoutparams.wrap_content;
+    lp.height = layoutparams.wrap_content;
+    lp.flags = layoutparams.flag_not_focusable | layoutparams.flag_not_touch_modal;
+    return lp;
     }
 ```
 

@@ -26,7 +26,7 @@ public View inflate(@LayoutRes int resource, @Nullable ViewGroup root) {
 ```
 其调用了三个参数的inflate函数：
 ```java
-/**
+    /**
     * Inflate a new view hierarchy from the specified xml resource. Throws
     * {@link InflateException} if there is an error.
     * 
@@ -43,87 +43,218 @@ public View inflate(@LayoutRes int resource, @Nullable ViewGroup root) {
     *         attachToRoot is true, this is root; otherwise it is the root of
     *         the inflated XML file.
     */
-public View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot) {
-    final Resources res = getContext().getResources();
-    if (DEBUG) {
-        Log.d(TAG, "INFLATING from resource: \"" + res.getResourceName(resource) + "\" ("
-                + Integer.toHexString(resource) + ")");
+    public View inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot) {
+        final Resources res = getContext().getResources();
+        if (DEBUG) {
+            Log.d(TAG, "INFLATING from resource: \"" + res.getResourceName(resource) + "\" ("
+                    + Integer.toHexString(resource) + ")");
+        }
+
+        final XmlResourceParser parser = res.getLayout(resource);
+        try {
+            return inflate(parser, root, attachToRoot);
+        } finally {
+            parser.close();
+        }
     }
 
-    final XmlResourceParser parser = res.getLayout(resource);
-    try {
-        return inflate(parser, root, attachToRoot);
-    } finally {
-        parser.close();
+    /**
+     * Inflate a new view hierarchy from the specified XML node. Throws
+     * {@link InflateException} if there is an error.
+     * <p>
+     * <em><strong>Important</strong></em>&nbsp;&nbsp;&nbsp;For performance
+     * reasons, view inflation relies heavily on pre-processing of XML files
+     * that is done at build time. Therefore, it is not currently possible to
+     * use LayoutInflater with an XmlPullParser over a plain XML file at runtime.
+     *
+     * @param parser XML dom node containing the description of the view
+     *        hierarchy.
+     * @param root Optional view to be the parent of the generated hierarchy (if
+     *        <em>attachToRoot</em> is true), or else simply an object that
+     *        provides a set of LayoutParams values for root of the returned
+     *        hierarchy (if <em>attachToRoot</em> is false.)
+     * @param attachToRoot Whether the inflated hierarchy should be attached to
+     *        the root parameter? If false, root is only used to create the
+     *        correct subclass of LayoutParams for the root view in the XML.
+     * @return The root View of the inflated hierarchy. If root was supplied and
+     *         attachToRoot is true, this is root; otherwise it is the root of
+     *         the inflated XML file.
+     */
+    public View inflate(XmlPullParser parser, @Nullable ViewGroup root, boolean attachToRoot) {
+        synchronized (mConstructorArgs) {
+            Trace.traceBegin(Trace.TRACE_TAG_VIEW, "inflate");
+
+            final Context inflaterContext = mContext;
+            final AttributeSet attrs = Xml.asAttributeSet(parser);
+            Context lastContext = (Context) mConstructorArgs[0];
+            mConstructorArgs[0] = inflaterContext;
+            View result = root;
+
+            try {
+                // Look for the root node.
+                int type;
+                while ((type = parser.next()) != XmlPullParser.START_TAG &&
+                        type != XmlPullParser.END_DOCUMENT) {
+                    // Empty
+                }
+
+                if (type != XmlPullParser.START_TAG) {
+                    throw new InflateException(parser.getPositionDescription()
+                            + ": No start tag found!");
+                }
+
+                final String name = parser.getName();
+
+                if (DEBUG) {
+                    System.out.println("**************************");
+                    System.out.println("Creating root view: "
+                            + name);
+                    System.out.println("**************************");
+                }
+
+                if (TAG_MERGE.equals(name)) {
+                    if (root == null || !attachToRoot) {
+                        throw new InflateException("<merge /> can be used only with a valid "
+                                + "ViewGroup root and attachToRoot=true");
+                    }
+
+                    rInflate(parser, root, inflaterContext, attrs, false);
+                } else {
+                    // Temp is the root view that was found in the xml
+                    final View temp = createViewFromTag(root, name, inflaterContext, attrs);
+
+                    ViewGroup.LayoutParams params = null;
+
+                    if (root != null) {
+                        if (DEBUG) {
+                            System.out.println("Creating params from root: " +
+                                    root);
+                        }
+                        // Create layout params that match root, if supplied
+                        params = root.generateLayoutParams(attrs);
+                        if (!attachToRoot) {
+                            // Set the layout params for temp if we are not
+                            // attaching. (If we are, we use addView, below)
+                            temp.setLayoutParams(params);
+                        }
+                    }
+
+                    if (DEBUG) {
+                        System.out.println("-----> start inflating children");
+                    }
+
+                    // Inflate all children under temp against its context.
+                    rInflateChildren(parser, temp, attrs, true);
+
+                    if (DEBUG) {
+                        System.out.println("-----> done inflating children");
+                    }
+
+                    // We are supposed to attach all the views we found (int temp)
+                    // to root. Do that now.
+                    if (root != null && attachToRoot) {
+                        root.addView(temp, params);
+                    }
+
+                    // Decide whether to return the root that was passed in or the
+                    // top view found in xml.
+                    if (root == null || !attachToRoot) {
+                        result = temp;
+                    }
+                }
+
+            } catch (XmlPullParserException e) {
+                final InflateException ie = new InflateException(e.getMessage(), e);
+                ie.setStackTrace(EMPTY_STACK_TRACE);
+                throw ie;
+            } catch (Exception e) {
+                final InflateException ie = new InflateException(parser.getPositionDescription()
+                        + ": " + e.getMessage(), e);
+                ie.setStackTrace(EMPTY_STACK_TRACE);
+                throw ie;
+            } finally {
+                // Don't retain static reference on context.
+                mConstructorArgs[0] = lastContext;
+                mConstructorArgs[1] = null;
+
+                Trace.traceEnd(Trace.TRACE_TAG_VIEW);
+            }
+
+            return result;
+        }
+    /**
+     * Recursive method used to descend down the xml hierarchy and instantiate
+     * views, instantiate their children, and then call onFinishInflate().
+     * <p>
+     * <strong>Note:</strong> Default visibility so the BridgeInflater can
+     * override it.
+     */
+    void rInflate(XmlPullParser parser, View parent, Context context,
+            AttributeSet attrs, boolean finishInflate) throws XmlPullParserException, IOException {
+
+        final int depth = parser.getDepth();
+        int type;
+        boolean pendingRequestFocus = false;
+
+        while (((type = parser.next()) != XmlPullParser.END_TAG ||
+                parser.getDepth() > depth) && type != XmlPullParser.END_DOCUMENT) {
+
+            if (type != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            final String name = parser.getName();
+
+            if (TAG_REQUEST_FOCUS.equals(name)) {
+                pendingRequestFocus = true;
+                consumeChildElements(parser);
+            } else if (TAG_TAG.equals(name)) {
+                parseViewTag(parser, parent, attrs);
+            } else if (TAG_INCLUDE.equals(name)) {
+                if (parser.getDepth() == 0) {
+                    throw new InflateException("<include /> cannot be the root element");
+                }
+                parseInclude(parser, context, parent, attrs);
+            } else if (TAG_MERGE.equals(name)) {
+                throw new InflateException("<merge /> must be the root element");
+            } else {
+                final View view = createViewFromTag(parent, name, context, attrs);
+                final ViewGroup viewGroup = (ViewGroup) parent;
+                final ViewGroup.LayoutParams params = viewGroup.generateLayoutParams(attrs);
+                rInflateChildren(parser, view, attrs, true);
+                viewGroup.addView(view, params);
+            }
+        }
+
+        if (pendingRequestFocus) {
+            parent.restoreDefaultFocus();
+        }
+
+        if (finishInflate) {
+            parent.onFinishInflate();
+        }
     }
-}
+    /**
+     * Recursive method used to inflate internal (non-root) children. This
+     * method calls through to {@link #rInflate} using the parent context as
+     * the inflation context.
+     * <strong>Note:</strong> Default visibility so the BridgeInflater can
+     * call it.
+     */
+    final void rInflateChildren(XmlPullParser parser, View parent, AttributeSet attrs,
+            boolean finishInflate) throws XmlPullParserException, IOException {
+        rInflate(parser, parent, parent.getContext(), attrs, finishInflate);
+    }
 ```
-由此可知：两个参数的inflate函数中传入的root为null时，attachToRoot默认为false；root不为null时，attachToRoot默认为true。那么attachToRoot是干嘛的呢？
-总结来说：
+由此可知：两个参数的inflate函数中传入的root为null时，attachToRoot默认为false；root不为null时，attachToRoot默认为true。那么attachToRoot是干嘛的呢？这是个决定view是否attach到parent的变量。
 * root为null时，attachToRoot的值将不起作用。直接返回的xml根布局。（由于没有LayoutParams，根布局的宽高margin等不起作用）
-* root不为null时，attachToRoot为true则最后inflate返回的结果就是root，而且xml的布局被addView加入到root中；而attachToRoot==false的时候，直接返回的是xml的根布局，且这个根布局被设置了一个利用root生成的LayoutParams。同样，从源码中可以得到验证：
-```java
-// Temp is the root view that was found in the xml
-final View temp = createViewFromTag(root, name, inflaterContext, attrs);
-
-ViewGroup.LayoutParams params = null;
-
-if (root != null) {
-    if (DEBUG) {
-        System.out.println("Creating params from root: " +
-                root);
-    }
-    // Create layout params that match root, if supplied
-    params = root.generateLayoutParams(attrs);
-    if (!attachToRoot) {
-        // Set the layout params for temp if we are not
-        // attaching. (If we are, we use addView, below)
-        temp.setLayoutParams(params);
-    }
-}
-
-if (DEBUG) {
-    System.out.println("-----> start inflating children");
-}
-
-// Inflate all children under temp against its context.
-rInflateChildren(parser, temp, attrs, true);
-
-if (DEBUG) {
-    System.out.println("-----> done inflating children");
-}
-
-// We are supposed to attach all the views we found (int temp)
-// to root. Do that now.
-if (root != null && attachToRoot) {
-    root.addView(temp, params);
-}
-
-// Decide whether to return the root that was passed in or the
-// top view found in xml.
-if (root == null || !attachToRoot) {
-    result = temp;
-}
-```
-
-```java
-public LayoutParams generateLayoutParams(AttributeSet attrs) {
-    return new LayoutParams(getContext(), attrs);
-}
-public LayoutParams(Context c, AttributeSet attrs) {
-    TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ViewGroup_Layout);
-    setBaseAttributes(a,
-            R.styleable.ViewGroup_Layout_layout_width,
-            R.styleable.ViewGroup_Layout_layout_height);
-    a.recycle();
-}
-```
+* root不为null时，attachToRoot为true则最后inflate返回的结果就是root，而且xml的布局被addView加入到root中；而attachToRoot==false的时候，直接返回的是xml的根布局，且这个根布局被设置了一个利用root生成的LayoutParams。
 
 那么回过头来看出问题的代码：
 
 ![](http://blog.bboylin.xyz/image/evaluate.png)
 
-传入的root为null和attachToRoot为false，很明显直接返回xml的根布局，由于没有layoutparams，这样就导致xml根布局的margin失效。那么怎么改呢？既然没有layoutparams那给他赋一个MarginLayoutParams不就行了吗？然而事实证明这也不行，margin仍然没变。而且上面的分析仅仅证明了margin失效原因，不能说明为什么最后会出来一个随着手机分辨率而改变的margin。要分析这个问题就得用到Android studio的layout inspector了，Hierarchy Viewer也可以，不过Hierarchy Viewer得root手机，当然功能也更强大，可以用来优化布局。
+传入的root为null和attachToRoot为false，很明显直接返回xml的根布局，由于没有layoutparams，这样就导致xml根布局的margin失效。那么怎么改呢？既然没有layoutparams那给他赋一个MarginLayoutParams不就行了吗？然而事实证明这也不行，margin仍然没变。而且上面的分析仅仅证明了margin失效原因，不能说明为什么最后会出来一个随着手机分辨率而改变的margin。
 
 这是Hierarchy Viewer下布局的tree view：
 
@@ -221,3 +352,44 @@ private void installDecor() {
 
 这里就暂时不再深入去看了。
 最终我们要解决这个问题还要靠getWindow获取到phonewindow然后将其x=0并且宽设为match_parent，这样phonewindow宽度上就占满屏幕了，最外层的margin就消除了。还得注意的一点是必须在setContentView之后执行，否则不会生效。
+
+----
+
+LayoutInflater类注释：
+```java
+/**
+ * Instantiates a layout XML file into its corresponding {@link android.view.View}
+ * objects. It is never used directly. Instead, use
+ * {@link android.app.Activity#getLayoutInflater()} or
+ * {@link Context#getSystemService} to retrieve a standard LayoutInflater instance
+ * that is already hooked up to the current context and correctly configured
+ * for the device you are running on.
+ *
+ * <p>
+ * To create a new LayoutInflater with an additional {@link Factory} for your
+ * own views, you can use {@link #cloneInContext} to clone an existing
+ * ViewFactory, and then call {@link #setFactory} on it to include your
+ * Factory.
+ *
+ * <p>
+ * For performance reasons, view inflation relies heavily on pre-processing of
+ * XML files that is done at build time. Therefore, it is not currently possible
+ * to use LayoutInflater with an XmlPullParser over a plain XML file at runtime;
+ * it only works with an XmlPullParser returned from a compiled resource
+ * (R.<em>something</em> file.)
+ */
+@SystemService(Context.LAYOUT_INFLATER_SERVICE)
+public abstract class LayoutInflater {
+    .....
+    /**
+     * Obtains the LayoutInflater from the given context.
+     */
+    public static LayoutInflater from(Context context) {
+        LayoutInflater LayoutInflater =
+                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (LayoutInflater == null) {
+            throw new AssertionError("LayoutInflater not found.");
+        }
+        return LayoutInflater;
+    }
+```
