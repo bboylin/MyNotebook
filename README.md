@@ -34,13 +34,9 @@
 * APP启动过程
 * RxJava2 源码分析
 * LeakCanary源码分析
-<<<<<<< HEAD
-* Android逆向基础
-* view绘制流程
-=======
 * [Android逆向基础](https://github.com/bboylin/MyNotebook/blob/master/part1/逆向.md)
 * React-Native源码分析
->>>>>>> handler细节
+* gradle源码分析
 
 ### part 2：设计模式与架构
 * [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
