@@ -32,11 +32,12 @@
 * [屏幕适配相关](https://github.com/bboylin/MyNotebook/blob/master/part1/屏幕适配.md)
 * [fresco源码浅析（一）：overview](https://github.com/bboylin/MyNotebook/blob/master/part1/fresco.md)
 * APP启动过程
-* RxJava2 源码分析
+* [RxJava2 源码分析](https://bboylin.github.io/2019/04/11/RxJava2%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/)
 * LeakCanary源码分析
 * [Android逆向基础](https://github.com/bboylin/MyNotebook/blob/master/part1/逆向.md)
 * React-Native源码分析
 * gradle源码分析
+* [sqlite基础](https://github.com/bboylin/MyNotebook/blob/master/part1/sqlite.md)
 
 ### part 2：设计模式与架构
 * [单例模式](https://github.com/bboylin/MyNotebook/blob/master/part2/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
