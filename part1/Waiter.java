@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicReference;
  *                 waiter.assertEquals(123, 1234);
  *                 waiter.resume();
  *             }
- *         });
+ *         }).start();
  *         waiter.await();
  * </pre>
  */
