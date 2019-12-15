@@ -1,9 +1,7 @@
 ## my notebook
 ---
 
-我的笔记本，大部分是在大二大三的时候写的笔记，对于已经毕业的来说偏基础。可能对面临校招和实习的同学会有所帮助。想看更干的干货请到我的博客来坐坐：[https://bboylin.github.io](https://bboylin.github.io)，也欢迎关注我的知乎：[bboylin](https://www.zhihu.com/people/bboylin/activities)。
-
-从18年11月开始，我也在每周更新一些自己看到的值得推荐的技术文章，欢迎点watch和提pr，希望和你一同进步：[https://github.com/bboylin/AndroidWeekly](https://github.com/bboylin/AndroidWeekly)
+我的笔记本，大部分是在大二大三的时候写的笔记，对于已经毕业的来说可能比较基础甚至naive。对面临校招和实习的同学应该会有所帮助。这里将不再更新，请移步我的博客：[https://bboylin.github.io](https://bboylin.github.io)。
 
 ### part 1：Android
 * [使用android profiler查看函数耗时](https://developer.android.com/studio/profile/cpu-profiler)
